@@ -14,7 +14,7 @@
 <script type="text/javascript" src="../js/doc.js"></script>
 
   <meta name="repository-name" content="unicode_plot">
-  <title>UnicodePlot::AsciiCanvas - unicode_plot main</title>
+  <title>UnicodePlot::VHistCanvas - unicode_plot main</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../";
   </script>
@@ -62,7 +62,7 @@
       
         <ul>
   
-  <li class=" current" data-id="unicode_plot/UnicodePlot/AsciiCanvas" data-name="unicodeplot::asciicanvas">
+  <li class=" " data-id="unicode_plot/UnicodePlot/AsciiCanvas" data-name="unicodeplot::asciicanvas">
       <a href="../UnicodePlot/AsciiCanvas.html">AsciiCanvas</a>
       
     </li>
@@ -142,7 +142,7 @@
       
     </li>
   
-  <li class=" " data-id="unicode_plot/UnicodePlot/VHistCanvas" data-name="unicodeplot::vhistcanvas">
+  <li class=" current" data-id="unicode_plot/UnicodePlot/VHistCanvas" data-name="unicodeplot::vhistcanvas">
       <a href="../UnicodePlot/VHistCanvas.html">VHistCanvas</a>
       
     </li>
@@ -163,15 +163,27 @@
 
   <span class="kind">
     class
-  </span> UnicodePlot::<wbr>AsciiCanvas
+  </span> UnicodePlot::<wbr>VHistCanvas
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../UnicodePlot/AsciiCanvas.html">UnicodePlot::AsciiCanvas</a></li><li class="superclass"><a href="../UnicodePlot/Canvas.html">UnicodePlot::Canvas</a></li><li class="superclass"><a href="../UnicodePlot/GraphicsArea.html">UnicodePlot::GraphicsArea</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../UnicodePlot/VHistCanvas.html">UnicodePlot::VHistCanvas</a></li><li class="superclass"><a href="../UnicodePlot/BrailleCanvas.html">UnicodePlot::BrailleCanvas</a></li><li class="superclass"><a href="../UnicodePlot/Canvas.html">UnicodePlot::Canvas</a></li><li class="superclass"><a href="../UnicodePlot/GraphicsArea.html">UnicodePlot::GraphicsArea</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>BrailleCanvas variant where blank is a space instead of ⠀.
+Used for vertical histograms so that title/xlabel decorations render cleanly.</p>
 
 
 
@@ -198,8 +210,8 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/unicode_plot/blob/d0d5f5b60f6b6f0bea3aba14e25b98ad88ff9cfc/src/unicode_plot/canvas/ascii_canvas.cr#L15" target="_blank">
-        unicode_plot/canvas/ascii_canvas.cr
+      <a href="https://github.com/kojix2/unicode_plot/blob/d0d5f5b60f6b6f0bea3aba14e25b98ad88ff9cfc/src/unicode_plot/canvas/braille_canvas.cr#L86" target="_blank">
+        unicode_plot/canvas/braille_canvas.cr
       </a>
     
     <br/>
@@ -210,23 +222,6 @@
 
 
   
-  <h2>
-    <a id="constructors" class="anchor" href="#constructors">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Constructors
-  </h2>
-  <ul class="list-summary">
-    
-      <li class="entry-summary">
-        <a href="#new%28char_height%3AInt32%2Cchar_width%3AInt32%2C%2A%2Cvisible%3ABool%3Dtrue%2Cblend%3ABool%3Dtrue%2Corigin_y%3AFloat64%3D0.0%2Corigin_x%3AFloat64%3D0.0%2Cheight%3AFloat64%3D1.0%2Cwidth%3AFloat64%3D1.0%2Cyflip%3ABool%3Dfalse%2Cxflip%3ABool%3Dfalse%2Cyscale%3ASymbol%7CProc%28Float64%2CFloat64%29%3D%3Aidentity%2Cxscale%3ASymbol%7CProc%28Float64%2CFloat64%29%3D%3Aidentity%29-class-method" class="signature"><strong>.new</strong>(char_height : Int32, char_width : Int32, *, visible : Bool = <span class="n">true</span>, blend : Bool = <span class="n">true</span>, origin_y : Float64 = <span class="n">0.0</span>, origin_x : Float64 = <span class="n">0.0</span>, height : Float64 = <span class="n">1.0</span>, width : Float64 = <span class="n">1.0</span>, yflip : Bool = <span class="n">false</span>, xflip : Bool = <span class="n">false</span>, yscale : Symbol | Proc(Float64, Float64) = <span class="n">:identity</span>, xscale : Symbol | Proc(Float64, Float64) = <span class="n">:identity</span>)</a>
-        
-      </li>
-    
-  </ul>
-
 
   
 
@@ -248,33 +243,62 @@
         
       </li>
     
-      <li class="entry-summary">
-        <a href="#grid_char_at%28row%3AInt32%2Ccol%3AInt32%29%3AChar-instance-method" class="signature"><strong>#grid_char_at</strong>(row : Int32, col : Int32) : Char</a>
-        
-          <div class="summary"><p>Map grid value to display character.</p></div>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#pixel%21%28pixel_x%3AInt32%2Cpixel_y%3AInt32%2Ccolor%3AUInt32%2Cblend%3ABool%29%3Aself-instance-method" class="signature"><strong>#pixel!</strong>(pixel_x : Int32, pixel_y : Int32, color : UInt32, blend : Bool) : <span class="k">self</span></a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#x_pixel_per_char%3AInt32-instance-method" class="signature"><strong>#x_pixel_per_char</strong> : Int32</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#y_pixel_per_char%3AInt32-instance-method" class="signature"><strong>#y_pixel_per_char</strong> : Int32</a>
-        
-      </li>
-    
   </ul>
 
 
 
   <div class="methods-inherited">
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="../UnicodePlot/BrailleCanvas.html">UnicodePlot::BrailleCanvas</a></code></h3>
+  
+  
+    <a href="../UnicodePlot/BrailleCanvas.html#blank%3AChar-instance-method" class="tooltip">
+      <span>blank : Char</span>
+    blank</a>, 
+    
+  
+    <a href="../UnicodePlot/BrailleCanvas.html#grid_char_at%28row%3AInt32%2Ccol%3AInt32%29%3AChar-instance-method" class="tooltip">
+      <span>grid_char_at(row : Int32, col : Int32) : Char</span>
+    grid_char_at</a>, 
+    
+  
+    <a href="../UnicodePlot/BrailleCanvas.html#pixel%21%28pixel_x%3AInt32%2Cpixel_y%3AInt32%2Ccolor%3AUInt32%2Cblend%3ABool%29%3Aself-instance-method" class="tooltip">
+      <span>pixel!(pixel_x : Int32, pixel_y : Int32, color : UInt32, blend : Bool) : <span class="k">self</span></span>
+    pixel!</a>, 
+    
+  
+    <a href="../UnicodePlot/BrailleCanvas.html#x_pixel_per_char%3AInt32-instance-method" class="tooltip">
+      <span>x_pixel_per_char : Int32</span>
+    x_pixel_per_char</a>, 
+    
+  
+    <a href="../UnicodePlot/BrailleCanvas.html#y_pixel_per_char%3AInt32-instance-method" class="tooltip">
+      <span>y_pixel_per_char : Int32</span>
+    y_pixel_per_char</a>
+    
+  
+
+
+      
+
+  <h3>Constructor methods inherited from class <code><a href="../UnicodePlot/BrailleCanvas.html">UnicodePlot::BrailleCanvas</a></code></h3>
+  
+  
+    <a href="../UnicodePlot/BrailleCanvas.html#new%28char_height%3AInt32%2Cchar_width%3AInt32%2C%2A%2Cvisible%3ABool%3Dtrue%2Cblend%3ABool%3Dtrue%2Corigin_y%3AFloat64%3D0.0%2Corigin_x%3AFloat64%3D0.0%2Cheight%3AFloat64%3D1.0%2Cwidth%3AFloat64%3D1.0%2Cyflip%3ABool%3Dfalse%2Cxflip%3ABool%3Dfalse%2Cyscale%3ASymbol%7CProc%28Float64%2CFloat64%29%3D%3Aidentity%2Cxscale%3ASymbol%7CProc%28Float64%2CFloat64%29%3D%3Aidentity%29-class-method" class="tooltip">
+      <span>new(char_height : Int32, char_width : Int32, *, visible : Bool = <span class="n">true</span>, blend : Bool = <span class="n">true</span>, origin_y : Float64 = <span class="n">0.0</span>, origin_x : Float64 = <span class="n">0.0</span>, height : Float64 = <span class="n">1.0</span>, width : Float64 = <span class="n">1.0</span>, yflip : Bool = <span class="n">false</span>, xflip : Bool = <span class="n">false</span>, yscale : Symbol | Proc(Float64, Float64) = <span class="n">:identity</span>, xscale : Symbol | Proc(Float64, Float64) = <span class="n">:identity</span>)</span>
+    new</a>
+    
+  
+
+
+      
+
+
+      
+
+
     
       
 
@@ -568,32 +592,6 @@
   </div>
 
   
-  <h2>
-    <a id="constructor-detail" class="anchor" href="#constructor-detail">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Constructor Detail
-  </h2>
-  
-    <div class="entry-detail" id="new(char_height:Int32,char_width:Int32,*,visible:Bool=true,blend:Bool=true,origin_y:Float64=0.0,origin_x:Float64=0.0,height:Float64=1.0,width:Float64=1.0,yflip:Bool=false,xflip:Bool=false,yscale:Symbol|Proc(Float64,Float64)=:identity,xscale:Symbol|Proc(Float64,Float64)=:identity)-class-method">
-      <div class="signature">
-        
-        def self.<strong>new</strong>(char_height : Int32, char_width : Int32, *, visible : Bool = <span class="n">true</span>, blend : Bool = <span class="n">true</span>, origin_y : Float64 = <span class="n">0.0</span>, origin_x : Float64 = <span class="n">0.0</span>, height : Float64 = <span class="n">1.0</span>, width : Float64 = <span class="n">1.0</span>, yflip : Bool = <span class="n">false</span>, xflip : Bool = <span class="n">false</span>, yscale : Symbol | Proc(Float64, Float64) = <span class="n">:identity</span>, xscale : Symbol | Proc(Float64, Float64) = <span class="n">:identity</span>)
-
-        <a class="method-permalink" href="#new%28char_height%3AInt32%2Cchar_width%3AInt32%2C%2A%2Cvisible%3ABool%3Dtrue%2Cblend%3ABool%3Dtrue%2Corigin_y%3AFloat64%3D0.0%2Corigin_x%3AFloat64%3D0.0%2Cheight%3AFloat64%3D1.0%2Cwidth%3AFloat64%3D1.0%2Cyflip%3ABool%3Dfalse%2Cxflip%3ABool%3Dfalse%2Cyscale%3ASymbol%7CProc%28Float64%2CFloat64%29%3D%3Aidentity%2Cxscale%3ASymbol%7CProc%28Float64%2CFloat64%29%3D%3Aidentity%29-class-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/unicode_plot/blob/d0d5f5b60f6b6f0bea3aba14e25b98ad88ff9cfc/src/unicode_plot/canvas/ascii_canvas.cr#L16" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-
 
   
 
@@ -620,80 +618,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/d0d5f5b60f6b6f0bea3aba14e25b98ad88ff9cfc/src/unicode_plot/canvas/ascii_canvas.cr#L49" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="grid_char_at(row:Int32,col:Int32):Char-instance-method">
-      <div class="signature">
-        
-        def <strong>grid_char_at</strong>(row : Int32, col : Int32) : Char
-
-        <a class="method-permalink" href="#grid_char_at%28row%3AInt32%2Ccol%3AInt32%29%3AChar-instance-method">#</a>
-      </div>
-      
-        <div class="doc">
-          
-            <div class="doc-inherited">
-              Description copied from class <a href="../UnicodePlot/Canvas.html">UnicodePlot::Canvas</a>
-            </div>
-          
-          <p>Map grid value to display character. Must be overridden by subclasses.</p>
-        </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/unicode_plot/blob/d0d5f5b60f6b6f0bea3aba14e25b98ad88ff9cfc/src/unicode_plot/canvas/ascii_canvas.cr#L82" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="pixel!(pixel_x:Int32,pixel_y:Int32,color:UInt32,blend:Bool):self-instance-method">
-      <div class="signature">
-        
-        def <strong>pixel!</strong>(pixel_x : Int32, pixel_y : Int32, color : UInt32, blend : Bool) : <span class="k">self</span>
-
-        <a class="method-permalink" href="#pixel%21%28pixel_x%3AInt32%2Cpixel_y%3AInt32%2Ccolor%3AUInt32%2Cblend%3ABool%29%3Aself-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/unicode_plot/blob/d0d5f5b60f6b6f0bea3aba14e25b98ad88ff9cfc/src/unicode_plot/canvas/ascii_canvas.cr#L61" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="x_pixel_per_char:Int32-instance-method">
-      <div class="signature">
-        
-        def <strong>x_pixel_per_char</strong> : Int32
-
-        <a class="method-permalink" href="#x_pixel_per_char%3AInt32-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/unicode_plot/blob/d0d5f5b60f6b6f0bea3aba14e25b98ad88ff9cfc/src/unicode_plot/canvas/ascii_canvas.cr#L57" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="y_pixel_per_char:Int32-instance-method">
-      <div class="signature">
-        
-        def <strong>y_pixel_per_char</strong> : Int32
-
-        <a class="method-permalink" href="#y_pixel_per_char%3AInt32-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/unicode_plot/blob/d0d5f5b60f6b6f0bea3aba14e25b98ad88ff9cfc/src/unicode_plot/canvas/ascii_canvas.cr#L53" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/d0d5f5b60f6b6f0bea3aba14e25b98ad88ff9cfc/src/unicode_plot/canvas/braille_canvas.cr#L87" target="_blank">View source</a>]
         
       </div>
     </div>
