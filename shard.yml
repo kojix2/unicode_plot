@@ -1,0 +1,9 @@
+name: unicode_plot
+version: 0.1.0
+
+authors:
+  - kojix2 <2xijok@gmail.com>
+
+crystal: '>= 1.20.0'
+
+license: MIT

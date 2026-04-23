@@ -1,0 +1,42 @@
+name: Test
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        crystal: [latest]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          submodules: recursive
+
+      - name: Install Crystal
+        uses: crystal-lang/install-crystal@v1
+        with:
+          crystal: ${{ matrix.crystal }}
+
+      - name: Install shards
+        run: shards install --without-development
+
+      - name: Run specs
+        run: crystal spec
+
+      - name: Build examples
+        run: |
+          find examples -name "*.cr" | sort | while read f; do
+            echo "Building $f ..."
+            crystal build --no-codegen "$f"
+          done
+
+      - name: Check formatting
+        run: crystal tool format --check

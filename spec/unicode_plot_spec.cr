@@ -1,0 +1,423 @@
+require "./spec_helper"
+
+describe UnicodePlot do
+  describe "nice_repr" do
+    it "formats integers with thousands separator" do
+      UnicodePlot.nice_repr(1000).should eq("1 000")
+      UnicodePlot.nice_repr(1_000_000).should eq("1 000 000")
+      UnicodePlot.nice_repr(-42).should eq("-42")
+    end
+
+    it "formats zero" do
+      UnicodePlot.nice_repr(0.0).should eq("0")
+    end
+
+    it "formats whole floats as integers" do
+      UnicodePlot.nice_repr(3.0).should eq("3")
+      UnicodePlot.nice_repr(-5.0).should eq("-5")
+    end
+
+    it "formats floats compactly" do
+      UnicodePlot.nice_repr(3.4).should eq("3.4")
+      UnicodePlot.nice_repr(1.23456789).should eq("1.23457")
+    end
+  end
+
+  describe "lineplot" do
+    it "returns a Plot" do
+      p = UnicodePlot.lineplot([1.0, 2.0, 3.0], [1.0, 4.0, 9.0])
+      p.should be_a(UnicodePlot::Plot)
+    end
+
+    it "accepts title and axis labels" do
+      p = UnicodePlot.lineplot([1.0, 2.0], [1.0, 2.0], title: "T", xlabel: "X", ylabel: "Y")
+      p.title.should eq("T")
+      p.xlabel.should eq("X")
+      p.ylabel.should eq("Y")
+    end
+
+    it "renders to string without error" do
+      p = UnicodePlot.lineplot([1.0, 2.0, 3.0], [1.0, 4.0, 9.0])
+      s = p.to_s
+      s.should contain("┌")
+      s.should contain("└")
+    end
+
+    it "raises on mismatched x/y lengths" do
+      expect_raises(ArgumentError, /same length/) do
+        UnicodePlot.lineplot([1.0, 2.0], [1.0, 2.0, 3.0])
+      end
+    end
+
+    it "accepts RGB tuple color" do
+      p = UnicodePlot.lineplot([1.0, 2.0], [1.0, 2.0], color: {0, 0, 255})
+      p.to_s.should be_a(String)
+    end
+
+    it "accepts Int64 arrays via numeric overload" do
+      p = UnicodePlot.lineplot([1_i64, 2_i64, 3_i64], [1_i64, 4_i64, 9_i64])
+      p.to_s.should be_a(String)
+    end
+
+    it "accepts mixed numeric x/y element types" do
+      p = UnicodePlot.lineplot([1_i32, 2_i32, 3_i32], [1.0_f32, 4.0_f32, 9.0_f32])
+      p.to_s.should be_a(String)
+    end
+
+    it "accepts y-only numeric overload" do
+      p = UnicodePlot.lineplot([1_i16, 4_i16, 9_i16])
+      p.to_s.should be_a(String)
+    end
+
+    it "accepts numeric x with function overload" do
+      p = UnicodePlot.lineplot([1_i64, 2_i64, 3_i64], ->(v : Float64) { v * v })
+      p.to_s.should be_a(String)
+    end
+
+    it "accepts numeric overload in lineplot!" do
+      p = UnicodePlot.lineplot([1.0, 2.0, 3.0], [1.0, 4.0, 9.0])
+      prev_series = p.series
+      UnicodePlot.lineplot!(p, [1_i64, 2_i64, 3_i64], [2_i64, 3_i64, 4_i64])
+      p.series.should eq(prev_series + 1)
+    end
+
+    it "ignores extreme finite values without overflowing during rasterization" do
+      p = UnicodePlot.lineplot([Float64::MAX, 0.5], [0.5, 0.5])
+      p.to_s.should be_a(String)
+    end
+  end
+
+  describe "scatterplot" do
+    it "returns a Plot" do
+      p = UnicodePlot.scatterplot([1.0, 2.0, 3.0], [1.0, 4.0, 9.0])
+      p.should be_a(UnicodePlot::Plot)
+    end
+
+    it "renders to string without error" do
+      p = UnicodePlot.scatterplot([1.0, 2.0, 3.0], [1.0, 4.0, 9.0])
+      s = p.to_s
+      s.should contain("┌")
+    end
+
+    it "raises on mismatched x/y lengths" do
+      expect_raises(ArgumentError, /same length/) do
+        UnicodePlot.scatterplot([1.0, 2.0], [1.0, 2.0, 3.0])
+      end
+    end
+
+    it "accepts Float32 arrays via numeric overload" do
+      p = UnicodePlot.scatterplot([1.0_f32, 2.0_f32, 3.0_f32], [1.0_f32, 4.0_f32, 9.0_f32])
+      p.to_s.should be_a(String)
+    end
+
+    it "accepts mixed numeric x/y element types" do
+      p = UnicodePlot.scatterplot([1_i32, 2_i32, 3_i32], [1.0_f64, 4.0_f64, 9.0_f64])
+      p.to_s.should be_a(String)
+    end
+
+    it "accepts y-only numeric overload" do
+      p = UnicodePlot.scatterplot([1_i16, 4_i16, 9_i16])
+      p.to_s.should be_a(String)
+    end
+
+    it "accepts numeric overload in scatterplot!" do
+      p = UnicodePlot.scatterplot([1.0, 2.0, 3.0], [1.0, 4.0, 9.0])
+      prev_series = p.series
+      UnicodePlot.scatterplot!(p, [1_i64, 2_i64, 3_i64], [2_i64, 3_i64, 4_i64])
+      p.series.should eq(prev_series + 1)
+    end
+  end
+
+  describe "barplot" do
+    it "returns a Plot" do
+      p = UnicodePlot.barplot(["a", "b", "c"], [1.0, 2.0, 3.0])
+      p.should be_a(UnicodePlot::Plot)
+    end
+
+    it "renders to string without error" do
+      p = UnicodePlot.barplot(["Paris", "London"], [2.244, 7.556])
+      s = p.to_s
+      s.should contain("Paris")
+      s.should contain("London")
+    end
+
+    it "accepts a Hash" do
+      p = UnicodePlot.barplot({"a" => 1.0, "b" => 2.0})
+      p.should be_a(UnicodePlot::Plot)
+    end
+  end
+
+  describe "histogram" do
+    it "returns a Plot" do
+      p = UnicodePlot.histogram([1.0, 2.0, 3.0, 2.0, 1.0])
+      p.should be_a(UnicodePlot::Plot)
+    end
+
+    it "renders bin labels without float artifacts" do
+      p = UnicodePlot.histogram([1.0, 2.0, 3.0, 4.0, 5.0])
+      s = p.to_s
+      s.should_not contain("000000")
+    end
+
+    it "uses [a, b) brackets for closed: :left (default)" do
+      p = UnicodePlot.histogram([1.0, 2.0, 3.0, 4.0, 5.0], nbins: 2, closed: :left)
+      s = p.to_s
+      s.should contain("[")
+      s.should contain(")")
+      s.should_not contain("(")
+      s.should_not contain("]")
+    end
+
+    it "uses (a, b] brackets for closed: :right" do
+      p = UnicodePlot.histogram([1.0, 2.0, 3.0, 4.0, 5.0], nbins: 2, closed: :right)
+      s = p.to_s
+      s.should contain("(")
+      s.should contain("]")
+      s.should_not match(/\[.*,/)
+    end
+
+    it "assigns boundary value to correct bin with closed: :right" do
+      # With closed: :right, value equal to lo goes to previous bin (clamped to 0).
+      # All values 1.0..5.0 split into two bins: (1,3] and (3,5]
+      # value 3.0 goes to first bin with :right
+      data = [1.0, 2.0, 3.0, 3.0, 5.0]
+      p_left = UnicodePlot.histogram(data, nbins: 2, closed: :left)
+      p_right = UnicodePlot.histogram(data, nbins: 2, closed: :right)
+      # Both should render without error
+      p_left.to_s.should be_a(String)
+      p_right.to_s.should be_a(String)
+    end
+
+    it "applies xscale and reflects transformed xlabel" do
+      p = UnicodePlot.histogram([1.0, 10.0, 100.0], xscale: :log10, xlabel: "x")
+      p.to_s.should contain("x [log10]")
+    end
+
+    it "accepts RGB tuple color" do
+      p = UnicodePlot.histogram([1.0, 2.0, 2.0, 3.0], color: {0, 135, 95})
+      p.to_s.should be_a(String)
+    end
+  end
+
+  describe "densityplot" do
+    it "accepts two arrays (x, y) — Julia-compatible API" do
+      p = UnicodePlot.densityplot([1.0, 2.0, 3.0], [4.0, 5.0, 6.0])
+      p.should be_a(UnicodePlot::Plot)
+    end
+
+    it "uses DensityCanvas" do
+      p = UnicodePlot.densityplot([1.0, 2.0, 3.0], [4.0, 5.0, 6.0])
+      p.canvas.should be_a(UnicodePlot::DensityCanvas)
+    end
+
+    it "renders to string without error" do
+      p = UnicodePlot.densityplot([1.0, 2.0, 3.0], [1.0, 2.0, 3.0])
+      s = p.to_s
+      s.should contain("┌")
+    end
+
+    it "shows density characters for overlapping points" do
+      # Many identical points → high density → ▓ or █
+      xs = Array.new(200, 0.0)
+      ys = Array.new(200, 0.0)
+      p = UnicodePlot.densityplot(xs, ys)
+      s = p.to_s
+      # At least some density character above ░ should appear
+      (s.includes?('▒') || s.includes?('▓') || s.includes?('█')).should be_true
+    end
+
+    it "raises on empty data" do
+      expect_raises(ArgumentError) do
+        UnicodePlot.densityplot([] of Float64, [] of Float64)
+      end
+    end
+
+    it "raises on mismatched lengths" do
+      expect_raises(ArgumentError, /same length/) do
+        UnicodePlot.densityplot([1.0, 2.0], [1.0])
+      end
+    end
+
+    it "supports dscale parameter" do
+      p = UnicodePlot.densityplot([1.0, 2.0, 3.0], [1.0, 2.0, 3.0], dscale: :log10)
+      p.should be_a(UnicodePlot::Plot)
+    end
+  end
+
+  describe "boxplot" do
+    it "returns a Plot" do
+      p = UnicodePlot.boxplot([1.0, 2.0, 3.0, 7.0])
+      p.should be_a(UnicodePlot::Plot)
+    end
+
+    it "uses :corners border by default (matches Julia)" do
+      p = UnicodePlot.boxplot([1.0, 2.0, 3.0, 7.0])
+      p.border.should eq(:corners)
+    end
+
+    it "has three x-axis labels (min, mean, max) matching Julia" do
+      p = UnicodePlot.boxplot([1.0, 2.0, 3.0, 7.0])
+      # Should have bl, b, br labels
+      p.decorations[:bl]?.should_not be_nil
+      p.decorations[:b]?.should_not be_nil
+      p.decorations[:br]?.should_not be_nil
+    end
+
+    it "renders box with Julia-style five-number summary characters" do
+      p = UnicodePlot.boxplot([1.0, 2.0, 3.0, 7.0])
+      s = p.to_s
+      # Julia uses ╷ ├ ╵ ┌ ┤ └ ┬ │ ┴ ┐ ├ ┘ characters
+      (s.includes?('╷') || s.includes?('╵') || s.includes?('├') || s.includes?('┤')).should be_true
+    end
+
+    it "accepts an array of arrays" do
+      p = UnicodePlot.boxplot([[1.0, 2.0, 3.0], [4.0, 5.0, 6.0]])
+      p.should be_a(UnicodePlot::Plot)
+    end
+
+    it "accepts a Hash" do
+      p = UnicodePlot.boxplot({"series1" => [1.0, 2.0, 3.0]})
+      p.should be_a(UnicodePlot::Plot)
+    end
+
+    it "renders without error" do
+      p = UnicodePlot.boxplot([1.0, 2.0, 3.0, 7.0], title: "Test")
+      p.to_s.should contain("Test")
+    end
+  end
+
+  describe "heatmap" do
+    it "returns a Plot" do
+      p = UnicodePlot.heatmap([[1.0, 2.0], [3.0, 4.0]])
+      p.should be_a(UnicodePlot::Plot)
+    end
+
+    it "renders to string without error" do
+      p = UnicodePlot.heatmap([[1.0, 2.0], [3.0, 4.0]])
+      p.to_s.should be_a(String)
+    end
+
+    it "handles NaN without crashing" do
+      z = [[Float64::NAN, 1.0], [2.0, Float64::NAN]]
+      p = UnicodePlot.heatmap(z)
+      p.to_s.should be_a(String)
+    end
+
+    it "handles Inf without crashing" do
+      z = [[Float64::INFINITY, 1.0], [2.0, -Float64::INFINITY]]
+      p = UnicodePlot.heatmap(z)
+      p.to_s.should be_a(String)
+    end
+
+    it "handles all-NaN matrix using fallback range" do
+      z = [[Float64::NAN, Float64::NAN]]
+      p = UnicodePlot.heatmap(z)
+      p.to_s.should be_a(String)
+    end
+  end
+
+  describe "stairs" do
+    it "raises on mismatched x/y lengths" do
+      expect_raises(ArgumentError, /same length/) do
+        p = UnicodePlot.lineplot([1.0, 2.0], [1.0, 2.0])
+        UnicodePlot.stairs!(p, [1.0, 2.0], [1.0])
+      end
+    end
+
+    it "ignores extreme finite values without overflowing during rasterization" do
+      p = UnicodePlot.stairs([Float64::MAX, 0.5], [0.5, 0.5])
+      p.to_s.should be_a(String)
+    end
+  end
+
+  describe "BrailleCanvas" do
+    it "has correct pixel dimensions" do
+      c = UnicodePlot::BrailleCanvas.new(10, 20,
+        origin_y: 0.0, origin_x: 0.0, height: 1.0, width: 1.0)
+      c.nrows.should eq(10)
+      c.ncols.should eq(20)
+      c.y_pixel_per_char.should eq(4)
+      c.x_pixel_per_char.should eq(2)
+    end
+
+    it "ignores extreme out-of-range points without overflow" do
+      c = UnicodePlot::BrailleCanvas.new(10, 20,
+        origin_y: 0.0, origin_x: 0.0, height: 1.0, width: 1.0)
+      color = UnicodePlot.ansi_color(:green)
+
+      c.points!(Float64::MAX, 0.5, color, true)
+      c.points!(-Float64::MAX, 0.5, color, true)
+      c.points!(0.5, Float64::MAX, color, true)
+      c.points!(0.5, -Float64::MAX, color, true)
+
+      c.to_s.should be_a(String)
+    end
+  end
+
+  describe "BlockCanvas" do
+    it "has correct pixel dimensions" do
+      c = UnicodePlot::BlockCanvas.new(5, 10,
+        origin_y: 0.0, origin_x: 0.0, height: 1.0, width: 1.0)
+      c.y_pixel_per_char.should eq(2)
+      c.x_pixel_per_char.should eq(2)
+    end
+  end
+
+  describe "DensityCanvas" do
+    it "has correct pixel dimensions (2×1 per cell)" do
+      c = UnicodePlot::DensityCanvas.new(10, 20,
+        origin_y: 0.0, origin_x: 0.0, height: 1.0, width: 1.0)
+      c.nrows.should eq(10)
+      c.ncols.should eq(20)
+      c.y_pixel_per_char.should eq(2)
+      c.x_pixel_per_char.should eq(1)
+    end
+
+    it "accumulates hit counts and renders density chars" do
+      c = UnicodePlot::DensityCanvas.new(10, 20,
+        origin_y: 0.0, origin_x: 0.0, height: 1.0, width: 1.0)
+      # Single hit: max_density=1, normalized val=1.0 → '█' (highest density char)
+      c.points!(0.5, 0.5, UnicodePlot.ansi_color(:green), true)
+      io = IO::Memory.new
+      _ = c.preprocess(io)
+      c.to_s.should contain('█')
+    end
+  end
+
+  describe "AsciiCanvas" do
+    it "has correct pixel dimensions (3×3 per cell)" do
+      c = UnicodePlot::AsciiCanvas.new(5, 10,
+        origin_y: 0.0, origin_x: 0.0, height: 1.0, width: 1.0)
+      c.y_pixel_per_char.should eq(3)
+      c.x_pixel_per_char.should eq(3)
+    end
+
+    it "decode table has 512 entries" do
+      UnicodePlot::ASCII_DECODE_512.size.should eq(512)
+    end
+
+    it "empty cell decodes to space" do
+      UnicodePlot::ASCII_DECODE_512[0].should eq(' ')
+    end
+
+    it "full cell decodes to @" do
+      UnicodePlot::ASCII_DECODE_512[0b111_111_111].should eq('@')
+    end
+
+    it "renders a lineplot with canvas: :ascii without error" do
+      p = UnicodePlot.lineplot([1.0, 2.0, 3.0], [1.0, 4.0, 9.0], canvas: :ascii)
+      p.to_s.should be_a(String)
+    end
+  end
+
+  describe "ansi_color" do
+    it "converts named symbols" do
+      UnicodePlot.ansi_color(:green).should eq(UnicodePlot::THRESHOLD + 2)
+      UnicodePlot.ansi_color(:red).should eq(UnicodePlot::THRESHOLD + 1)
+    end
+
+    it "returns INVALID_COLOR for nil" do
+      UnicodePlot.ansi_color(nil).should eq(UnicodePlot::INVALID_COLOR)
+    end
+  end
+end

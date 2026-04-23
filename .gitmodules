@@ -1,0 +1,3 @@
+[submodule "UnicodePlots.jl"]
+	path = UnicodePlots.jl
+	url = https://github.com/JuliaPlots/UnicodePlots.jl

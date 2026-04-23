@@ -1,0 +1,28 @@
+require "./unicode_plot/common"
+require "./unicode_plot/color"
+require "./unicode_plot/graphics"
+require "./unicode_plot/canvas"
+require "./unicode_plot/canvas/braille_canvas"
+require "./unicode_plot/canvas/block_canvas"
+require "./unicode_plot/canvas/ascii_canvas"
+require "./unicode_plot/canvas/dot_canvas"
+require "./unicode_plot/canvas/density_canvas"
+require "./unicode_plot/graphics/bar_graphics"
+require "./unicode_plot/graphics/boxplot_graphics"
+require "./unicode_plot/graphics/heatmap_graphics"
+require "./unicode_plot/plot"
+require "./unicode_plot/show"
+require "./unicode_plot/interface/lineplot"
+require "./unicode_plot/interface/scatterplot"
+require "./unicode_plot/interface/barplot"
+require "./unicode_plot/interface/histogram"
+require "./unicode_plot/interface/boxplot"
+require "./unicode_plot/interface/densityplot"
+require "./unicode_plot/interface/heatmap"
+require "./unicode_plot/interface/stairs"
+
+module UnicodePlot
+  extend self
+
+  VERSION = "0.1.0"
+end

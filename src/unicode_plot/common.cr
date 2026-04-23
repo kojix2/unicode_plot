@@ -1,0 +1,336 @@
+module UnicodePlot
+  BLANK         = 0x0020_u32
+  BLANK_BRAILLE = 0x2800_u32
+  FULL_BRAILLE  = 0x28ff_u32
+  FULL_BLOCK    = '█'
+  HALF_BLOCK    = '▄'
+
+  alias ColorType = UInt32
+  INVALID_COLOR = UInt32::MAX
+  THRESHOLD     = 256_u32 ** 3 # 16_777_216 — 8bit/24bit threshold
+
+  SUPERSCRIPT = {
+    '.' => '⸱', '-' => '⁻', '+' => '⁺',
+    '0' => '⁰', '1' => '¹', '2' => '²', '3' => '³', '4' => '⁴',
+    '5' => '⁵', '6' => '⁶', '7' => '⁷', '8' => '⁸', '9' => '⁹',
+    'e' => 'ᵉ',
+  }
+
+  record Border, tl : Char, tr : Char, bl : Char, br : Char,
+    t : Char, l : Char, b : Char, r : Char
+
+  BORDER_SOLID   = Border.new('┌', '┐', '└', '┘', '─', '│', '─', '│')
+  BORDER_CORNERS = Border.new('┌', '┐', '└', '┘', ' ', ' ', ' ', ' ')
+  BORDER_BARPLOT = Border.new('┌', '┐', '└', '┘', ' ', '┤', ' ', ' ')
+  BORDER_BOLD    = Border.new('┏', '┓', '┗', '┛', '━', '┃', '━', '┃')
+  BORDER_NONE    = Border.new(' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ')
+  BORDER_BNONE   = Border.new('⠀', '⠀', '⠀', '⠀', '⠀', '⠀', '⠀', '⠀')
+  BORDER_DASHED  = Border.new('┌', '┐', '└', '┘', '╌', '┊', '╌', '┊')
+  BORDER_DOTTED  = Border.new('⡤', '⢤', '⠓', '⠚', '⠤', '⡇', '⠒', '⢸')
+  BORDER_ASCII   = Border.new('+', '+', '+', '+', '-', '|', '-', '|')
+
+  BORDERMAP = {
+    :solid   => BORDER_SOLID,
+    :corners => BORDER_CORNERS,
+    :barplot => BORDER_BARPLOT,
+    :bold    => BORDER_BOLD,
+    :none    => BORDER_NONE,
+    :bnone   => BORDER_BNONE,
+    :dashed  => BORDER_DASHED,
+    :dotted  => BORDER_DOTTED,
+    :ascii   => BORDER_ASCII,
+  }
+
+  MARKERS = {
+    :circle => '⚬', :rect => '▫', :diamond => '◇', :hexagon => '⬡',
+    :cross => '✚', :xcross => '✖', :utriangle => '△', :dtriangle => '▽',
+    :rtriangle => '▷', :ltriangle => '◁', :pentagon => '⬠',
+    :star4 => '✦', :star5 => '★', :star6 => '✶', :star8 => '✴',
+    :vline => '|', :hline => '―', :plus => '+', :x => '⨯',
+  }
+
+  COLOR_CYCLE_FAINT  = [:green, :blue, :red, :magenta, :yellow, :cyan]
+  COLOR_CYCLE_BRIGHT = [:light_green, :light_blue, :light_red, :light_magenta, :light_yellow, :light_cyan]
+
+  # Named ANSI 4-bit colors → 256-color palette index (stored as THRESHOLD + idx)
+  NAMED_COLORS = {
+    :black         => 0_u32,
+    :red           => 1_u32,
+    :green         => 2_u32,
+    :yellow        => 3_u32,
+    :blue          => 4_u32,
+    :magenta       => 5_u32,
+    :cyan          => 6_u32,
+    :white         => 7_u32,
+    :dark_gray     => 8_u32,
+    :light_red     => 9_u32,
+    :light_green   => 10_u32,
+    :light_yellow  => 11_u32,
+    :light_blue    => 12_u32,
+    :light_magenta => 13_u32,
+    :light_cyan    => 14_u32,
+    :light_white   => 15_u32,
+  }
+
+  FSCALES = {
+    :identity => ->(x : Float64) { x },
+    :ln       => ->(x : Float64) { Math.log(x) },
+    :sqrt     => ->(x : Float64) { Math.sqrt(x) },
+    :log2     => ->(x : Float64) { Math.log2(x) },
+    :log10    => ->(x : Float64) { Math.log10(x) },
+  }
+
+  ISCALES = {
+    :identity => ->(x : Float64) { x },
+    :ln       => ->(x : Float64) { Math::E ** x },
+    :sqrt     => ->(x : Float64) { x ** 2 },
+    :log2     => ->(x : Float64) { 2.0 ** x },
+    :log10    => ->(x : Float64) { 10.0 ** x },
+  }
+
+  BASES = {
+    :identity => nil,
+    :ln       => "ℯ",
+    :sqrt     => nil,
+    :log2     => "2",
+    :log10    => "10",
+  }
+
+  # Mutable global state stored in a dedicated class to avoid class-variable scope issues.
+  class Config
+    class_property colormode : Symbol = :colors256
+    class_property color_cycle : Array(Symbol) = COLOR_CYCLE_FAINT.dup
+    class_property default_height : Int32 = 15
+    class_property default_width : Int32 = 40
+    class_property border_color : Symbol = :dark_gray
+    class_property aspect_ratio : Float64 = 4.0 / 3.0
+  end
+
+  def colormode : Symbol
+    Config.colormode
+  end
+
+  def colormode=(m : Symbol)
+    Config.colormode = m
+  end
+
+  def color_cycle : Array(Symbol)
+    Config.color_cycle
+  end
+
+  def default_height : Int32
+    Config.default_height
+  end
+
+  def default_width : Int32
+    Config.default_width
+  end
+
+  def default_size!(*, height : Int32? = nil, width : Int32? = nil)
+    ar = Config.aspect_ratio
+    if h = height
+      Config.default_height = h
+      Config.default_width = (h * 2 * ar).round.to_i32
+    elsif w = width
+      Config.default_width = w
+      Config.default_height = (w / (2 * ar)).round.to_i32
+    else
+      Config.default_height = 15
+      Config.default_width = (15 * 2 * ar).round.to_i32
+    end
+    {Config.default_height, Config.default_width}
+  end
+
+  def border_color : Symbol
+    Config.border_color
+  end
+
+  def aspect_ratio : Float64
+    Config.aspect_ratio
+  end
+
+  def scale_callback(scale : Symbol) : Proc(Float64, Float64)
+    FSCALES[scale]? || raise ArgumentError.new("unknown scale: #{scale}")
+  end
+
+  def scale_callback(scale : Proc(Float64, Float64)) : Proc(Float64, Float64)
+    scale
+  end
+
+  def superscript(s : String) : String
+    s.chars.map { |chr| SUPERSCRIPT[chr]? || chr }.join
+  end
+
+  def char_marker(marker : Symbol) : Char
+    MARKERS[marker]? || MARKERS[:circle]
+  end
+
+  def char_marker(marker : Char) : Char
+    marker
+  end
+
+  def char_marker(marker : String) : Char
+    marker.size == 1 || raise ArgumentError.new("`marker` must have length 1")
+    marker[0]
+  end
+
+  def transform_name(tr : Symbol, basename : String = "") : String
+    name = tr.to_s
+    name == "identity" ? basename : "#{basename} [#{name}]"
+  end
+
+  def transform_name(tr : Proc, basename : String = "") : String
+    "#{basename} [custom]"
+  end
+
+  def no_ansi_escape(str : String) : String
+    str.gsub(/\e\[[0-9;]*[a-zA-Z]/, "")
+  end
+
+  def roundable(x : Float64) : Bool
+    x.finite? && x == x.round && x >= Int32::MIN && x <= Int32::MAX
+  end
+
+  def compact_repr(x : Number) : String
+    x.to_s
+  end
+
+  def superscript_str(s : String) : String
+    s.chars.map { |chr| SUPERSCRIPT[chr]? || chr }.join
+  end
+
+  def nice_repr(x : Int, unicode_exponent : Bool = true, thousands_separator : Char = ' ') : String
+    return x.to_s if thousands_separator == '\0'
+    xs = x.abs.to_s.chars
+    n = xs.size
+    v = [] of Char
+    xs.reverse.each_with_index do |chr, i|
+      v << chr
+      v << thousands_separator if i < n - 1 && (i + 1) % 3 == 0
+    end
+    v.reverse!
+    (x >= 0 ? "" : "-") + v.join
+  end
+
+  def nice_repr(x : Float64, unicode_exponent : Bool = true, thousands_separator : Char = ' ') : String
+    return "0" if x == 0.0
+    if roundable(x)
+      xi = x.round.to_i64
+      return nice_repr(xi, unicode_exponent, thousands_separator)
+    end
+    str = "%.6g" % x
+    if str.includes?('e')
+      parts = str.split('e')
+      left = parts[0]
+      right = parts[1]
+      right = superscript(right) if unicode_exponent
+      "#{left}e#{right}"
+    else
+      str
+    end
+  end
+
+  def nice_repr(x : Number, unicode_exponent : Bool = true, thousands_separator : Char = ' ') : String
+    nice_repr(x.to_f, unicode_exponent, thousands_separator)
+  end
+
+  def ceil_neg_log10(x : Float64) : Int32
+    val = -Math.log10(x)
+    return Int32::MIN unless val.finite?
+    if roundable(val)
+      val.ceil.to_i32
+    else
+      val.floor.to_i32
+    end
+  end
+
+  private def floor_digits(x : Float64, digits : Int32) : Float64
+    factor = 10.0 ** digits
+    val = (x * factor).round(10)
+    # For positive digits use /factor to avoid FP multiplication error (e.g. val * 0.001).
+    # For non-positive digits, -digits >= 0 so 10^(-digits) is an exact integer.
+    digits > 0 ? val.floor / factor : val.floor * (10.0 ** (-digits))
+  end
+
+  private def ceil_digits(x : Float64, digits : Int32) : Float64
+    factor = 10.0 ** digits
+    val = (x * factor).round(10)
+    digits > 0 ? val.ceil / factor : val.ceil * (10.0 ** (-digits))
+  end
+
+  def round_up_subtick(x : Float64, m : Float64) : Float64
+    return x if x == 0.0
+    digits = ceil_neg_log10(m) + 1
+    if x > 0
+      ceil_digits(x, digits)
+    else
+      -floor_digits(-x, digits)
+    end
+  end
+
+  def round_down_subtick(x : Float64, m : Float64) : Float64
+    return x if x == 0.0
+    digits = ceil_neg_log10(m) + 1
+    if x > 0
+      floor_digits(x, digits)
+    else
+      -ceil_digits(-x, digits)
+    end
+  end
+
+  def float_round_log10(x : Float64, m : Float64? = nil) : Float64
+    mag = m || x.abs
+    return x if x == 0.0 || mag <= 0.0 || !mag.finite?
+    digits = ceil_neg_log10(mag) + 1
+    x.round(digits)
+  end
+
+  def plotting_range_narrow(xmin : Float64, xmax : Float64) : {Float64, Float64}
+    delta = xmax - xmin
+    if delta == 0.0 || !delta.finite?
+      return {-Float64::INFINITY, Float64::INFINITY}
+    end
+    {round_down_subtick(xmin, delta), round_up_subtick(xmax, delta)}
+  end
+
+  def extend_limits(
+    vec : Enumerable(Float64),
+    lims : {Float64, Float64},
+    scale : Symbol = :identity,
+  ) : {Float64, Float64}
+    mi, ma = lims[0], lims[1]
+    explicit = !(mi == 0.0 && ma == 0.0)
+    unless explicit
+      arr = vec.to_a.select(&.finite?)
+      return {-1.0, 1.0} if arr.empty?
+      mi, ma = arr.min, arr.max
+    end
+    if mi == ma
+      mi -= 1.0
+      ma += 1.0
+    end
+    if scale == :identity
+      explicit ? {mi, ma} : plotting_range_narrow(mi, ma)
+    else
+      fn = scale_callback(scale)
+      {fn.call(mi), fn.call(ma)}
+    end
+  end
+
+  def sorted_keys_values(dict : Hash) : {Array(String), Array(Float64)}
+    pairs = dict.map { |k, v| {k.to_s, v.to_f} }.sort_by! { |pair| pair[0] }
+    {pairs.map { |pair| pair[0] }, pairs.map { |pair| pair[1] }}
+  end
+
+  def function_name(name : String, default : String) : String
+    default.empty? ? "#{name}(x)" : default
+  end
+
+  def out_stream_size(_io : IO) : {Int32, Int32}
+    {24, 80}
+  end
+
+  def out_stream_size : {Int32, Int32}
+    {24, 80}
+  end
+end
