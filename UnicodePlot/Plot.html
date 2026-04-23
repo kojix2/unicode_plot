@@ -1,0 +1,1427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.19.1">
+<meta name="crystal_docs.project_version" content="main">
+<meta name="crystal_docs.project_name" content="unicode_plot">
+
+
+
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/doc.js"></script>
+
+  <meta name="repository-name" content="unicode_plot">
+  <title>UnicodePlot::Plot - unicode_plot main</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="search-box">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false" aria-label="Search">
+    </div>
+
+    <div class="project-summary">
+      <h1 class="project-name">
+        <a href="../index.html">
+          unicode_plot
+        </a>
+      </h1>
+
+      <span class="project-version">
+        main
+      </span>
+    </div>
+  </div>
+
+  <div class="search-results hidden">
+    <ul class="search-list"></ul>
+  </div>
+
+  <div class="types-list">
+    <ul>
+  
+  <li class="parent open current" data-id="unicode_plot/UnicodePlot" data-name="unicodeplot">
+      <a href="../UnicodePlot.html">UnicodePlot</a>
+      
+        <ul>
+  
+  <li class=" " data-id="unicode_plot/UnicodePlot/AsciiCanvas" data-name="unicodeplot::asciicanvas">
+      <a href="../UnicodePlot/AsciiCanvas.html">AsciiCanvas</a>
+      
+    </li>
+  
+  <li class=" " data-id="unicode_plot/UnicodePlot/BarplotGraphics" data-name="unicodeplot::barplotgraphics">
+      <a href="../UnicodePlot/BarplotGraphics.html">BarplotGraphics</a>
+      
+    </li>
+  
+  <li class=" " data-id="unicode_plot/UnicodePlot/BlockCanvas" data-name="unicodeplot::blockcanvas">
+      <a href="../UnicodePlot/BlockCanvas.html">BlockCanvas</a>
+      
+    </li>
+  
+  <li class=" " data-id="unicode_plot/UnicodePlot/Border" data-name="unicodeplot::border">
+      <a href="../UnicodePlot/Border.html">Border</a>
+      
+    </li>
+  
+  <li class=" " data-id="unicode_plot/UnicodePlot/BrailleCanvas" data-name="unicodeplot::braillecanvas">
+      <a href="../UnicodePlot/BrailleCanvas.html">BrailleCanvas</a>
+      
+    </li>
+  
+  <li class=" " data-id="unicode_plot/UnicodePlot/Canvas" data-name="unicodeplot::canvas">
+      <a href="../UnicodePlot/Canvas.html">Canvas</a>
+      
+    </li>
+  
+  <li class=" " data-id="unicode_plot/UnicodePlot/Colormap" data-name="unicodeplot::colormap">
+      <a href="../UnicodePlot/Colormap.html">Colormap</a>
+      
+    </li>
+  
+  <li class=" " data-id="unicode_plot/UnicodePlot/ColorType" data-name="unicodeplot::colortype">
+      <a href="../UnicodePlot/ColorType.html">ColorType</a>
+      
+    </li>
+  
+  <li class=" " data-id="unicode_plot/UnicodePlot/Config" data-name="unicodeplot::config">
+      <a href="../UnicodePlot/Config.html">Config</a>
+      
+    </li>
+  
+  <li class=" " data-id="unicode_plot/UnicodePlot/DotCanvas" data-name="unicodeplot::dotcanvas">
+      <a href="../UnicodePlot/DotCanvas.html">DotCanvas</a>
+      
+    </li>
+  
+  <li class=" " data-id="unicode_plot/UnicodePlot/GraphicsArea" data-name="unicodeplot::graphicsarea">
+      <a href="../UnicodePlot/GraphicsArea.html">GraphicsArea</a>
+      
+    </li>
+  
+  <li class=" current" data-id="unicode_plot/UnicodePlot/Plot" data-name="unicodeplot::plot">
+      <a href="../UnicodePlot/Plot.html">Plot</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+  </div>
+</div>
+
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    class
+  </span> UnicodePlot::<wbr>Plot
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../UnicodePlot/Plot.html">UnicodePlot::Plot</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/kojix2/unicode_plot/blob/e6426b70e3662bf99c074413dd01e942fcd65472/src/unicode_plot/plot.cr#L12" target="_blank">
+        unicode_plot/plot.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new%28graphics%3AGraphicsArea%2C%2A%2Ctitle%3AString%3D%22%22%2Cxlabel%3AString%3D%22%22%2Cylabel%3AString%3D%22%22%2Czlabel%3AString%3D%22%22%2Cunicode_exponent%3ABool%3Dtrue%2Cthousands_separator%3AChar%3D%27%27%2Cborder%3ASymbol%3D%3Asolid%2Ccompact_labels%3ABool%3Dfalse%2Ccompact%3ABool%3Dfalse%2Cmargin%3AInt32%3D3%2Cpadding%3AInt32%3D1%2Clabels%3ABool%3Dtrue%2Ccolorbar%3ABool%3Dfalse%2Ccolorbar_border%3ASymbol%3D%3Asolid%2Ccolorbar_lim%3ATuple%28Float64%2CFloat64%29%3D%7B0.0%2C1.0%7D%2Ccolormap_callback%3AProc%28Float64%2CFloat64%2CFloat64%2CUInt32%29%7CNil%3Dnil%29-class-method" class="signature"><strong>.new</strong>(graphics : GraphicsArea, *, title : String = <span class="s">&quot;&quot;</span>, xlabel : String = <span class="s">&quot;&quot;</span>, ylabel : String = <span class="s">&quot;&quot;</span>, zlabel : String = <span class="s">&quot;&quot;</span>, unicode_exponent : Bool = <span class="n">true</span>, thousands_separator : Char = <span class="s">&#39; &#39;</span>, border : Symbol = <span class="n">:solid</span>, compact_labels : Bool = <span class="n">false</span>, compact : Bool = <span class="n">false</span>, margin : Int32 = <span class="n">3</span>, padding : Int32 = <span class="n">1</span>, labels : Bool = <span class="n">true</span>, colorbar : Bool = <span class="n">false</span>, colorbar_border : Symbol = <span class="n">:solid</span>, colorbar_lim : Tuple(Float64, Float64) = {<span class="n">0.0</span>, <span class="n">1.0</span>}, colormap_callback : Proc(Float64, Float64, Float64, UInt32) | Nil = <span class="n">nil</span>)</a>
+        
+      </li>
+    
+  </ul>
+
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#annotate%21%28x%3AFloat64%2Cy%3AFloat64%2Cchar%3AChar%2Ccolor%3AUInt32%2Cblend%3ABool%29%3Aself-instance-method" class="signature"><strong>#annotate!</strong>(x : Float64, y : Float64, char : Char, color : UInt32, blend : Bool) : <span class="k">self</span></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#annotate%21%28x%3AFloat64%2Cy%3AFloat64%2Ctext%3AString%2Ccolor%3AUInt32%2Cblend%3ABool%2C%2A%2Akw%29%3Aself-instance-method" class="signature"><strong>#annotate!</strong>(x : Float64, y : Float64, text : String, color : UInt32, blend : Bool, **kw) : <span class="k">self</span></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#autocolor%3AInt32-instance-method" class="signature"><strong>#autocolor</strong> : Int32</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#autocolor%3D%28autocolor%3AInt32%29-instance-method" class="signature"><strong>#autocolor=</strong>(autocolor : Int32)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#border%3ASymbol-instance-method" class="signature"><strong>#border</strong> : Symbol</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#border%3D%28border%3ASymbol%29-instance-method" class="signature"><strong>#border=</strong>(border : Symbol)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#canvas%3ACanvas-instance-method" class="signature"><strong>#canvas</strong> : Canvas</a>
+        
+          <div class="summary"><p>Canvas accessor (raises if graphics is not a Canvas)</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#colormap%3AColormap-instance-method" class="signature"><strong>#colormap</strong> : Colormap</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#colors_deco%3AHash%28Symbol%2CUInt32%29-instance-method" class="signature"><strong>#colors_deco</strong> : Hash(Symbol, UInt32)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#colors_left%3AHash%28Int32%2CUInt32%29-instance-method" class="signature"><strong>#colors_left</strong> : Hash(Int32, UInt32)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#colors_right%3AHash%28Int32%2CUInt32%29-instance-method" class="signature"><strong>#colors_right</strong> : Hash(Int32, UInt32)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#compact%3D%28compact%3ABool%29-instance-method" class="signature"><strong>#compact=</strong>(compact : Bool)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#compact%3F%3ABool-instance-method" class="signature"><strong>#compact?</strong> : Bool</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#compact_labels%3D%28compact_labels%3ABool%29-instance-method" class="signature"><strong>#compact_labels=</strong>(compact_labels : Bool)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#compact_labels%3F%3ABool-instance-method" class="signature"><strong>#compact_labels?</strong> : Bool</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#decorations%3AHash%28Symbol%2CString%29-instance-method" class="signature"><strong>#decorations</strong> : Hash(Symbol, String)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#graphics%3AGraphicsArea-instance-method" class="signature"><strong>#graphics</strong> : GraphicsArea</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#label%21%28loc%3ASymbol%2Crow%3AInt32%2Cvalue%3AString%2Ccolor%3ASymbol%29%3Aself-instance-method" class="signature"><strong>#label!</strong>(loc : Symbol, row : Int32, value : String, color : Symbol) : <span class="k">self</span></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#label%21%28loc%3ASymbol%2Cvalue%3AString%2Ccolor%3AUInt32%3DINVALID_COLOR%29%3Aself-instance-method" class="signature"><strong>#label!</strong>(loc : Symbol, value : String, color : UInt32 = <span class="t">INVALID_COLOR</span>) : <span class="k">self</span></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#label%21%28loc%3ASymbol%2Cvalue%3AString%2Ccolor%3ASymbol%29%3Aself-instance-method" class="signature"><strong>#label!</strong>(loc : Symbol, value : String, color : Symbol) : <span class="k">self</span></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#label%21%28loc%3ASymbol%2Crow%3AInt32%2Cvalue%3AString%2Ccolor%3AUInt32%3DINVALID_COLOR%29%3Aself-instance-method" class="signature"><strong>#label!</strong>(loc : Symbol, row : Int32, value : String, color : UInt32 = <span class="t">INVALID_COLOR</span>) : <span class="k">self</span></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#labels%3D%28labels%3ABool%29-instance-method" class="signature"><strong>#labels=</strong>(labels : Bool)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#labels%3F%3ABool-instance-method" class="signature"><strong>#labels?</strong> : Bool</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#labels_left%3AHash%28Int32%2CString%29-instance-method" class="signature"><strong>#labels_left</strong> : Hash(Int32, String)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#labels_right%3AHash%28Int32%2CString%29-instance-method" class="signature"><strong>#labels_right</strong> : Hash(Int32, String)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#lines%21%28x1%3AFloat64%2Cy1%3AFloat64%2Cx2%3AFloat64%2Cy2%3AFloat64%2Ccolor%3AUInt32%2Cblend%3ABool%29%3Aself-instance-method" class="signature"><strong>#lines!</strong>(x1 : Float64, y1 : Float64, x2 : Float64, y2 : Float64, color : UInt32, blend : Bool) : <span class="k">self</span></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#lines%21%28xs%3AArray%28Float64%29%2Cys%3AArray%28Float64%29%2Ccolor%3AUInt32%2Cblend%3ABool%29%3Aself-instance-method" class="signature"><strong>#lines!</strong>(xs : Array(Float64), ys : Array(Float64), color : UInt32, blend : Bool) : <span class="k">self</span></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#lines%21%28x1%3AFloat64%2Cy1%3AFloat64%2Cx2%3AFloat64%2Cy2%3AFloat64%2C%2A%2Ccolor%3ASymbol%3D%3Anormal%29%3Aself-instance-method" class="signature"><strong>#lines!</strong>(x1 : Float64, y1 : Float64, x2 : Float64, y2 : Float64, *, color : Symbol = <span class="n">:normal</span>) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>lines!, points!, pixel! delegates to the canvas</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#margin%3AInt32-instance-method" class="signature"><strong>#margin</strong> : Int32</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#margin%3D%28margin%3AInt32%29-instance-method" class="signature"><strong>#margin=</strong>(margin : Int32)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#ncols%3AInt32-instance-method" class="signature"><strong>#ncols</strong> : Int32</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#next_color%21%3ASymbol-instance-method" class="signature"><strong>#next_color!</strong> : Symbol</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#nice_repr%28x%3ANumber%29%3AString-instance-method" class="signature"><strong>#nice_repr</strong>(x : Number) : String</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#nrows%3AInt32-instance-method" class="signature"><strong>#nrows</strong> : Int32</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#padding%3AInt32-instance-method" class="signature"><strong>#padding</strong> : Int32</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#padding%3D%28padding%3AInt32%29-instance-method" class="signature"><strong>#padding=</strong>(padding : Int32)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#points%21%28xs%3AArray%28Float64%29%2Cys%3AArray%28Float64%29%2Ccolor%3AUInt32%2Cblend%3ABool%29%3Aself-instance-method" class="signature"><strong>#points!</strong>(xs : Array(Float64), ys : Array(Float64), color : UInt32, blend : Bool) : <span class="k">self</span></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#series%3AInt32-instance-method" class="signature"><strong>#series</strong> : Int32</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#series%3D%28series%3AInt32%29-instance-method" class="signature"><strong>#series=</strong>(series : Int32)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#thousands_separator%3AChar-instance-method" class="signature"><strong>#thousands_separator</strong> : Char</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#thousands_separator%3D%28thousands_separator%3AChar%29-instance-method" class="signature"><strong>#thousands_separator=</strong>(thousands_separator : Char)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#title%3AString-instance-method" class="signature"><strong>#title</strong> : String</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#title%3D%28title%3AString%29-instance-method" class="signature"><strong>#title=</strong>(title : String)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_s%28io%3AIO%29%3ANil-instance-method" class="signature"><strong>#to_s</strong>(io : IO) : Nil</a>
+        
+          <div class="summary"><p>Appends a short String representation of this object which includes its class name and its object address.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#unicode_exponent%3D%28unicode_exponent%3ABool%29-instance-method" class="signature"><strong>#unicode_exponent=</strong>(unicode_exponent : Bool)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#unicode_exponent%3F%3ABool-instance-method" class="signature"><strong>#unicode_exponent?</strong> : Bool</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#xlabel%3AString-instance-method" class="signature"><strong>#xlabel</strong> : String</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#xlabel%3D%28xlabel%3AString%29-instance-method" class="signature"><strong>#xlabel=</strong>(xlabel : String)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#ylabel%3AString-instance-method" class="signature"><strong>#ylabel</strong> : String</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#ylabel%3D%28ylabel%3AString%29-instance-method" class="signature"><strong>#ylabel=</strong>(ylabel : String)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#zlabel%3AString-instance-method" class="signature"><strong>#zlabel</strong> : String</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#zlabel%3D%28zlabel%3AString%29-instance-method" class="signature"><strong>#zlabel=</strong>(zlabel : String)</a>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+      
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+  </div>
+
+  
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new(graphics:GraphicsArea,*,title:String=&quot;&quot;,xlabel:String=&quot;&quot;,ylabel:String=&quot;&quot;,zlabel:String=&quot;&quot;,unicode_exponent:Bool=true,thousands_separator:Char=&#39;&#39;,border:Symbol=:solid,compact_labels:Bool=false,compact:Bool=false,margin:Int32=3,padding:Int32=1,labels:Bool=true,colorbar:Bool=false,colorbar_border:Symbol=:solid,colorbar_lim:Tuple(Float64,Float64)={0.0,1.0},colormap_callback:Proc(Float64,Float64,Float64,UInt32)|Nil=nil)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(graphics : <a href="../UnicodePlot/GraphicsArea.html">GraphicsArea</a>, *, title : String = <span class="s">&quot;&quot;</span>, xlabel : String = <span class="s">&quot;&quot;</span>, ylabel : String = <span class="s">&quot;&quot;</span>, zlabel : String = <span class="s">&quot;&quot;</span>, unicode_exponent : Bool = <span class="n">true</span>, thousands_separator : Char = <span class="s">&#39; &#39;</span>, border : Symbol = <span class="n">:solid</span>, compact_labels : Bool = <span class="n">false</span>, compact : Bool = <span class="n">false</span>, margin : Int32 = <span class="n">3</span>, padding : Int32 = <span class="n">1</span>, labels : Bool = <span class="n">true</span>, colorbar : Bool = <span class="n">false</span>, colorbar_border : Symbol = <span class="n">:solid</span>, colorbar_lim : Tuple(Float64, Float64) = {<span class="n">0.0</span>, <span class="n">1.0</span>}, colormap_callback : Proc(Float64, Float64, Float64, UInt32) | Nil = <span class="n">nil</span>)
+
+        <a class="method-permalink" href="#new%28graphics%3AGraphicsArea%2C%2A%2Ctitle%3AString%3D%22%22%2Cxlabel%3AString%3D%22%22%2Cylabel%3AString%3D%22%22%2Czlabel%3AString%3D%22%22%2Cunicode_exponent%3ABool%3Dtrue%2Cthousands_separator%3AChar%3D%27%27%2Cborder%3ASymbol%3D%3Asolid%2Ccompact_labels%3ABool%3Dfalse%2Ccompact%3ABool%3Dfalse%2Cmargin%3AInt32%3D3%2Cpadding%3AInt32%3D1%2Clabels%3ABool%3Dtrue%2Ccolorbar%3ABool%3Dfalse%2Ccolorbar_border%3ASymbol%3D%3Asolid%2Ccolorbar_lim%3ATuple%28Float64%2CFloat64%29%3D%7B0.0%2C1.0%7D%2Ccolormap_callback%3AProc%28Float64%2CFloat64%2CFloat64%2CUInt32%29%7CNil%3Dnil%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/e6426b70e3662bf99c074413dd01e942fcd65472/src/unicode_plot/plot.cr#L36" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="annotate!(x:Float64,y:Float64,char:Char,color:UInt32,blend:Bool):self-instance-method">
+      <div class="signature">
+        
+        def <strong>annotate!</strong>(x : Float64, y : Float64, char : Char, color : UInt32, blend : Bool) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#annotate%21%28x%3AFloat64%2Cy%3AFloat64%2Cchar%3AChar%2Ccolor%3AUInt32%2Cblend%3ABool%29%3Aself-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/e6426b70e3662bf99c074413dd01e942fcd65472/src/unicode_plot/plot.cr#L181" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="annotate!(x:Float64,y:Float64,text:String,color:UInt32,blend:Bool,**kw):self-instance-method">
+      <div class="signature">
+        
+        def <strong>annotate!</strong>(x : Float64, y : Float64, text : String, color : UInt32, blend : Bool, **kw) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#annotate%21%28x%3AFloat64%2Cy%3AFloat64%2Ctext%3AString%2Ccolor%3AUInt32%2Cblend%3ABool%2C%2A%2Akw%29%3Aself-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/e6426b70e3662bf99c074413dd01e942fcd65472/src/unicode_plot/plot.cr#L186" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="autocolor:Int32-instance-method">
+      <div class="signature">
+        
+        def <strong>autocolor</strong> : Int32
+
+        <a class="method-permalink" href="#autocolor%3AInt32-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/e6426b70e3662bf99c074413dd01e942fcd65472/src/unicode_plot/plot.cr#L14" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="autocolor=(autocolor:Int32)-instance-method">
+      <div class="signature">
+        
+        def <strong>autocolor=</strong>(autocolor : Int32)
+
+        <a class="method-permalink" href="#autocolor%3D%28autocolor%3AInt32%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/e6426b70e3662bf99c074413dd01e942fcd65472/src/unicode_plot/plot.cr#L14" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="border:Symbol-instance-method">
+      <div class="signature">
+        
+        def <strong>border</strong> : Symbol
+
+        <a class="method-permalink" href="#border%3ASymbol-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/e6426b70e3662bf99c074413dd01e942fcd65472/src/unicode_plot/plot.cr#L24" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="border=(border:Symbol)-instance-method">
+      <div class="signature">
+        
+        def <strong>border=</strong>(border : Symbol)
+
+        <a class="method-permalink" href="#border%3D%28border%3ASymbol%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/e6426b70e3662bf99c074413dd01e942fcd65472/src/unicode_plot/plot.cr#L24" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="canvas:Canvas-instance-method">
+      <div class="signature">
+        
+        def <strong>canvas</strong> : <a href="../UnicodePlot/Canvas.html">Canvas</a>
+
+        <a class="method-permalink" href="#canvas%3ACanvas-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Canvas accessor (raises if graphics is not a Canvas)</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/e6426b70e3662bf99c074413dd01e942fcd65472/src/unicode_plot/plot.cr#L98" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="colormap:Colormap-instance-method">
+      <div class="signature">
+        
+        def <strong>colormap</strong> : <a href="../UnicodePlot/Colormap.html">Colormap</a>
+
+        <a class="method-permalink" href="#colormap%3AColormap-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/e6426b70e3662bf99c074413dd01e942fcd65472/src/unicode_plot/plot.cr#L34" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="colors_deco:Hash(Symbol,UInt32)-instance-method">
+      <div class="signature">
+        
+        def <strong>colors_deco</strong> : Hash(Symbol, UInt32)
+
+        <a class="method-permalink" href="#colors_deco%3AHash%28Symbol%2CUInt32%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/e6426b70e3662bf99c074413dd01e942fcd65472/src/unicode_plot/plot.cr#L33" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="colors_left:Hash(Int32,UInt32)-instance-method">
+      <div class="signature">
+        
+        def <strong>colors_left</strong> : Hash(Int32, UInt32)
+
+        <a class="method-permalink" href="#colors_left%3AHash%28Int32%2CUInt32%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/e6426b70e3662bf99c074413dd01e942fcd65472/src/unicode_plot/plot.cr#L30" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="colors_right:Hash(Int32,UInt32)-instance-method">
+      <div class="signature">
+        
+        def <strong>colors_right</strong> : Hash(Int32, UInt32)
+
+        <a class="method-permalink" href="#colors_right%3AHash%28Int32%2CUInt32%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/e6426b70e3662bf99c074413dd01e942fcd65472/src/unicode_plot/plot.cr#L31" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="compact=(compact:Bool)-instance-method">
+      <div class="signature">
+        
+        def <strong>compact=</strong>(compact : Bool)
+
+        <a class="method-permalink" href="#compact%3D%28compact%3ABool%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/e6426b70e3662bf99c074413dd01e942fcd65472/src/unicode_plot/plot.cr#L26" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="compact?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>compact?</strong> : Bool
+
+        <a class="method-permalink" href="#compact%3F%3ABool-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/e6426b70e3662bf99c074413dd01e942fcd65472/src/unicode_plot/plot.cr#L26" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="compact_labels=(compact_labels:Bool)-instance-method">
+      <div class="signature">
+        
+        def <strong>compact_labels=</strong>(compact_labels : Bool)
+
+        <a class="method-permalink" href="#compact_labels%3D%28compact_labels%3ABool%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/e6426b70e3662bf99c074413dd01e942fcd65472/src/unicode_plot/plot.cr#L25" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="compact_labels?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>compact_labels?</strong> : Bool
+
+        <a class="method-permalink" href="#compact_labels%3F%3ABool-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/e6426b70e3662bf99c074413dd01e942fcd65472/src/unicode_plot/plot.cr#L25" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="decorations:Hash(Symbol,String)-instance-method">
+      <div class="signature">
+        
+        def <strong>decorations</strong> : Hash(Symbol, String)
+
+        <a class="method-permalink" href="#decorations%3AHash%28Symbol%2CString%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/e6426b70e3662bf99c074413dd01e942fcd65472/src/unicode_plot/plot.cr#L32" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="graphics:GraphicsArea-instance-method">
+      <div class="signature">
+        
+        def <strong>graphics</strong> : <a href="../UnicodePlot/GraphicsArea.html">GraphicsArea</a>
+
+        <a class="method-permalink" href="#graphics%3AGraphicsArea-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/e6426b70e3662bf99c074413dd01e942fcd65472/src/unicode_plot/plot.cr#L13" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="label!(loc:Symbol,row:Int32,value:String,color:Symbol):self-instance-method">
+      <div class="signature">
+        
+        def <strong>label!</strong>(loc : Symbol, row : Int32, value : String, color : Symbol) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#label%21%28loc%3ASymbol%2Crow%3AInt32%2Cvalue%3AString%2Ccolor%3ASymbol%29%3Aself-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/e6426b70e3662bf99c074413dd01e942fcd65472/src/unicode_plot/plot.cr#L148" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="label!(loc:Symbol,value:String,color:UInt32=INVALID_COLOR):self-instance-method">
+      <div class="signature">
+        
+        def <strong>label!</strong>(loc : Symbol, value : String, color : UInt32 = <span class="t">INVALID_COLOR</span>) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#label%21%28loc%3ASymbol%2Cvalue%3AString%2Ccolor%3AUInt32%3DINVALID_COLOR%29%3Aself-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/e6426b70e3662bf99c074413dd01e942fcd65472/src/unicode_plot/plot.cr#L104" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="label!(loc:Symbol,value:String,color:Symbol):self-instance-method">
+      <div class="signature">
+        
+        def <strong>label!</strong>(loc : Symbol, value : String, color : Symbol) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#label%21%28loc%3ASymbol%2Cvalue%3AString%2Ccolor%3ASymbol%29%3Aself-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/e6426b70e3662bf99c074413dd01e942fcd65472/src/unicode_plot/plot.cr#L130" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="label!(loc:Symbol,row:Int32,value:String,color:UInt32=INVALID_COLOR):self-instance-method">
+      <div class="signature">
+        
+        def <strong>label!</strong>(loc : Symbol, row : Int32, value : String, color : UInt32 = <span class="t">INVALID_COLOR</span>) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#label%21%28loc%3ASymbol%2Crow%3AInt32%2Cvalue%3AString%2Ccolor%3AUInt32%3DINVALID_COLOR%29%3Aself-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/e6426b70e3662bf99c074413dd01e942fcd65472/src/unicode_plot/plot.cr#L134" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="labels=(labels:Bool)-instance-method">
+      <div class="signature">
+        
+        def <strong>labels=</strong>(labels : Bool)
+
+        <a class="method-permalink" href="#labels%3D%28labels%3ABool%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/e6426b70e3662bf99c074413dd01e942fcd65472/src/unicode_plot/plot.cr#L27" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="labels?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>labels?</strong> : Bool
+
+        <a class="method-permalink" href="#labels%3F%3ABool-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/e6426b70e3662bf99c074413dd01e942fcd65472/src/unicode_plot/plot.cr#L27" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="labels_left:Hash(Int32,String)-instance-method">
+      <div class="signature">
+        
+        def <strong>labels_left</strong> : Hash(Int32, String)
+
+        <a class="method-permalink" href="#labels_left%3AHash%28Int32%2CString%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/e6426b70e3662bf99c074413dd01e942fcd65472/src/unicode_plot/plot.cr#L28" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="labels_right:Hash(Int32,String)-instance-method">
+      <div class="signature">
+        
+        def <strong>labels_right</strong> : Hash(Int32, String)
+
+        <a class="method-permalink" href="#labels_right%3AHash%28Int32%2CString%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/e6426b70e3662bf99c074413dd01e942fcd65472/src/unicode_plot/plot.cr#L29" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="lines!(x1:Float64,y1:Float64,x2:Float64,y2:Float64,color:UInt32,blend:Bool):self-instance-method">
+      <div class="signature">
+        
+        def <strong>lines!</strong>(x1 : Float64, y1 : Float64, x2 : Float64, y2 : Float64, color : UInt32, blend : Bool) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#lines%21%28x1%3AFloat64%2Cy1%3AFloat64%2Cx2%3AFloat64%2Cy2%3AFloat64%2Ccolor%3AUInt32%2Cblend%3ABool%29%3Aself-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/e6426b70e3662bf99c074413dd01e942fcd65472/src/unicode_plot/plot.cr#L166" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="lines!(xs:Array(Float64),ys:Array(Float64),color:UInt32,blend:Bool):self-instance-method">
+      <div class="signature">
+        
+        def <strong>lines!</strong>(xs : Array(Float64), ys : Array(Float64), color : UInt32, blend : Bool) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#lines%21%28xs%3AArray%28Float64%29%2Cys%3AArray%28Float64%29%2Ccolor%3AUInt32%2Cblend%3ABool%29%3Aself-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/e6426b70e3662bf99c074413dd01e942fcd65472/src/unicode_plot/plot.cr#L171" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="lines!(x1:Float64,y1:Float64,x2:Float64,y2:Float64,*,color:Symbol=:normal):self-instance-method">
+      <div class="signature">
+        
+        def <strong>lines!</strong>(x1 : Float64, y1 : Float64, x2 : Float64, y2 : Float64, *, color : Symbol = <span class="n">:normal</span>) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#lines%21%28x1%3AFloat64%2Cy1%3AFloat64%2Cx2%3AFloat64%2Cy2%3AFloat64%2C%2A%2Ccolor%3ASymbol%3D%3Anormal%29%3Aself-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>lines!, points!, pixel! delegates to the canvas</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/e6426b70e3662bf99c074413dd01e942fcd65472/src/unicode_plot/plot.cr#L161" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="margin:Int32-instance-method">
+      <div class="signature">
+        
+        def <strong>margin</strong> : Int32
+
+        <a class="method-permalink" href="#margin%3AInt32-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/e6426b70e3662bf99c074413dd01e942fcd65472/src/unicode_plot/plot.cr#L20" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="margin=(margin:Int32)-instance-method">
+      <div class="signature">
+        
+        def <strong>margin=</strong>(margin : Int32)
+
+        <a class="method-permalink" href="#margin%3D%28margin%3AInt32%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/e6426b70e3662bf99c074413dd01e942fcd65472/src/unicode_plot/plot.cr#L20" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="ncols:Int32-instance-method">
+      <div class="signature">
+        
+        def <strong>ncols</strong> : Int32
+
+        <a class="method-permalink" href="#ncols%3AInt32-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/e6426b70e3662bf99c074413dd01e942fcd65472/src/unicode_plot/plot.cr#L156" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="next_color!:Symbol-instance-method">
+      <div class="signature">
+        
+        def <strong>next_color!</strong> : Symbol
+
+        <a class="method-permalink" href="#next_color%21%3ASymbol-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/e6426b70e3662bf99c074413dd01e942fcd65472/src/unicode_plot/plot.cr#L85" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="nice_repr(x:Number):String-instance-method">
+      <div class="signature">
+        
+        def <strong>nice_repr</strong>(x : Number) : String
+
+        <a class="method-permalink" href="#nice_repr%28x%3ANumber%29%3AString-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/e6426b70e3662bf99c074413dd01e942fcd65472/src/unicode_plot/plot.cr#L93" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="nrows:Int32-instance-method">
+      <div class="signature">
+        
+        def <strong>nrows</strong> : Int32
+
+        <a class="method-permalink" href="#nrows%3AInt32-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/e6426b70e3662bf99c074413dd01e942fcd65472/src/unicode_plot/plot.cr#L152" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="padding:Int32-instance-method">
+      <div class="signature">
+        
+        def <strong>padding</strong> : Int32
+
+        <a class="method-permalink" href="#padding%3AInt32-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/e6426b70e3662bf99c074413dd01e942fcd65472/src/unicode_plot/plot.cr#L21" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="padding=(padding:Int32)-instance-method">
+      <div class="signature">
+        
+        def <strong>padding=</strong>(padding : Int32)
+
+        <a class="method-permalink" href="#padding%3D%28padding%3AInt32%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/e6426b70e3662bf99c074413dd01e942fcd65472/src/unicode_plot/plot.cr#L21" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="points!(xs:Array(Float64),ys:Array(Float64),color:UInt32,blend:Bool):self-instance-method">
+      <div class="signature">
+        
+        def <strong>points!</strong>(xs : Array(Float64), ys : Array(Float64), color : UInt32, blend : Bool) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#points%21%28xs%3AArray%28Float64%29%2Cys%3AArray%28Float64%29%2Ccolor%3AUInt32%2Cblend%3ABool%29%3Aself-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/e6426b70e3662bf99c074413dd01e942fcd65472/src/unicode_plot/plot.cr#L176" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="series:Int32-instance-method">
+      <div class="signature">
+        
+        def <strong>series</strong> : Int32
+
+        <a class="method-permalink" href="#series%3AInt32-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/e6426b70e3662bf99c074413dd01e942fcd65472/src/unicode_plot/plot.cr#L15" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="series=(series:Int32)-instance-method">
+      <div class="signature">
+        
+        def <strong>series=</strong>(series : Int32)
+
+        <a class="method-permalink" href="#series%3D%28series%3AInt32%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/e6426b70e3662bf99c074413dd01e942fcd65472/src/unicode_plot/plot.cr#L15" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="thousands_separator:Char-instance-method">
+      <div class="signature">
+        
+        def <strong>thousands_separator</strong> : Char
+
+        <a class="method-permalink" href="#thousands_separator%3AChar-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/e6426b70e3662bf99c074413dd01e942fcd65472/src/unicode_plot/plot.cr#L23" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="thousands_separator=(thousands_separator:Char)-instance-method">
+      <div class="signature">
+        
+        def <strong>thousands_separator=</strong>(thousands_separator : Char)
+
+        <a class="method-permalink" href="#thousands_separator%3D%28thousands_separator%3AChar%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/e6426b70e3662bf99c074413dd01e942fcd65472/src/unicode_plot/plot.cr#L23" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="title:String-instance-method">
+      <div class="signature">
+        
+        def <strong>title</strong> : String
+
+        <a class="method-permalink" href="#title%3AString-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/e6426b70e3662bf99c074413dd01e942fcd65472/src/unicode_plot/plot.cr#L16" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="title=(title:String)-instance-method">
+      <div class="signature">
+        
+        def <strong>title=</strong>(title : String)
+
+        <a class="method-permalink" href="#title%3D%28title%3AString%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/e6426b70e3662bf99c074413dd01e942fcd65472/src/unicode_plot/plot.cr#L16" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_s(io:IO):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>to_s</strong>(io : IO) : Nil
+
+        <a class="method-permalink" href="#to_s%28io%3AIO%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from class Reference
+            </div>
+          
+          <p>Appends a short String representation of this object
+which includes its class name and its object address.</p>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">Person</span>
+  <span class="k">def</span> <span class="m">initialize</span>(@name : <span class="t">String</span>, @age : <span class="t">Int32</span>)
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="t">Person</span>.new(<span class="s">&quot;John&quot;</span>, <span class="n">32</span>).to_s <span class="c"># =&gt; #&lt;Person:0x10a199f20&gt;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/e6426b70e3662bf99c074413dd01e942fcd65472/src/unicode_plot/plot.cr#L191" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="unicode_exponent=(unicode_exponent:Bool)-instance-method">
+      <div class="signature">
+        
+        def <strong>unicode_exponent=</strong>(unicode_exponent : Bool)
+
+        <a class="method-permalink" href="#unicode_exponent%3D%28unicode_exponent%3ABool%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/e6426b70e3662bf99c074413dd01e942fcd65472/src/unicode_plot/plot.cr#L22" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="unicode_exponent?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>unicode_exponent?</strong> : Bool
+
+        <a class="method-permalink" href="#unicode_exponent%3F%3ABool-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/e6426b70e3662bf99c074413dd01e942fcd65472/src/unicode_plot/plot.cr#L22" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="xlabel:String-instance-method">
+      <div class="signature">
+        
+        def <strong>xlabel</strong> : String
+
+        <a class="method-permalink" href="#xlabel%3AString-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/e6426b70e3662bf99c074413dd01e942fcd65472/src/unicode_plot/plot.cr#L17" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="xlabel=(xlabel:String)-instance-method">
+      <div class="signature">
+        
+        def <strong>xlabel=</strong>(xlabel : String)
+
+        <a class="method-permalink" href="#xlabel%3D%28xlabel%3AString%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/e6426b70e3662bf99c074413dd01e942fcd65472/src/unicode_plot/plot.cr#L17" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="ylabel:String-instance-method">
+      <div class="signature">
+        
+        def <strong>ylabel</strong> : String
+
+        <a class="method-permalink" href="#ylabel%3AString-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/e6426b70e3662bf99c074413dd01e942fcd65472/src/unicode_plot/plot.cr#L18" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="ylabel=(ylabel:String)-instance-method">
+      <div class="signature">
+        
+        def <strong>ylabel=</strong>(ylabel : String)
+
+        <a class="method-permalink" href="#ylabel%3D%28ylabel%3AString%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/e6426b70e3662bf99c074413dd01e942fcd65472/src/unicode_plot/plot.cr#L18" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="zlabel:String-instance-method">
+      <div class="signature">
+        
+        def <strong>zlabel</strong> : String
+
+        <a class="method-permalink" href="#zlabel%3AString-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/e6426b70e3662bf99c074413dd01e942fcd65472/src/unicode_plot/plot.cr#L19" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="zlabel=(zlabel:String)-instance-method">
+      <div class="signature">
+        
+        def <strong>zlabel=</strong>(zlabel : String)
+
+        <a class="method-permalink" href="#zlabel%3D%28zlabel%3AString%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/e6426b70e3662bf99c074413dd01e942fcd65472/src/unicode_plot/plot.cr#L19" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>
