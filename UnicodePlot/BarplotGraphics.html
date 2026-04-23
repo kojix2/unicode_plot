@@ -203,7 +203,7 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/unicode_plot/blob/b4a9487aa8ac069c09786999aaa19d470cede998/src/unicode_plot/graphics/bar_graphics.cr#L2" target="_blank">
+      <a href="https://github.com/kojix2/unicode_plot/blob/b37f00949ade8628e23b6f326eb346366911d9f6/src/unicode_plot/graphics/bar_graphics.cr#L2" target="_blank">
         unicode_plot/graphics/bar_graphics.cr
       </a>
     
@@ -226,7 +226,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new%28bars%3AArray%28Float64%29%2Cchar_width%3AInt32%2C%2A%2Csymbols%3AArray%28Char%29%3D%5B%27%E2%96%8F%27%2C%27%E2%96%8E%27%2C%27%E2%96%8D%27%2C%27%E2%96%8C%27%2C%27%E2%96%8B%27%2C%27%E2%96%8A%27%2C%27%E2%96%89%27%2C%27%E2%96%88%27%5D%2Ccolor%3ASymbol%7CInt32%7CArray%28Symbol%29%7CArray%28Int32%29%7CArray%28UInt32%29%7CUInt32%3D%3Agreen%2Cmaximum%3AFloat64%7CNil%3Dnil%2Cformatter%3AProc%28Float64%2CString%29%7CNil%3Dnil%2Cvisible%3ABool%3Dtrue%2Cxscale%3ASymbol%7CProc%28Float64%2CFloat64%29%3D%3Aidentity%29-class-method" class="signature"><strong>.new</strong>(bars : Array(Float64), char_width : Int32, *, symbols : Array(Char) = [<span class="s">&#39;▏&#39;</span>, <span class="s">&#39;▎&#39;</span>, <span class="s">&#39;▍&#39;</span>, <span class="s">&#39;▌&#39;</span>, <span class="s">&#39;▋&#39;</span>, <span class="s">&#39;▊&#39;</span>, <span class="s">&#39;▉&#39;</span>, <span class="s">&#39;█&#39;</span>], color : Symbol | Int32 | Array(Symbol) | Array(Int32) | Array(UInt32) | UInt32 = <span class="n">:green</span>, maximum : Float64 | Nil = <span class="n">nil</span>, formatter : Proc(Float64, String) | Nil = <span class="n">nil</span>, visible : Bool = <span class="n">true</span>, xscale : Symbol | Proc(Float64, Float64) = <span class="n">:identity</span>)</a>
+        <a href="#new%28bars%3AArray%28Float64%29%2Cchar_width%3AInt32%2C%2A%2Csymbols%3AArray%28Char%29%3D%5B%27%E2%96%A0%27%5D%2Ccolor%3ASymbol%7CInt32%7CArray%28Symbol%29%7CArray%28Int32%29%7CArray%28UInt32%29%7CUInt32%3D%3Agreen%2Cmaximum%3AFloat64%7CNil%3Dnil%2Cformatter%3AProc%28Float64%2CString%29%7CNil%3Dnil%2Cvisible%3ABool%3Dtrue%2Cxscale%3ASymbol%7CProc%28Float64%2CFloat64%29%3D%3Aidentity%29-class-method" class="signature"><strong>.new</strong>(bars : Array(Float64), char_width : Int32, *, symbols : Array(Char) = [<span class="s">&#39;■&#39;</span>], color : Symbol | Int32 | Array(Symbol) | Array(Int32) | Array(UInt32) | UInt32 = <span class="n">:green</span>, maximum : Float64 | Nil = <span class="n">nil</span>, formatter : Proc(Float64, String) | Nil = <span class="n">nil</span>, visible : Bool = <span class="n">true</span>, xscale : Symbol | Proc(Float64, Float64) = <span class="n">:identity</span>)</a>
         
           <div class="summary"><p>ameba:disable Metrics/CyclomaticComplexity</p></div>
         
@@ -444,12 +444,12 @@
     Constructor Detail
   </h2>
   
-    <div class="entry-detail" id="new(bars:Array(Float64),char_width:Int32,*,symbols:Array(Char)=[&#39;▏&#39;,&#39;▎&#39;,&#39;▍&#39;,&#39;▌&#39;,&#39;▋&#39;,&#39;▊&#39;,&#39;▉&#39;,&#39;█&#39;],color:Symbol|Int32|Array(Symbol)|Array(Int32)|Array(UInt32)|UInt32=:green,maximum:Float64|Nil=nil,formatter:Proc(Float64,String)|Nil=nil,visible:Bool=true,xscale:Symbol|Proc(Float64,Float64)=:identity)-class-method">
+    <div class="entry-detail" id="new(bars:Array(Float64),char_width:Int32,*,symbols:Array(Char)=[&#39;■&#39;],color:Symbol|Int32|Array(Symbol)|Array(Int32)|Array(UInt32)|UInt32=:green,maximum:Float64|Nil=nil,formatter:Proc(Float64,String)|Nil=nil,visible:Bool=true,xscale:Symbol|Proc(Float64,Float64)=:identity)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(bars : Array(Float64), char_width : Int32, *, symbols : Array(Char) = [<span class="s">&#39;▏&#39;</span>, <span class="s">&#39;▎&#39;</span>, <span class="s">&#39;▍&#39;</span>, <span class="s">&#39;▌&#39;</span>, <span class="s">&#39;▋&#39;</span>, <span class="s">&#39;▊&#39;</span>, <span class="s">&#39;▉&#39;</span>, <span class="s">&#39;█&#39;</span>], color : Symbol | Int32 | Array(Symbol) | Array(Int32) | Array(UInt32) | UInt32 = <span class="n">:green</span>, maximum : Float64 | Nil = <span class="n">nil</span>, formatter : Proc(Float64, String) | Nil = <span class="n">nil</span>, visible : Bool = <span class="n">true</span>, xscale : Symbol | Proc(Float64, Float64) = <span class="n">:identity</span>)
+        def self.<strong>new</strong>(bars : Array(Float64), char_width : Int32, *, symbols : Array(Char) = [<span class="s">&#39;■&#39;</span>], color : Symbol | Int32 | Array(Symbol) | Array(Int32) | Array(UInt32) | UInt32 = <span class="n">:green</span>, maximum : Float64 | Nil = <span class="n">nil</span>, formatter : Proc(Float64, String) | Nil = <span class="n">nil</span>, visible : Bool = <span class="n">true</span>, xscale : Symbol | Proc(Float64, Float64) = <span class="n">:identity</span>)
 
-        <a class="method-permalink" href="#new%28bars%3AArray%28Float64%29%2Cchar_width%3AInt32%2C%2A%2Csymbols%3AArray%28Char%29%3D%5B%27%E2%96%8F%27%2C%27%E2%96%8E%27%2C%27%E2%96%8D%27%2C%27%E2%96%8C%27%2C%27%E2%96%8B%27%2C%27%E2%96%8A%27%2C%27%E2%96%89%27%2C%27%E2%96%88%27%5D%2Ccolor%3ASymbol%7CInt32%7CArray%28Symbol%29%7CArray%28Int32%29%7CArray%28UInt32%29%7CUInt32%3D%3Agreen%2Cmaximum%3AFloat64%7CNil%3Dnil%2Cformatter%3AProc%28Float64%2CString%29%7CNil%3Dnil%2Cvisible%3ABool%3Dtrue%2Cxscale%3ASymbol%7CProc%28Float64%2CFloat64%29%3D%3Aidentity%29-class-method">#</a>
+        <a class="method-permalink" href="#new%28bars%3AArray%28Float64%29%2Cchar_width%3AInt32%2C%2A%2Csymbols%3AArray%28Char%29%3D%5B%27%E2%96%A0%27%5D%2Ccolor%3ASymbol%7CInt32%7CArray%28Symbol%29%7CArray%28Int32%29%7CArray%28UInt32%29%7CUInt32%3D%3Agreen%2Cmaximum%3AFloat64%7CNil%3Dnil%2Cformatter%3AProc%28Float64%2CString%29%7CNil%3Dnil%2Cvisible%3ABool%3Dtrue%2Cxscale%3ASymbol%7CProc%28Float64%2CFloat64%29%3D%3Aidentity%29-class-method">#</a>
       </div>
       
         <div class="doc">
@@ -460,7 +460,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/b4a9487aa8ac069c09786999aaa19d470cede998/src/unicode_plot/graphics/bar_graphics.cr#L17" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/b37f00949ade8628e23b6f326eb346366911d9f6/src/unicode_plot/graphics/bar_graphics.cr#L17" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -492,7 +492,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/b4a9487aa8ac069c09786999aaa19d470cede998/src/unicode_plot/graphics/bar_graphics.cr#L110" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/b37f00949ade8628e23b6f326eb346366911d9f6/src/unicode_plot/graphics/bar_graphics.cr#L110" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -508,7 +508,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/b4a9487aa8ac069c09786999aaa19d470cede998/src/unicode_plot/graphics/bar_graphics.cr#L123" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/b37f00949ade8628e23b6f326eb346366911d9f6/src/unicode_plot/graphics/bar_graphics.cr#L123" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -524,7 +524,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/b4a9487aa8ac069c09786999aaa19d470cede998/src/unicode_plot/graphics/bar_graphics.cr#L3" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/b37f00949ade8628e23b6f326eb346366911d9f6/src/unicode_plot/graphics/bar_graphics.cr#L3" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -540,7 +540,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/b4a9487aa8ac069c09786999aaa19d470cede998/src/unicode_plot/graphics/bar_graphics.cr#L61" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/b37f00949ade8628e23b6f326eb346366911d9f6/src/unicode_plot/graphics/bar_graphics.cr#L61" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -556,7 +556,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/b4a9487aa8ac069c09786999aaa19d470cede998/src/unicode_plot/graphics/bar_graphics.cr#L4" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/b37f00949ade8628e23b6f326eb346366911d9f6/src/unicode_plot/graphics/bar_graphics.cr#L4" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -572,7 +572,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/b4a9487aa8ac069c09786999aaa19d470cede998/src/unicode_plot/graphics/bar_graphics.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/b37f00949ade8628e23b6f326eb346366911d9f6/src/unicode_plot/graphics/bar_graphics.cr#L9" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -588,7 +588,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/b4a9487aa8ac069c09786999aaa19d470cede998/src/unicode_plot/graphics/bar_graphics.cr#L14" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/b37f00949ade8628e23b6f326eb346366911d9f6/src/unicode_plot/graphics/bar_graphics.cr#L14" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -604,7 +604,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/b4a9487aa8ac069c09786999aaa19d470cede998/src/unicode_plot/graphics/bar_graphics.cr#L14" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/b37f00949ade8628e23b6f326eb346366911d9f6/src/unicode_plot/graphics/bar_graphics.cr#L14" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -625,7 +625,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/b4a9487aa8ac069c09786999aaa19d470cede998/src/unicode_plot/graphics/bar_graphics.cr#L13" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/b37f00949ade8628e23b6f326eb346366911d9f6/src/unicode_plot/graphics/bar_graphics.cr#L13" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -646,7 +646,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/b4a9487aa8ac069c09786999aaa19d470cede998/src/unicode_plot/graphics/bar_graphics.cr#L13" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/b37f00949ade8628e23b6f326eb346366911d9f6/src/unicode_plot/graphics/bar_graphics.cr#L13" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -662,7 +662,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/b4a9487aa8ac069c09786999aaa19d470cede998/src/unicode_plot/graphics/bar_graphics.cr#L7" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/b37f00949ade8628e23b6f326eb346366911d9f6/src/unicode_plot/graphics/bar_graphics.cr#L7" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -678,7 +678,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/b4a9487aa8ac069c09786999aaa19d470cede998/src/unicode_plot/graphics/bar_graphics.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/b37f00949ade8628e23b6f326eb346366911d9f6/src/unicode_plot/graphics/bar_graphics.cr#L5" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -694,7 +694,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/b4a9487aa8ac069c09786999aaa19d470cede998/src/unicode_plot/graphics/bar_graphics.cr#L57" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/b37f00949ade8628e23b6f326eb346366911d9f6/src/unicode_plot/graphics/bar_graphics.cr#L57" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -719,7 +719,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/b4a9487aa8ac069c09786999aaa19d470cede998/src/unicode_plot/graphics/bar_graphics.cr#L65" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/b37f00949ade8628e23b6f326eb346366911d9f6/src/unicode_plot/graphics/bar_graphics.cr#L65" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -744,7 +744,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/b4a9487aa8ac069c09786999aaa19d470cede998/src/unicode_plot/graphics/bar_graphics.cr#L77" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/b37f00949ade8628e23b6f326eb346366911d9f6/src/unicode_plot/graphics/bar_graphics.cr#L77" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -760,7 +760,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/b4a9487aa8ac069c09786999aaa19d470cede998/src/unicode_plot/graphics/bar_graphics.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/b37f00949ade8628e23b6f326eb346366911d9f6/src/unicode_plot/graphics/bar_graphics.cr#L8" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -776,7 +776,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/b4a9487aa8ac069c09786999aaa19d470cede998/src/unicode_plot/graphics/bar_graphics.cr#L6" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/b37f00949ade8628e23b6f326eb346366911d9f6/src/unicode_plot/graphics/bar_graphics.cr#L6" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -792,7 +792,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/b4a9487aa8ac069c09786999aaa19d470cede998/src/unicode_plot/graphics/bar_graphics.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/b37f00949ade8628e23b6f326eb346366911d9f6/src/unicode_plot/graphics/bar_graphics.cr#L10" target="_blank">View source</a>]
         
       </div>
     </div>
