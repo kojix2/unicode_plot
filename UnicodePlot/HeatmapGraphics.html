@@ -178,6 +178,19 @@
 
 
 
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>HeatmapGraphics renders a 2D color matrix using half-block characters (▄).
+Each display row combines two data rows: upper half (bg) and lower half (fg).
+This matches Julia's HeatmapCanvas layout.</p>
+
 
 
 
@@ -203,7 +216,7 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/unicode_plot/blob/734e0639a5f2f7d699abb38b12d271cbd99af919/src/unicode_plot/graphics/heatmap_graphics.cr#L54" target="_blank">
+      <a href="https://github.com/kojix2/unicode_plot/blob/d9500bec8fa28123e7c4a1cd6ed2f679a90a4f0a/src/unicode_plot/graphics/heatmap_graphics.cr#L57" target="_blank">
         unicode_plot/graphics/heatmap_graphics.cr
       </a>
     
@@ -211,29 +224,6 @@
   
 
 
-
-  
-    <h2>
-      <a id="constant-summary" class="anchor" href="#constant-summary">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-      Constant Summary
-    </h2>
-  
-  <dl>
-    
-      <dt class="entry-const" id="ASCII_DENSITY">
-        <strong>ASCII_DENSITY</strong> = <code><span class="s">&quot; ░▒▓█&quot;</span></code>
-      </dt>
-      
-      <dd class="entry-const-doc">
-        <p>Density characters for non-color fallback (ASCII low to high)</p>
-      </dd>
-      
-    
-  </dl>
 
 
 
@@ -249,7 +239,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new%28data%3AArray%28Array%28Float64%29%29%2Ccolormap_fn%3AProc%28Float64%2CFloat64%2CFloat64%2CUInt32%29%2Czmin%3AFloat64%2Czmax%3AFloat64%2Cvisible%3ABool%3Dtrue%29-class-method" class="signature"><strong>.new</strong>(data : Array(Array(Float64)), colormap_fn : Proc(Float64, Float64, Float64, UInt32), zmin : Float64, zmax : Float64, visible : Bool = <span class="n">true</span>)</a>
+        <a href="#new%28data%3AArray%28Array%28Float64%29%29%2Ccolormap_fn%3AProc%28Float64%2CFloat64%2CFloat64%2CUInt32%29%2Czmin%3AFloat64%2Czmax%3AFloat64%2Cvisible%3ABool%3Dtrue%2Cyflip%3ABool%3Dfalse%29-class-method" class="signature"><strong>.new</strong>(data : Array(Array(Float64)), colormap_fn : Proc(Float64, Float64, Float64, UInt32), zmin : Float64, zmax : Float64, visible : Bool = <span class="n">true</span>, yflip : Bool = <span class="n">false</span>)</a>
         
       </li>
     
@@ -299,12 +289,17 @@
       <li class="entry-summary">
         <a href="#print_row%28io%3AIO%2Crow%3AInt32%2Cuse_color%3ABool%29%3ANil-instance-method" class="signature"><strong>#print_row</strong>(io : IO, row : Int32, use_color : Bool) : Nil</a>
         
-          <div class="summary"><p>Print a single row.</p></div>
+          <div class="summary"><p>Render one display row using two data rows packed as half-block characters.</p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#visible%3F%3ABool-instance-method" class="signature"><strong>#visible?</strong> : Bool</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#yflip%3F%3ABool-instance-method" class="signature"><strong>#yflip?</strong> : Bool</a>
         
       </li>
     
@@ -414,18 +409,18 @@
     Constructor Detail
   </h2>
   
-    <div class="entry-detail" id="new(data:Array(Array(Float64)),colormap_fn:Proc(Float64,Float64,Float64,UInt32),zmin:Float64,zmax:Float64,visible:Bool=true)-class-method">
+    <div class="entry-detail" id="new(data:Array(Array(Float64)),colormap_fn:Proc(Float64,Float64,Float64,UInt32),zmin:Float64,zmax:Float64,visible:Bool=true,yflip:Bool=false)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(data : Array(Array(Float64)), colormap_fn : Proc(Float64, Float64, Float64, UInt32), zmin : Float64, zmax : Float64, visible : Bool = <span class="n">true</span>)
+        def self.<strong>new</strong>(data : Array(Array(Float64)), colormap_fn : Proc(Float64, Float64, Float64, UInt32), zmin : Float64, zmax : Float64, visible : Bool = <span class="n">true</span>, yflip : Bool = <span class="n">false</span>)
 
-        <a class="method-permalink" href="#new%28data%3AArray%28Array%28Float64%29%29%2Ccolormap_fn%3AProc%28Float64%2CFloat64%2CFloat64%2CUInt32%29%2Czmin%3AFloat64%2Czmax%3AFloat64%2Cvisible%3ABool%3Dtrue%29-class-method">#</a>
+        <a class="method-permalink" href="#new%28data%3AArray%28Array%28Float64%29%29%2Ccolormap_fn%3AProc%28Float64%2CFloat64%2CFloat64%2CUInt32%29%2Czmin%3AFloat64%2Czmax%3AFloat64%2Cvisible%3ABool%3Dtrue%2Cyflip%3ABool%3Dfalse%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/734e0639a5f2f7d699abb38b12d271cbd99af919/src/unicode_plot/graphics/heatmap_graphics.cr#L66" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/d9500bec8fa28123e7c4a1cd6ed2f679a90a4f0a/src/unicode_plot/graphics/heatmap_graphics.cr#L67" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -457,7 +452,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/734e0639a5f2f7d699abb38b12d271cbd99af919/src/unicode_plot/graphics/heatmap_graphics.cr#L77" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/d9500bec8fa28123e7c4a1cd6ed2f679a90a4f0a/src/unicode_plot/graphics/heatmap_graphics.cr#L82" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -473,7 +468,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/734e0639a5f2f7d699abb38b12d271cbd99af919/src/unicode_plot/graphics/heatmap_graphics.cr#L59" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/d9500bec8fa28123e7c4a1cd6ed2f679a90a4f0a/src/unicode_plot/graphics/heatmap_graphics.cr#L62" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -489,7 +484,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/734e0639a5f2f7d699abb38b12d271cbd99af919/src/unicode_plot/graphics/heatmap_graphics.cr#L58" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/d9500bec8fa28123e7c4a1cd6ed2f679a90a4f0a/src/unicode_plot/graphics/heatmap_graphics.cr#L61" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -505,7 +500,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/734e0639a5f2f7d699abb38b12d271cbd99af919/src/unicode_plot/graphics/heatmap_graphics.cr#L56" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/d9500bec8fa28123e7c4a1cd6ed2f679a90a4f0a/src/unicode_plot/graphics/heatmap_graphics.cr#L59" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -521,7 +516,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/734e0639a5f2f7d699abb38b12d271cbd99af919/src/unicode_plot/graphics/heatmap_graphics.cr#L55" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/d9500bec8fa28123e7c4a1cd6ed2f679a90a4f0a/src/unicode_plot/graphics/heatmap_graphics.cr#L58" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -536,17 +531,15 @@
       
         <div class="doc">
           
-            <div class="doc-inherited">
-              Description copied from class <a href="../UnicodePlot/GraphicsArea.html">UnicodePlot::GraphicsArea</a>
-            </div>
-          
-          <p>Print a single row. Implementations add ANSI color via use_color.</p>
+          <p>Render one display row using two data rows packed as half-block characters.
+Row 1 = topmost display row. Each display row uses pixel rows 2r-1 and 2r
+(adjusted for odd char_height), matching Julia's HeatmapCanvas.print_row.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/734e0639a5f2f7d699abb38b12d271cbd99af919/src/unicode_plot/graphics/heatmap_graphics.cr#L81" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/d9500bec8fa28123e7c4a1cd6ed2f679a90a4f0a/src/unicode_plot/graphics/heatmap_graphics.cr#L89" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -562,7 +555,23 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/734e0639a5f2f7d699abb38b12d271cbd99af919/src/unicode_plot/graphics/heatmap_graphics.cr#L57" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/d9500bec8fa28123e7c4a1cd6ed2f679a90a4f0a/src/unicode_plot/graphics/heatmap_graphics.cr#L60" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="yflip?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>yflip?</strong> : Bool
+
+        <a class="method-permalink" href="#yflip%3F%3ABool-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/d9500bec8fa28123e7c4a1cd6ed2f679a90a4f0a/src/unicode_plot/graphics/heatmap_graphics.cr#L65" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -578,7 +587,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/734e0639a5f2f7d699abb38b12d271cbd99af919/src/unicode_plot/graphics/heatmap_graphics.cr#L61" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/d9500bec8fa28123e7c4a1cd6ed2f679a90a4f0a/src/unicode_plot/graphics/heatmap_graphics.cr#L64" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -594,7 +603,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/734e0639a5f2f7d699abb38b12d271cbd99af919/src/unicode_plot/graphics/heatmap_graphics.cr#L60" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/d9500bec8fa28123e7c4a1cd6ed2f679a90a4f0a/src/unicode_plot/graphics/heatmap_graphics.cr#L63" target="_blank">View source</a>]
         
       </div>
     </div>
