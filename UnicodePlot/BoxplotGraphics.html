@@ -122,6 +122,11 @@
       
     </li>
   
+  <li class=" " data-id="unicode_plot/UnicodePlot/DensityCanvas" data-name="unicodeplot::densitycanvas">
+      <a href="../UnicodePlot/DensityCanvas.html">DensityCanvas</a>
+      
+    </li>
+  
   <li class=" " data-id="unicode_plot/UnicodePlot/DotCanvas" data-name="unicodeplot::dotcanvas">
       <a href="../UnicodePlot/DotCanvas.html">DotCanvas</a>
       
@@ -182,7 +187,7 @@
     Overview
   </h2>
 
-  <p>Each series is rendered as 3 character rows: top border, middle (whiskers), bottom border.</p>
+  <p>Five-number summary per box, matching Julia UnicodePlots BoxplotGraphics.</p>
 
 
 
@@ -209,7 +214,7 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/unicode_plot/blob/d0d5f5b60f6b6f0bea3aba14e25b98ad88ff9cfc/src/unicode_plot/graphics/boxplot_graphics.cr#L3" target="_blank">
+      <a href="https://github.com/kojix2/unicode_plot/blob/8c5648adfbe8ae7fe29c17398c4f0503a2bcdb0c/src/unicode_plot/graphics/boxplot_graphics.cr#L3" target="_blank">
         unicode_plot/graphics/boxplot_graphics.cr
       </a>
     
@@ -255,7 +260,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#add_box%21%28data%3AArray%28Float64%29%2Ccolor%3AUInt32%2Cwhisker_fac%3AFloat64%3D1.5%29%3Aself-instance-method" class="signature"><strong>#add_box!</strong>(data : Array(Float64), color : UInt32, whisker_fac : Float64 = <span class="n">1.5</span>) : <span class="k">self</span></a>
+        <a href="#add_box%21%28data%3AArray%28Float64%29%2Ccolor%3AUInt32%29%3Aself-instance-method" class="signature"><strong>#add_box!</strong>(data : Array(Float64), color : UInt32) : <span class="k">self</span></a>
         
       </li>
     
@@ -277,8 +282,6 @@
       <li class="entry-summary">
         <a href="#nrows%3AInt32-instance-method" class="signature"><strong>#nrows</strong> : Int32</a>
         
-          <div class="summary"><p>Each box occupies 3 character rows.</p></div>
-        
       </li>
     
       <li class="entry-summary">
@@ -291,7 +294,7 @@
       <li class="entry-summary">
         <a href="#print_row%28io%3AIO%2Crow%3AInt32%2Cuse_color%3ABool%29%3ANil-instance-method" class="signature"><strong>#print_row</strong>(io : IO, row : Int32, use_color : Bool) : Nil</a>
         
-          <div class="summary"><p>Print a single row.</p></div>
+          <div class="summary"><p>Rendering matches Julia UnicodePlots print_row for BoxplotGraphics.</p></div>
         
       </li>
     
@@ -427,7 +430,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/d0d5f5b60f6b6f0bea3aba14e25b98ad88ff9cfc/src/unicode_plot/graphics/boxplot_graphics.cr#L27" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/8c5648adfbe8ae7fe29c17398c4f0503a2bcdb0c/src/unicode_plot/graphics/boxplot_graphics.cr#L29" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -448,18 +451,18 @@
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="add_box!(data:Array(Float64),color:UInt32,whisker_fac:Float64=1.5):self-instance-method">
+    <div class="entry-detail" id="add_box!(data:Array(Float64),color:UInt32):self-instance-method">
       <div class="signature">
         
-        def <strong>add_box!</strong>(data : Array(Float64), color : UInt32, whisker_fac : Float64 = <span class="n">1.5</span>) : <span class="k">self</span>
+        def <strong>add_box!</strong>(data : Array(Float64), color : UInt32) : <span class="k">self</span>
 
-        <a class="method-permalink" href="#add_box%21%28data%3AArray%28Float64%29%2Ccolor%3AUInt32%2Cwhisker_fac%3AFloat64%3D1.5%29%3Aself-instance-method">#</a>
+        <a class="method-permalink" href="#add_box%21%28data%3AArray%28Float64%29%2Ccolor%3AUInt32%29%3Aself-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/d0d5f5b60f6b6f0bea3aba14e25b98ad88ff9cfc/src/unicode_plot/graphics/boxplot_graphics.cr#L40" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/8c5648adfbe8ae7fe29c17398c4f0503a2bcdb0c/src/unicode_plot/graphics/boxplot_graphics.cr#L41" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -475,7 +478,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/d0d5f5b60f6b6f0bea3aba14e25b98ad88ff9cfc/src/unicode_plot/graphics/boxplot_graphics.cr#L36" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/8c5648adfbe8ae7fe29c17398c4f0503a2bcdb0c/src/unicode_plot/graphics/boxplot_graphics.cr#L37" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -491,7 +494,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/d0d5f5b60f6b6f0bea3aba14e25b98ad88ff9cfc/src/unicode_plot/graphics/boxplot_graphics.cr#L21" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/8c5648adfbe8ae7fe29c17398c4f0503a2bcdb0c/src/unicode_plot/graphics/boxplot_graphics.cr#L23" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -507,7 +510,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/d0d5f5b60f6b6f0bea3aba14e25b98ad88ff9cfc/src/unicode_plot/graphics/boxplot_graphics.cr#L22" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/8c5648adfbe8ae7fe29c17398c4f0503a2bcdb0c/src/unicode_plot/graphics/boxplot_graphics.cr#L24" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -520,15 +523,10 @@
         <a class="method-permalink" href="#nrows%3AInt32-instance-method">#</a>
       </div>
       
-        <div class="doc">
-          
-          <p>Each box occupies 3 character rows.</p>
-        </div>
-      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/d0d5f5b60f6b6f0bea3aba14e25b98ad88ff9cfc/src/unicode_plot/graphics/boxplot_graphics.cr#L32" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/8c5648adfbe8ae7fe29c17398c4f0503a2bcdb0c/src/unicode_plot/graphics/boxplot_graphics.cr#L33" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -553,7 +551,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/d0d5f5b60f6b6f0bea3aba14e25b98ad88ff9cfc/src/unicode_plot/graphics/boxplot_graphics.cr#L46" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/8c5648adfbe8ae7fe29c17398c4f0503a2bcdb0c/src/unicode_plot/graphics/boxplot_graphics.cr#L55" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -568,17 +566,17 @@
       
         <div class="doc">
           
-            <div class="doc-inherited">
-              Description copied from class <a href="../UnicodePlot/GraphicsArea.html">UnicodePlot::GraphicsArea</a>
-            </div>
-          
-          <p>Print a single row. Implementations add ANSI color via use_color.</p>
+          <p>Rendering matches Julia UnicodePlots print_row for BoxplotGraphics.
+Each box occupies 3 rows (top, mid, bot).  Characters per sub-row:
+top: ╷  ┌─┬─┐  ╷
+mid: ├──┤ │ ├──┤
+bot: ╵  └─┴─┘  ╵</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/d0d5f5b60f6b6f0bea3aba14e25b98ad88ff9cfc/src/unicode_plot/graphics/boxplot_graphics.cr#L77" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/8c5648adfbe8ae7fe29c17398c4f0503a2bcdb0c/src/unicode_plot/graphics/boxplot_graphics.cr#L93" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -594,7 +592,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/d0d5f5b60f6b6f0bea3aba14e25b98ad88ff9cfc/src/unicode_plot/graphics/boxplot_graphics.cr#L23" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/8c5648adfbe8ae7fe29c17398c4f0503a2bcdb0c/src/unicode_plot/graphics/boxplot_graphics.cr#L25" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -610,7 +608,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/d0d5f5b60f6b6f0bea3aba14e25b98ad88ff9cfc/src/unicode_plot/graphics/boxplot_graphics.cr#L25" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/8c5648adfbe8ae7fe29c17398c4f0503a2bcdb0c/src/unicode_plot/graphics/boxplot_graphics.cr#L27" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -626,7 +624,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/d0d5f5b60f6b6f0bea3aba14e25b98ad88ff9cfc/src/unicode_plot/graphics/boxplot_graphics.cr#L25" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/8c5648adfbe8ae7fe29c17398c4f0503a2bcdb0c/src/unicode_plot/graphics/boxplot_graphics.cr#L27" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -642,7 +640,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/d0d5f5b60f6b6f0bea3aba14e25b98ad88ff9cfc/src/unicode_plot/graphics/boxplot_graphics.cr#L24" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/8c5648adfbe8ae7fe29c17398c4f0503a2bcdb0c/src/unicode_plot/graphics/boxplot_graphics.cr#L26" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -658,7 +656,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/d0d5f5b60f6b6f0bea3aba14e25b98ad88ff9cfc/src/unicode_plot/graphics/boxplot_graphics.cr#L24" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/8c5648adfbe8ae7fe29c17398c4f0503a2bcdb0c/src/unicode_plot/graphics/boxplot_graphics.cr#L26" target="_blank">View source</a>]
         
       </div>
     </div>

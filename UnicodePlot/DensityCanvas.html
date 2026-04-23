@@ -14,7 +14,7 @@
 <script type="text/javascript" src="../js/doc.js"></script>
 
   <meta name="repository-name" content="unicode_plot">
-  <title>UnicodePlot::BlockCanvas - unicode_plot main</title>
+  <title>UnicodePlot::DensityCanvas - unicode_plot main</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../";
   </script>
@@ -72,7 +72,7 @@
       
     </li>
   
-  <li class=" current" data-id="unicode_plot/UnicodePlot/BlockCanvas" data-name="unicodeplot::blockcanvas">
+  <li class=" " data-id="unicode_plot/UnicodePlot/BlockCanvas" data-name="unicodeplot::blockcanvas">
       <a href="../UnicodePlot/BlockCanvas.html">BlockCanvas</a>
       
     </li>
@@ -122,7 +122,7 @@
       
     </li>
   
-  <li class=" " data-id="unicode_plot/UnicodePlot/DensityCanvas" data-name="unicodeplot::densitycanvas">
+  <li class=" current" data-id="unicode_plot/UnicodePlot/DensityCanvas" data-name="unicodeplot::densitycanvas">
       <a href="../UnicodePlot/DensityCanvas.html">DensityCanvas</a>
       
     </li>
@@ -168,15 +168,28 @@
 
   <span class="kind">
     class
-  </span> UnicodePlot::<wbr>BlockCanvas
+  </span> UnicodePlot::<wbr>DensityCanvas
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../UnicodePlot/BlockCanvas.html">UnicodePlot::BlockCanvas</a></li><li class="superclass"><a href="../UnicodePlot/Canvas.html">UnicodePlot::Canvas</a></li><li class="superclass"><a href="../UnicodePlot/GraphicsArea.html">UnicodePlot::GraphicsArea</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../UnicodePlot/DensityCanvas.html">UnicodePlot::DensityCanvas</a></li><li class="superclass"><a href="../UnicodePlot/Canvas.html">UnicodePlot::Canvas</a></li><li class="superclass"><a href="../UnicodePlot/GraphicsArea.html">UnicodePlot::GraphicsArea</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>2D point-density canvas.  Each character cell accumulates a hit count;
+at render time the count is normalised to the 5-level density palette.
+Matches Julia UnicodePlots DensityCanvas: y_pixel_per_char=2, x_pixel_per_char=1.</p>
 
 
 
@@ -203,8 +216,8 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/unicode_plot/blob/8c5648adfbe8ae7fe29c17398c4f0503a2bcdb0c/src/unicode_plot/canvas/block_canvas.cr#L15" target="_blank">
-        unicode_plot/canvas/block_canvas.cr
+      <a href="https://github.com/kojix2/unicode_plot/blob/8c5648adfbe8ae7fe29c17398c4f0503a2bcdb0c/src/unicode_plot/canvas/density_canvas.cr#L7" target="_blank">
+        unicode_plot/canvas/density_canvas.cr
       </a>
     
     <br/>
@@ -226,7 +239,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new%28char_height%3AInt32%2Cchar_width%3AInt32%2C%2A%2Cvisible%3ABool%3Dtrue%2Cblend%3ABool%3Dtrue%2Corigin_y%3AFloat64%3D0.0%2Corigin_x%3AFloat64%3D0.0%2Cheight%3AFloat64%3D1.0%2Cwidth%3AFloat64%3D1.0%2Cyflip%3ABool%3Dfalse%2Cxflip%3ABool%3Dfalse%2Cyscale%3ASymbol%7CProc%28Float64%2CFloat64%29%3D%3Aidentity%2Cxscale%3ASymbol%7CProc%28Float64%2CFloat64%29%3D%3Aidentity%29-class-method" class="signature"><strong>.new</strong>(char_height : Int32, char_width : Int32, *, visible : Bool = <span class="n">true</span>, blend : Bool = <span class="n">true</span>, origin_y : Float64 = <span class="n">0.0</span>, origin_x : Float64 = <span class="n">0.0</span>, height : Float64 = <span class="n">1.0</span>, width : Float64 = <span class="n">1.0</span>, yflip : Bool = <span class="n">false</span>, xflip : Bool = <span class="n">false</span>, yscale : Symbol | Proc(Float64, Float64) = <span class="n">:identity</span>, xscale : Symbol | Proc(Float64, Float64) = <span class="n">:identity</span>)</a>
+        <a href="#new%28char_height%3AInt32%2Cchar_width%3AInt32%2C%2A%2Cvisible%3ABool%3Dtrue%2Cblend%3ABool%3Dtrue%2Corigin_y%3AFloat64%3D0.0%2Corigin_x%3AFloat64%3D0.0%2Cheight%3AFloat64%3D1.0%2Cwidth%3AFloat64%3D1.0%2Cyflip%3ABool%3Dfalse%2Cxflip%3ABool%3Dfalse%2Cyscale%3ASymbol%7CProc%28Float64%2CFloat64%29%3D%3Aidentity%2Cxscale%3ASymbol%7CProc%28Float64%2CFloat64%29%3D%3Aidentity%2Cdscale%3ASymbol%7CProc%28Float64%2CFloat64%29%3D%3Aidentity%29-class-method" class="signature"><strong>.new</strong>(char_height : Int32, char_width : Int32, *, visible : Bool = <span class="n">true</span>, blend : Bool = <span class="n">true</span>, origin_y : Float64 = <span class="n">0.0</span>, origin_x : Float64 = <span class="n">0.0</span>, height : Float64 = <span class="n">1.0</span>, width : Float64 = <span class="n">1.0</span>, yflip : Bool = <span class="n">false</span>, xflip : Bool = <span class="n">false</span>, yscale : Symbol | Proc(Float64, Float64) = <span class="n">:identity</span>, xscale : Symbol | Proc(Float64, Float64) = <span class="n">:identity</span>, dscale : Symbol | Proc(Float64, Float64) = <span class="n">:identity</span>)</a>
         
       </li>
     
@@ -262,6 +275,13 @@
     
       <li class="entry-summary">
         <a href="#pixel%21%28pixel_x%3AInt32%2Cpixel_y%3AInt32%2Ccolor%3AUInt32%2Cblend%3ABool%29%3Aself-instance-method" class="signature"><strong>#pixel!</strong>(pixel_x : Int32, pixel_y : Int32, color : UInt32, blend : Bool) : <span class="k">self</span></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#preprocess%28io%3AIO%29%3AGraphicsArea-%3E-instance-method" class="signature"><strong>#preprocess</strong>(io : IO) : GraphicsArea -> </a>
+        
+          <div class="summary"><p>Preprocessing hook (returns cleanup proc).</p></div>
         
       </li>
     
@@ -582,18 +602,18 @@
     Constructor Detail
   </h2>
   
-    <div class="entry-detail" id="new(char_height:Int32,char_width:Int32,*,visible:Bool=true,blend:Bool=true,origin_y:Float64=0.0,origin_x:Float64=0.0,height:Float64=1.0,width:Float64=1.0,yflip:Bool=false,xflip:Bool=false,yscale:Symbol|Proc(Float64,Float64)=:identity,xscale:Symbol|Proc(Float64,Float64)=:identity)-class-method">
+    <div class="entry-detail" id="new(char_height:Int32,char_width:Int32,*,visible:Bool=true,blend:Bool=true,origin_y:Float64=0.0,origin_x:Float64=0.0,height:Float64=1.0,width:Float64=1.0,yflip:Bool=false,xflip:Bool=false,yscale:Symbol|Proc(Float64,Float64)=:identity,xscale:Symbol|Proc(Float64,Float64)=:identity,dscale:Symbol|Proc(Float64,Float64)=:identity)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(char_height : Int32, char_width : Int32, *, visible : Bool = <span class="n">true</span>, blend : Bool = <span class="n">true</span>, origin_y : Float64 = <span class="n">0.0</span>, origin_x : Float64 = <span class="n">0.0</span>, height : Float64 = <span class="n">1.0</span>, width : Float64 = <span class="n">1.0</span>, yflip : Bool = <span class="n">false</span>, xflip : Bool = <span class="n">false</span>, yscale : Symbol | Proc(Float64, Float64) = <span class="n">:identity</span>, xscale : Symbol | Proc(Float64, Float64) = <span class="n">:identity</span>)
+        def self.<strong>new</strong>(char_height : Int32, char_width : Int32, *, visible : Bool = <span class="n">true</span>, blend : Bool = <span class="n">true</span>, origin_y : Float64 = <span class="n">0.0</span>, origin_x : Float64 = <span class="n">0.0</span>, height : Float64 = <span class="n">1.0</span>, width : Float64 = <span class="n">1.0</span>, yflip : Bool = <span class="n">false</span>, xflip : Bool = <span class="n">false</span>, yscale : Symbol | Proc(Float64, Float64) = <span class="n">:identity</span>, xscale : Symbol | Proc(Float64, Float64) = <span class="n">:identity</span>, dscale : Symbol | Proc(Float64, Float64) = <span class="n">:identity</span>)
 
-        <a class="method-permalink" href="#new%28char_height%3AInt32%2Cchar_width%3AInt32%2C%2A%2Cvisible%3ABool%3Dtrue%2Cblend%3ABool%3Dtrue%2Corigin_y%3AFloat64%3D0.0%2Corigin_x%3AFloat64%3D0.0%2Cheight%3AFloat64%3D1.0%2Cwidth%3AFloat64%3D1.0%2Cyflip%3ABool%3Dfalse%2Cxflip%3ABool%3Dfalse%2Cyscale%3ASymbol%7CProc%28Float64%2CFloat64%29%3D%3Aidentity%2Cxscale%3ASymbol%7CProc%28Float64%2CFloat64%29%3D%3Aidentity%29-class-method">#</a>
+        <a class="method-permalink" href="#new%28char_height%3AInt32%2Cchar_width%3AInt32%2C%2A%2Cvisible%3ABool%3Dtrue%2Cblend%3ABool%3Dtrue%2Corigin_y%3AFloat64%3D0.0%2Corigin_x%3AFloat64%3D0.0%2Cheight%3AFloat64%3D1.0%2Cwidth%3AFloat64%3D1.0%2Cyflip%3ABool%3Dfalse%2Cxflip%3ABool%3Dfalse%2Cyscale%3ASymbol%7CProc%28Float64%2CFloat64%29%3D%3Aidentity%2Cxscale%3ASymbol%7CProc%28Float64%2CFloat64%29%3D%3Aidentity%2Cdscale%3ASymbol%7CProc%28Float64%2CFloat64%29%3D%3Aidentity%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/8c5648adfbe8ae7fe29c17398c4f0503a2bcdb0c/src/unicode_plot/canvas/block_canvas.cr#L16" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/8c5648adfbe8ae7fe29c17398c4f0503a2bcdb0c/src/unicode_plot/canvas/density_canvas.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -625,7 +645,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/8c5648adfbe8ae7fe29c17398c4f0503a2bcdb0c/src/unicode_plot/canvas/block_canvas.cr#L49" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/8c5648adfbe8ae7fe29c17398c4f0503a2bcdb0c/src/unicode_plot/canvas/density_canvas.cr#L47" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -650,7 +670,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/8c5648adfbe8ae7fe29c17398c4f0503a2bcdb0c/src/unicode_plot/canvas/block_canvas.cr#L82" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/8c5648adfbe8ae7fe29c17398c4f0503a2bcdb0c/src/unicode_plot/canvas/density_canvas.cr#L87" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -666,7 +686,32 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/8c5648adfbe8ae7fe29c17398c4f0503a2bcdb0c/src/unicode_plot/canvas/block_canvas.cr#L61" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/8c5648adfbe8ae7fe29c17398c4f0503a2bcdb0c/src/unicode_plot/canvas/density_canvas.cr#L59" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="preprocess(io:IO):GraphicsArea-&gt;-instance-method">
+      <div class="signature">
+        
+        def <strong>preprocess</strong>(io : IO) : <a href="../UnicodePlot/GraphicsArea.html">GraphicsArea</a> -> 
+
+        <a class="method-permalink" href="#preprocess%28io%3AIO%29%3AGraphicsArea-%3E-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from class <a href="../UnicodePlot/GraphicsArea.html">UnicodePlot::GraphicsArea</a>
+            </div>
+          
+          <p>Preprocessing hook (returns cleanup proc). Override in subclasses that need it.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/8c5648adfbe8ae7fe29c17398c4f0503a2bcdb0c/src/unicode_plot/canvas/density_canvas.cr#L75" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -682,7 +727,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/8c5648adfbe8ae7fe29c17398c4f0503a2bcdb0c/src/unicode_plot/canvas/block_canvas.cr#L57" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/8c5648adfbe8ae7fe29c17398c4f0503a2bcdb0c/src/unicode_plot/canvas/density_canvas.cr#L55" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -698,7 +743,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/8c5648adfbe8ae7fe29c17398c4f0503a2bcdb0c/src/unicode_plot/canvas/block_canvas.cr#L53" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/8c5648adfbe8ae7fe29c17398c4f0503a2bcdb0c/src/unicode_plot/canvas/density_canvas.cr#L51" target="_blank">View source</a>]
         
       </div>
     </div>

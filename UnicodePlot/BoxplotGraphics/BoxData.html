@@ -122,6 +122,11 @@
       
     </li>
   
+  <li class=" " data-id="unicode_plot/UnicodePlot/DensityCanvas" data-name="unicodeplot::densitycanvas">
+      <a href="../../UnicodePlot/DensityCanvas.html">DensityCanvas</a>
+      
+    </li>
+  
   <li class=" " data-id="unicode_plot/UnicodePlot/DotCanvas" data-name="unicodeplot::dotcanvas">
       <a href="../../UnicodePlot/DotCanvas.html">DotCanvas</a>
       
@@ -198,7 +203,7 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/unicode_plot/blob/d0d5f5b60f6b6f0bea3aba14e25b98ad88ff9cfc/src/unicode_plot/graphics/boxplot_graphics.cr#L4" target="_blank">
+      <a href="https://github.com/kojix2/unicode_plot/blob/8c5648adfbe8ae7fe29c17398c4f0503a2bcdb0c/src/unicode_plot/graphics/boxplot_graphics.cr#L4" target="_blank">
         unicode_plot/graphics/boxplot_graphics.cr
       </a>
     
@@ -221,7 +226,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new%28sorted%3AArray%28Float64%29%2Ccolor%3AUInt32%2Cwhisker_fac%3AFloat64%29-class-method" class="signature"><strong>.new</strong>(sorted : Array(Float64), color : UInt32, whisker_fac : Float64)</a>
+        <a href="#new%28minimum%3AFloat64%2Clower_quartile%3AFloat64%2Cmedian%3AFloat64%2Cupper_quartile%3AFloat64%2Cmaximum%3AFloat64%2Ccolor%3AUInt32%29-class-method" class="signature"><strong>.new</strong>(minimum : Float64, lower_quartile : Float64, median : Float64, upper_quartile : Float64, maximum : Float64, color : UInt32)</a>
         
       </li>
     
@@ -249,22 +254,27 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#data_max%3AFloat64-instance-method" class="signature"><strong>#data_max</strong> : Float64</a>
+        <a href="#lower_quartile%3AFloat64-instance-method" class="signature"><strong>#lower_quartile</strong> : Float64</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#data_min%3AFloat64-instance-method" class="signature"><strong>#data_min</strong> : Float64</a>
+        <a href="#maximum%3AFloat64-instance-method" class="signature"><strong>#maximum</strong> : Float64</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#sorted%3AArray%28Float64%29-instance-method" class="signature"><strong>#sorted</strong> : Array(Float64)</a>
+        <a href="#median%3AFloat64-instance-method" class="signature"><strong>#median</strong> : Float64</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#whisker_fac%3AFloat64-instance-method" class="signature"><strong>#whisker_fac</strong> : Float64</a>
+        <a href="#minimum%3AFloat64-instance-method" class="signature"><strong>#minimum</strong> : Float64</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#upper_quartile%3AFloat64-instance-method" class="signature"><strong>#upper_quartile</strong> : Float64</a>
         
       </li>
     
@@ -325,18 +335,18 @@
     Constructor Detail
   </h2>
   
-    <div class="entry-detail" id="new(sorted:Array(Float64),color:UInt32,whisker_fac:Float64)-class-method">
+    <div class="entry-detail" id="new(minimum:Float64,lower_quartile:Float64,median:Float64,upper_quartile:Float64,maximum:Float64,color:UInt32)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(sorted : Array(Float64), color : UInt32, whisker_fac : Float64)
+        def self.<strong>new</strong>(minimum : Float64, lower_quartile : Float64, median : Float64, upper_quartile : Float64, maximum : Float64, color : UInt32)
 
-        <a class="method-permalink" href="#new%28sorted%3AArray%28Float64%29%2Ccolor%3AUInt32%2Cwhisker_fac%3AFloat64%29-class-method">#</a>
+        <a class="method-permalink" href="#new%28minimum%3AFloat64%2Clower_quartile%3AFloat64%2Cmedian%3AFloat64%2Cupper_quartile%3AFloat64%2Cmaximum%3AFloat64%2Ccolor%3AUInt32%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/d0d5f5b60f6b6f0bea3aba14e25b98ad88ff9cfc/src/unicode_plot/graphics/boxplot_graphics.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/8c5648adfbe8ae7fe29c17398c4f0503a2bcdb0c/src/unicode_plot/graphics/boxplot_graphics.cr#L12" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -368,71 +378,87 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/d0d5f5b60f6b6f0bea3aba14e25b98ad88ff9cfc/src/unicode_plot/graphics/boxplot_graphics.cr#L6" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/8c5648adfbe8ae7fe29c17398c4f0503a2bcdb0c/src/unicode_plot/graphics/boxplot_graphics.cr#L10" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="data_max:Float64-instance-method">
+    <div class="entry-detail" id="lower_quartile:Float64-instance-method">
       <div class="signature">
         
-        def <strong>data_max</strong> : Float64
+        def <strong>lower_quartile</strong> : Float64
 
-        <a class="method-permalink" href="#data_max%3AFloat64-instance-method">#</a>
+        <a class="method-permalink" href="#lower_quartile%3AFloat64-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/d0d5f5b60f6b6f0bea3aba14e25b98ad88ff9cfc/src/unicode_plot/graphics/boxplot_graphics.cr#L16" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/8c5648adfbe8ae7fe29c17398c4f0503a2bcdb0c/src/unicode_plot/graphics/boxplot_graphics.cr#L6" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="data_min:Float64-instance-method">
+    <div class="entry-detail" id="maximum:Float64-instance-method">
       <div class="signature">
         
-        def <strong>data_min</strong> : Float64
+        def <strong>maximum</strong> : Float64
 
-        <a class="method-permalink" href="#data_min%3AFloat64-instance-method">#</a>
+        <a class="method-permalink" href="#maximum%3AFloat64-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/d0d5f5b60f6b6f0bea3aba14e25b98ad88ff9cfc/src/unicode_plot/graphics/boxplot_graphics.cr#L12" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/8c5648adfbe8ae7fe29c17398c4f0503a2bcdb0c/src/unicode_plot/graphics/boxplot_graphics.cr#L9" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="sorted:Array(Float64)-instance-method">
+    <div class="entry-detail" id="median:Float64-instance-method">
       <div class="signature">
         
-        def <strong>sorted</strong> : Array(Float64)
+        def <strong>median</strong> : Float64
 
-        <a class="method-permalink" href="#sorted%3AArray%28Float64%29-instance-method">#</a>
+        <a class="method-permalink" href="#median%3AFloat64-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/d0d5f5b60f6b6f0bea3aba14e25b98ad88ff9cfc/src/unicode_plot/graphics/boxplot_graphics.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/8c5648adfbe8ae7fe29c17398c4f0503a2bcdb0c/src/unicode_plot/graphics/boxplot_graphics.cr#L7" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="whisker_fac:Float64-instance-method">
+    <div class="entry-detail" id="minimum:Float64-instance-method">
       <div class="signature">
         
-        def <strong>whisker_fac</strong> : Float64
+        def <strong>minimum</strong> : Float64
 
-        <a class="method-permalink" href="#whisker_fac%3AFloat64-instance-method">#</a>
+        <a class="method-permalink" href="#minimum%3AFloat64-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/d0d5f5b60f6b6f0bea3aba14e25b98ad88ff9cfc/src/unicode_plot/graphics/boxplot_graphics.cr#L7" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/8c5648adfbe8ae7fe29c17398c4f0503a2bcdb0c/src/unicode_plot/graphics/boxplot_graphics.cr#L5" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="upper_quartile:Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>upper_quartile</strong> : Float64
+
+        <a class="method-permalink" href="#upper_quartile%3AFloat64-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/8c5648adfbe8ae7fe29c17398c4f0503a2bcdb0c/src/unicode_plot/graphics/boxplot_graphics.cr#L8" target="_blank">View source</a>]
         
       </div>
     </div>
