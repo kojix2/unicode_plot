@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.19.1">
+<meta name="crystal_docs.project_version" content="main">
+<meta name="crystal_docs.project_name" content="unicode_plot">
+
+
+
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/doc.js"></script>
+
+  <meta name="repository-name" content="unicode_plot">
+  <title>UnicodePlot::HeatmapGraphics - unicode_plot main</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="search-box">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false" aria-label="Search">
+    </div>
+
+    <div class="project-summary">
+      <h1 class="project-name">
+        <a href="../index.html">
+          unicode_plot
+        </a>
+      </h1>
+
+      <span class="project-version">
+        main
+      </span>
+    </div>
+  </div>
+
+  <div class="search-results hidden">
+    <ul class="search-list"></ul>
+  </div>
+
+  <div class="types-list">
+    <ul>
+  
+  <li class="parent open current" data-id="unicode_plot/UnicodePlot" data-name="unicodeplot">
+      <a href="../UnicodePlot.html">UnicodePlot</a>
+      
+        <ul>
+  
+  <li class=" " data-id="unicode_plot/UnicodePlot/AsciiCanvas" data-name="unicodeplot::asciicanvas">
+      <a href="../UnicodePlot/AsciiCanvas.html">AsciiCanvas</a>
+      
+    </li>
+  
+  <li class=" " data-id="unicode_plot/UnicodePlot/BarplotGraphics" data-name="unicodeplot::barplotgraphics">
+      <a href="../UnicodePlot/BarplotGraphics.html">BarplotGraphics</a>
+      
+    </li>
+  
+  <li class=" " data-id="unicode_plot/UnicodePlot/BlockCanvas" data-name="unicodeplot::blockcanvas">
+      <a href="../UnicodePlot/BlockCanvas.html">BlockCanvas</a>
+      
+    </li>
+  
+  <li class=" " data-id="unicode_plot/UnicodePlot/Border" data-name="unicodeplot::border">
+      <a href="../UnicodePlot/Border.html">Border</a>
+      
+    </li>
+  
+  <li class="parent " data-id="unicode_plot/UnicodePlot/BoxplotGraphics" data-name="unicodeplot::boxplotgraphics">
+      <a href="../UnicodePlot/BoxplotGraphics.html">BoxplotGraphics</a>
+      
+        <ul>
+  
+  <li class=" " data-id="unicode_plot/UnicodePlot/BoxplotGraphics/BoxData" data-name="unicodeplot::boxplotgraphics::boxdata">
+      <a href="../UnicodePlot/BoxplotGraphics/BoxData.html">BoxData</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="unicode_plot/UnicodePlot/BrailleCanvas" data-name="unicodeplot::braillecanvas">
+      <a href="../UnicodePlot/BrailleCanvas.html">BrailleCanvas</a>
+      
+    </li>
+  
+  <li class=" " data-id="unicode_plot/UnicodePlot/Canvas" data-name="unicodeplot::canvas">
+      <a href="../UnicodePlot/Canvas.html">Canvas</a>
+      
+    </li>
+  
+  <li class=" " data-id="unicode_plot/UnicodePlot/Colormap" data-name="unicodeplot::colormap">
+      <a href="../UnicodePlot/Colormap.html">Colormap</a>
+      
+    </li>
+  
+  <li class=" " data-id="unicode_plot/UnicodePlot/ColorType" data-name="unicodeplot::colortype">
+      <a href="../UnicodePlot/ColorType.html">ColorType</a>
+      
+    </li>
+  
+  <li class=" " data-id="unicode_plot/UnicodePlot/Config" data-name="unicodeplot::config">
+      <a href="../UnicodePlot/Config.html">Config</a>
+      
+    </li>
+  
+  <li class=" " data-id="unicode_plot/UnicodePlot/DotCanvas" data-name="unicodeplot::dotcanvas">
+      <a href="../UnicodePlot/DotCanvas.html">DotCanvas</a>
+      
+    </li>
+  
+  <li class=" " data-id="unicode_plot/UnicodePlot/GraphicsArea" data-name="unicodeplot::graphicsarea">
+      <a href="../UnicodePlot/GraphicsArea.html">GraphicsArea</a>
+      
+    </li>
+  
+  <li class=" current" data-id="unicode_plot/UnicodePlot/HeatmapGraphics" data-name="unicodeplot::heatmapgraphics">
+      <a href="../UnicodePlot/HeatmapGraphics.html">HeatmapGraphics</a>
+      
+    </li>
+  
+  <li class=" " data-id="unicode_plot/UnicodePlot/Plot" data-name="unicodeplot::plot">
+      <a href="../UnicodePlot/Plot.html">Plot</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+  </div>
+</div>
+
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">
+    class
+  </span> UnicodePlot::<wbr>HeatmapGraphics
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../UnicodePlot/HeatmapGraphics.html">UnicodePlot::HeatmapGraphics</a></li><li class="superclass"><a href="../UnicodePlot/GraphicsArea.html">UnicodePlot::GraphicsArea</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/kojix2/unicode_plot/blob/6d86dcb68c40d5c028ffa18815072b53ab529b5b/src/unicode_plot/graphics/heatmap_graphics.cr#L53" target="_blank">
+        unicode_plot/graphics/heatmap_graphics.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+  
+    <h2>
+      <a id="constant-summary" class="anchor" href="#constant-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+      Constant Summary
+    </h2>
+  
+  <dl>
+    
+      <dt class="entry-const" id="ASCII_DENSITY">
+        <strong>ASCII_DENSITY</strong> = <code><span class="s">&quot; ░▒▓█&quot;</span></code>
+      </dt>
+      
+      <dd class="entry-const-doc">
+        <p>Density characters for non-color fallback (ASCII low to high)</p>
+      </dd>
+      
+    
+  </dl>
+
+
+
+  
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new%28data%3AArray%28Array%28Float64%29%29%2Ccolormap_fn%3AProc%28Float64%2CFloat64%2CFloat64%2CUInt32%29%2Czmin%3AFloat64%2Czmax%3AFloat64%2Cvisible%3ABool%3Dtrue%29-class-method" class="signature"><strong>.new</strong>(data : Array(Array(Float64)), colormap_fn : Proc(Float64, Float64, Float64, UInt32), zmin : Float64, zmax : Float64, visible : Bool = <span class="n">true</span>)</a>
+        
+      </li>
+    
+  </ul>
+
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#blank%3AChar-instance-method" class="signature"><strong>#blank</strong> : Char</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#colormap_fn%3AProc%28Float64%2CFloat64%2CFloat64%2CUInt32%29-instance-method" class="signature"><strong>#colormap_fn</strong> : Proc(Float64, Float64, Float64, UInt32)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#data%3AArray%28Array%28Float64%29%29-instance-method" class="signature"><strong>#data</strong> : Array(Array(Float64))</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#ncols%3AInt32-instance-method" class="signature"><strong>#ncols</strong> : Int32</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#nrows%3AInt32-instance-method" class="signature"><strong>#nrows</strong> : Int32</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#print_row%28io%3AIO%2Crow%3AInt32%2Cuse_color%3ABool%29%3ANil-instance-method" class="signature"><strong>#print_row</strong>(io : IO, row : Int32, use_color : Bool) : Nil</a>
+        
+          <div class="summary"><p>Print a single row.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#visible%3F%3ABool-instance-method" class="signature"><strong>#visible?</strong> : Bool</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#zmax%3AFloat64-instance-method" class="signature"><strong>#zmax</strong> : Float64</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#zmin%3AFloat64-instance-method" class="signature"><strong>#zmin</strong> : Float64</a>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <div class="methods-inherited">
+    
+      
+
+  <h3>Instance methods inherited from class <code><a href="../UnicodePlot/GraphicsArea.html">UnicodePlot::GraphicsArea</a></code></h3>
+  
+  
+    <a href="../UnicodePlot/GraphicsArea.html#blank%3AChar-instance-method" class="tooltip">
+      <span>blank : Char</span>
+    blank</a>, 
+    
+  
+    <a href="../UnicodePlot/GraphicsArea.html#ncols%3AInt32-instance-method" class="tooltip">
+      <span>ncols : Int32</span>
+    ncols</a>, 
+    
+  
+    <a href="../UnicodePlot/GraphicsArea.html#nrows%3AInt32-instance-method" class="tooltip">
+      <span>nrows : Int32</span>
+    nrows</a>, 
+    
+  
+    <a href="../UnicodePlot/GraphicsArea.html#preprocess%28io%3AIO%29%3AGraphicsArea-%3E-instance-method" class="tooltip">
+      <span>preprocess(io : IO) : GraphicsArea -> </span>
+    preprocess</a>, 
+    
+  
+    <a href="../UnicodePlot/GraphicsArea.html#print_row%28io%3AIO%2Crow%3AInt32%2Cuse_color%3ABool%29%3ANil-instance-method" class="tooltip">
+      <span>print_row(io : IO, row : Int32, use_color : Bool) : Nil</span>
+    print_row</a>, 
+    
+  
+    <a href="../UnicodePlot/GraphicsArea.html#to_s%28io%3AIO%29%3ANil-instance-method" class="tooltip">
+      <span>to_s(io : IO) : Nil</span>
+    to_s</a>, 
+    
+  
+    <a href="../UnicodePlot/GraphicsArea.html#visible%3F%3ABool-instance-method" class="tooltip">
+      <span>visible? : Bool</span>
+    visible?</a>
+    
+  
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+  </div>
+
+  
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new(data:Array(Array(Float64)),colormap_fn:Proc(Float64,Float64,Float64,UInt32),zmin:Float64,zmax:Float64,visible:Bool=true)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(data : Array(Array(Float64)), colormap_fn : Proc(Float64, Float64, Float64, UInt32), zmin : Float64, zmax : Float64, visible : Bool = <span class="n">true</span>)
+
+        <a class="method-permalink" href="#new%28data%3AArray%28Array%28Float64%29%29%2Ccolormap_fn%3AProc%28Float64%2CFloat64%2CFloat64%2CUInt32%29%2Czmin%3AFloat64%2Czmax%3AFloat64%2Cvisible%3ABool%3Dtrue%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/6d86dcb68c40d5c028ffa18815072b53ab529b5b/src/unicode_plot/graphics/heatmap_graphics.cr#L65" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+  
+
+  
+
+  
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="blank:Char-instance-method">
+      <div class="signature">
+        
+        def <strong>blank</strong> : Char
+
+        <a class="method-permalink" href="#blank%3AChar-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/6d86dcb68c40d5c028ffa18815072b53ab529b5b/src/unicode_plot/graphics/heatmap_graphics.cr#L76" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="colormap_fn:Proc(Float64,Float64,Float64,UInt32)-instance-method">
+      <div class="signature">
+        
+        def <strong>colormap_fn</strong> : Proc(Float64, Float64, Float64, UInt32)
+
+        <a class="method-permalink" href="#colormap_fn%3AProc%28Float64%2CFloat64%2CFloat64%2CUInt32%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/6d86dcb68c40d5c028ffa18815072b53ab529b5b/src/unicode_plot/graphics/heatmap_graphics.cr#L58" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="data:Array(Array(Float64))-instance-method">
+      <div class="signature">
+        
+        def <strong>data</strong> : Array(Array(Float64))
+
+        <a class="method-permalink" href="#data%3AArray%28Array%28Float64%29%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/6d86dcb68c40d5c028ffa18815072b53ab529b5b/src/unicode_plot/graphics/heatmap_graphics.cr#L57" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="ncols:Int32-instance-method">
+      <div class="signature">
+        
+        def <strong>ncols</strong> : Int32
+
+        <a class="method-permalink" href="#ncols%3AInt32-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/6d86dcb68c40d5c028ffa18815072b53ab529b5b/src/unicode_plot/graphics/heatmap_graphics.cr#L55" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="nrows:Int32-instance-method">
+      <div class="signature">
+        
+        def <strong>nrows</strong> : Int32
+
+        <a class="method-permalink" href="#nrows%3AInt32-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/6d86dcb68c40d5c028ffa18815072b53ab529b5b/src/unicode_plot/graphics/heatmap_graphics.cr#L54" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="print_row(io:IO,row:Int32,use_color:Bool):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>print_row</strong>(io : IO, row : Int32, use_color : Bool) : Nil
+
+        <a class="method-permalink" href="#print_row%28io%3AIO%2Crow%3AInt32%2Cuse_color%3ABool%29%3ANil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from class <a href="../UnicodePlot/GraphicsArea.html">UnicodePlot::GraphicsArea</a>
+            </div>
+          
+          <p>Print a single row. Implementations add ANSI color via use_color.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/6d86dcb68c40d5c028ffa18815072b53ab529b5b/src/unicode_plot/graphics/heatmap_graphics.cr#L80" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="visible?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>visible?</strong> : Bool
+
+        <a class="method-permalink" href="#visible%3F%3ABool-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/6d86dcb68c40d5c028ffa18815072b53ab529b5b/src/unicode_plot/graphics/heatmap_graphics.cr#L56" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="zmax:Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>zmax</strong> : Float64
+
+        <a class="method-permalink" href="#zmax%3AFloat64-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/6d86dcb68c40d5c028ffa18815072b53ab529b5b/src/unicode_plot/graphics/heatmap_graphics.cr#L60" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="zmin:Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>zmin</strong> : Float64
+
+        <a class="method-permalink" href="#zmin%3AFloat64-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/6d86dcb68c40d5c028ffa18815072b53ab529b5b/src/unicode_plot/graphics/heatmap_graphics.cr#L59" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+
+</body>
+</html>
