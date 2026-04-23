@@ -187,7 +187,8 @@
     Overview
   </h2>
 
-  <p>Dot canvas — 1 pixel per character cell, displayed as '•' or '∘'.</p>
+  <p>Dot canvas — 2 vertical sub-pixels per character cell.
+Upper sub-pixel → ''', lower sub-pixel → '.', both → ':', neither → ' '.</p>
 
 
 
@@ -214,7 +215,7 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/unicode_plot/blob/58ce2ac4f4bff90101ff74f1f56d4b0d5aeb44b1/src/unicode_plot/canvas/dot_canvas.cr#L3" target="_blank">
+      <a href="https://github.com/kojix2/unicode_plot/blob/734e0639a5f2f7d699abb38b12d271cbd99af919/src/unicode_plot/canvas/dot_canvas.cr#L4" target="_blank">
         unicode_plot/canvas/dot_canvas.cr
       </a>
     
@@ -235,9 +236,13 @@
   
   <dl>
     
-      <dt class="entry-const" id="DOT_CHAR">
-        <strong>DOT_CHAR</strong> = <code><span class="s">&#39;•&#39;</span></code>
+      <dt class="entry-const" id="DOT_CHARS">
+        <strong>DOT_CHARS</strong> = <code>[<span class="s">&#39; &#39;</span>, <span class="s">&#39;\&#39;&#39;</span>, <span class="s">&#39;.&#39;</span>, <span class="s">&#39;:&#39;</span>]</code>
       </dt>
+      
+      <dd class="entry-const-doc">
+        <p>Indexed by bitmask: bit0=upper set, bit1=lower set</p>
+      </dd>
       
     
       <dt class="entry-const" id="EMPTY_CHAR">
@@ -628,7 +633,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/58ce2ac4f4bff90101ff74f1f56d4b0d5aeb44b1/src/unicode_plot/canvas/dot_canvas.cr#L7" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/734e0639a5f2f7d699abb38b12d271cbd99af919/src/unicode_plot/canvas/dot_canvas.cr#L9" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -660,7 +665,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/58ce2ac4f4bff90101ff74f1f56d4b0d5aeb44b1/src/unicode_plot/canvas/dot_canvas.cr#L38" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/734e0639a5f2f7d699abb38b12d271cbd99af919/src/unicode_plot/canvas/dot_canvas.cr#L40" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -685,7 +690,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/58ce2ac4f4bff90101ff74f1f56d4b0d5aeb44b1/src/unicode_plot/canvas/dot_canvas.cr#L66" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/734e0639a5f2f7d699abb38b12d271cbd99af919/src/unicode_plot/canvas/dot_canvas.cr#L70" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -701,7 +706,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/58ce2ac4f4bff90101ff74f1f56d4b0d5aeb44b1/src/unicode_plot/canvas/dot_canvas.cr#L50" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/734e0639a5f2f7d699abb38b12d271cbd99af919/src/unicode_plot/canvas/dot_canvas.cr#L52" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -717,7 +722,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/58ce2ac4f4bff90101ff74f1f56d4b0d5aeb44b1/src/unicode_plot/canvas/dot_canvas.cr#L46" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/734e0639a5f2f7d699abb38b12d271cbd99af919/src/unicode_plot/canvas/dot_canvas.cr#L48" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -733,7 +738,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/58ce2ac4f4bff90101ff74f1f56d4b0d5aeb44b1/src/unicode_plot/canvas/dot_canvas.cr#L42" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/734e0639a5f2f7d699abb38b12d271cbd99af919/src/unicode_plot/canvas/dot_canvas.cr#L44" target="_blank">View source</a>]
         
       </div>
     </div>
