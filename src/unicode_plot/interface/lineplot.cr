@@ -137,9 +137,9 @@ module UnicodePlot
     lineplot!(plot, to_plot_f64(x), to_plot_f64(y), **kwargs)
   end
 
-  def lineplot!(plot : Plot, y : Array(Float64), **kwargs) : Plot
-    x = (1..y.size).map(&.to_f)
-    lineplot!(plot, x, y, **kwargs)
+  def lineplot!(plot : Plot, y : Array(T), **kwargs) : Plot forall T
+    x = (1..y.size).map(&.to_f64)
+    lineplot!(plot, x, to_plot_f64(y), **kwargs)
   end
 
   def lineplot!(plot : Plot, f : Float64 -> Float64, **kwargs) : Plot

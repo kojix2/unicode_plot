@@ -81,6 +81,13 @@ describe UnicodePlot do
       p.series.should eq(prev_series + 1)
     end
 
+    it "accepts y-only numeric overload in lineplot!" do
+      p = UnicodePlot.lineplot([1, 2, 3])
+      prev_series = p.series
+      UnicodePlot.lineplot!(p, [4, 5, 6])
+      p.series.should eq(prev_series + 1)
+    end
+
     it "ignores extreme finite values without overflowing during rasterization" do
       p = UnicodePlot.lineplot([Float64::MAX, 0.5], [0.5, 0.5])
       p.to_s.should be_a(String)
@@ -124,6 +131,13 @@ describe UnicodePlot do
       p = UnicodePlot.scatterplot([1.0, 2.0, 3.0], [1.0, 4.0, 9.0])
       prev_series = p.series
       UnicodePlot.scatterplot!(p, [1_i64, 2_i64, 3_i64], [2_i64, 3_i64, 4_i64])
+      p.series.should eq(prev_series + 1)
+    end
+
+    it "accepts y-only numeric overload in scatterplot!" do
+      p = UnicodePlot.scatterplot([1, 2, 3])
+      prev_series = p.series
+      UnicodePlot.scatterplot!(p, [4, 5, 6])
       p.series.should eq(prev_series + 1)
     end
   end

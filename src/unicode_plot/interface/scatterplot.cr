@@ -98,8 +98,8 @@ module UnicodePlot
     scatterplot!(plot, to_plot_f64(x), to_plot_f64(y), **kwargs)
   end
 
-  def scatterplot!(plot : Plot, y : Array(Float64), **kwargs) : Plot
-    x = (1..y.size).map(&.to_f)
-    scatterplot!(plot, x, y, **kwargs)
+  def scatterplot!(plot : Plot, y : Array(T), **kwargs) : Plot forall T
+    x = (1..y.size).map(&.to_f64)
+    scatterplot!(plot, x, to_plot_f64(y), **kwargs)
   end
 end
