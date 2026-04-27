@@ -240,6 +240,8 @@ module UnicodePlot
       cy = floor_to_i32(scale_y_to_pixel(y) / y_pixel_per_char.to_f)
       return self unless cx && cy
 
+      cx += 1
+      cy += 1
       char_point!(cx, cy, char, color, blend)
       self
     end
