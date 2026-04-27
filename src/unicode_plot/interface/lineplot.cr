@@ -140,10 +140,6 @@ module UnicodePlot
     plot
   end
 
-  def lineplot!(plot : Plot, x : Array(Float64), y : Array(Float64), **kwargs) : Plot
-    lineplot!(plot, x, y, **kwargs.merge({name: "", color: :auto.as(Symbol | UInt32 | {Int32, Int32, Int32})}))
-  end
-
   def lineplot!(plot : Plot, x : Array(T), y : Array(U), **kwargs) : Plot forall T, U
     lineplot!(plot, to_plot_f64(x), to_plot_f64(y), **kwargs)
   end
