@@ -40,4 +40,5 @@ jobs:
           done
 
       - name: Check formatting
+        if: runner.os != 'Windows'
         run: crystal tool format --check
