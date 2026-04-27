@@ -1,11 +1,4 @@
 module UnicodePlot
-  private def to_plot_f64(values : Array(T)) : Array(Float64) forall T
-    {% unless T <= Number %}
-      {% raise "to_plot_f64 requires numeric array elements" %}
-    {% end %}
-    values.map(&.to_f64)
-  end
-
   def lineplot(
     x : Array(Float64),
     y : Array(Float64),

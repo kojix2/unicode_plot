@@ -174,6 +174,13 @@ module UnicodePlot
     marker[0]
   end
 
+  private def to_plot_f64(values : Array(T)) : Array(Float64) forall T
+    {% unless T <= Number %}
+      {% raise "to_plot_f64 requires numeric array elements" %}
+    {% end %}
+    values.map(&.to_f64)
+  end
+
   def transform_name(tr : Symbol, basename : String = "") : String
     name = tr.to_s
     name == "identity" ? basename : "#{basename} [#{name}]"
