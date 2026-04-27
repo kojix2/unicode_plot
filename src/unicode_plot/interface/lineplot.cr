@@ -142,6 +142,18 @@ module UnicodePlot
     lineplot!(plot, x, to_plot_f64(y), **kwargs)
   end
 
+  def lineplot!(plot : Plot, intercept : Number, slope : Number, **kwargs) : Plot
+    can = plot.canvas
+    xmin = can.origin_x
+    xmax = can.origin_x + can.width
+    intercept_f = intercept.to_f64
+    slope_f = slope.to_f64
+    lineplot!(plot,
+      [xmin, xmax],
+      [intercept_f + xmin * slope_f, intercept_f + xmax * slope_f],
+      **kwargs)
+  end
+
   def lineplot!(plot : Plot, f : Float64 -> Float64, **kwargs) : Plot
     can = plot.canvas
     n = 3 * can.ncols

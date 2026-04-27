@@ -177,7 +177,11 @@ module UnicodePlot
     end
 
     # Print top labels (:t, :tl, :tr)
-    print_labels(io, p, :t, nc - 2, border_left_pad + blank_in.to_s, blank_in.to_s + " " * max_len_r, blank_in, use_color) if has_labels
+    top_label_rows = 0
+    if has_labels
+      top_label_rows = print_labels(io, p, :t, nc - 2, border_left_pad + blank_in.to_s, blank_in.to_s + " " * max_len_r, blank_in, use_color)
+      io << '\n' if top_label_rows > 0
+    end
 
     # Print top border
     if g.visible?
