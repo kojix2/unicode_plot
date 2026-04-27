@@ -1,3 +1,4 @@
+require "./unicode_plot/terminal_size"
 require "./unicode_plot/common"
 require "./unicode_plot/color"
 require "./unicode_plot/graphics"

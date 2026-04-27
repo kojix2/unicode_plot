@@ -333,11 +333,19 @@ module UnicodePlot
     default.empty? ? "#{name}(x)" : default
   end
 
-  def out_stream_size(_io : IO) : {Int32, Int32}
-    {24, 80}
+  def out_stream_size(io : IO? = nil) : {Int32, Int32}
+    if io
+      TerminalSize.displaysize(io)
+    else
+      TerminalSize.displaysize
+    end
   end
 
-  def out_stream_size : {Int32, Int32}
-    {24, 80}
+  def out_stream_height(io : IO? = nil) : Int32
+    out_stream_size(io)[0]
+  end
+
+  def out_stream_width(io : IO? = nil) : Int32
+    out_stream_size(io)[1]
   end
 end
