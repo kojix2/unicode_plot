@@ -105,4 +105,14 @@ module UnicodePlot
   def stairs!(plot : Plot, x : Array(T), y : Array(U), **kwargs) : Plot forall T, U
     stairs!(plot, to_plot_f64(x), to_plot_f64(y), **kwargs)
   end
+
+  def stairs!(plot : Plot, y : Array(Float64), **kwargs) : Plot
+    x = (1..y.size).map(&.to_f64)
+    stairs!(plot, x, y, **kwargs)
+  end
+
+  def stairs!(plot : Plot, y : Array(T), **kwargs) : Plot forall T
+    x = (1..y.size).map(&.to_f64)
+    stairs!(plot, x, to_plot_f64(y), **kwargs)
+  end
 end

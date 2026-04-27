@@ -390,6 +390,13 @@ describe UnicodePlot do
       p.to_s.should be_a(String)
     end
 
+    it "accepts y-only numeric overload in stairs!" do
+      p = UnicodePlot.stairs([1, 2, 3], [4, 5, 6])
+      prev_series = p.series
+      UnicodePlot.stairs!(p, [7, 8, 9])
+      p.series.should eq(prev_series + 1)
+    end
+
     it "accepts UInt128 arrays via generic numeric overload" do
       p = UnicodePlot.stairs([1_u128, 2_u128, 3_u128], [4_u128, 5_u128, 6_u128])
       p.to_s.should be_a(String)
