@@ -78,10 +78,10 @@ module UnicodePlot
 
   def boxplot(
     names : Array(String),
-    data : Array(Array(Number)),
+    data : Array(Array(T)),
     **kwargs,
-  ) : Plot
-    boxplot(names, data.map { |series| series.map(&.to_f) }, **kwargs)
+  ) : Plot forall T
+    boxplot(names, data.map { |series| to_plot_f64(series) }, **kwargs)
   end
 
   def boxplot(
@@ -195,17 +195,17 @@ module UnicodePlot
 
   def boxplot(
     name : String,
-    data : Array(Number),
+    data : Array(T),
     **kwargs,
-  ) : Plot
-    boxplot(name, data.map(&.to_f), **kwargs)
+  ) : Plot forall T
+    boxplot(name, to_plot_f64(data), **kwargs)
   end
 
   def boxplot(
-    data : Array(Number),
+    data : Array(T),
     **kwargs,
-  ) : Plot
-    boxplot(data.map(&.to_f), **kwargs)
+  ) : Plot forall T
+    boxplot(to_plot_f64(data), **kwargs)
   end
 
   def boxplot(
@@ -233,7 +233,7 @@ module UnicodePlot
   end
 
   def boxplot(
-    dict : Hash(String, Array(Number)),
+    dict : Hash(String, Array(T)),
     *,
     color : Symbol | UInt32 | {Int32, Int32, Int32} | Array(Symbol) | Array(UInt32) = :green,
     title : String = "",
@@ -247,9 +247,9 @@ module UnicodePlot
     compact_labels : Bool = false,
     compact : Bool = false,
     width : Int32? = nil,
-  ) : Plot
+  ) : Plot forall T
     boxplot(
-      dict.transform_values { |v| v.map(&.to_f) },
+      dict.transform_values { |v| to_plot_f64(v) },
       color: color, title: title, xlabel: xlabel,
       border: border, margin: margin, padding: padding, labels: labels,
       unicode_exponent: unicode_exponent, thousands_separator: thousands_separator,
@@ -286,8 +286,8 @@ module UnicodePlot
     plot
   end
 
-  def boxplot!(plot : Plot, data : Array(Number), **kwargs) : Plot
-    boxplot!(plot, data.map(&.to_f), **kwargs)
+  def boxplot!(plot : Plot, data : Array(T), **kwargs) : Plot forall T
+    boxplot!(plot, to_plot_f64(data), **kwargs)
   end
 
   def boxplot!(
@@ -300,7 +300,7 @@ module UnicodePlot
     boxplot!(plot, data, name: name, color: color)
   end
 
-  def boxplot!(plot : Plot, name : String, data : Array(Number), **kwargs) : Plot
-    boxplot!(plot, name, data.map(&.to_f), **kwargs)
+  def boxplot!(plot : Plot, name : String, data : Array(T), **kwargs) : Plot forall T
+    boxplot!(plot, name, to_plot_f64(data), **kwargs)
   end
 end

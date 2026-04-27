@@ -51,16 +51,16 @@ module UnicodePlot
     plot
   end
 
-  def stairs(x : Array(Number), y : Array(Number), **kwargs) : Plot
-    stairs(x.map(&.to_f), y.map(&.to_f), **kwargs)
+  def stairs(x : Array(T), y : Array(U), **kwargs) : Plot forall T, U
+    stairs(to_plot_f64(x), to_plot_f64(y), **kwargs)
   end
 
   def stairs(y : Array(Float64), **kwargs) : Plot
     stairs((1..y.size).map(&.to_f), y, **kwargs)
   end
 
-  def stairs(y : Array(Number), **kwargs) : Plot
-    stairs(y.map(&.to_f), **kwargs)
+  def stairs(y : Array(T), **kwargs) : Plot forall T
+    stairs(to_plot_f64(y), **kwargs)
   end
 
   def stairs!(
@@ -102,7 +102,7 @@ module UnicodePlot
     plot
   end
 
-  def stairs!(plot : Plot, x : Array(Number), y : Array(Number), **kwargs) : Plot
-    stairs!(plot, x.map(&.to_f), y.map(&.to_f), **kwargs)
+  def stairs!(plot : Plot, x : Array(T), y : Array(U), **kwargs) : Plot forall T, U
+    stairs!(plot, to_plot_f64(x), to_plot_f64(y), **kwargs)
   end
 end

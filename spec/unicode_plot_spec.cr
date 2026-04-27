@@ -197,6 +197,11 @@ describe UnicodePlot do
       p = UnicodePlot.histogram([1.0, 2.0, 2.0, 3.0], color: {0, 135, 95})
       p.to_s.should be_a(String)
     end
+
+    it "accepts Int arrays via generic numeric overload" do
+      p = UnicodePlot.histogram([1, 2, 3, 2, 1])
+      p.to_s.should be_a(String)
+    end
   end
 
   describe "densityplot" do
@@ -242,6 +247,11 @@ describe UnicodePlot do
       p = UnicodePlot.densityplot([1.0, 2.0, 3.0], [1.0, 2.0, 3.0], dscale: :log10)
       p.should be_a(UnicodePlot::Plot)
     end
+
+    it "accepts Int arrays via generic numeric overload" do
+      p = UnicodePlot.densityplot([1, 2, 3], [4, 5, 6])
+      p.to_s.should be_a(String)
+    end
   end
 
   describe "boxplot" do
@@ -284,6 +294,11 @@ describe UnicodePlot do
       p = UnicodePlot.boxplot([1.0, 2.0, 3.0, 7.0], title: "Test")
       p.to_s.should contain("Test")
     end
+
+    it "accepts Int arrays via generic numeric overload" do
+      p = UnicodePlot.boxplot([1, 2, 3, 7])
+      p.to_s.should be_a(String)
+    end
   end
 
   describe "heatmap" do
@@ -314,6 +329,11 @@ describe UnicodePlot do
       p = UnicodePlot.heatmap(z)
       p.to_s.should be_a(String)
     end
+
+    it "accepts Int matrix via generic numeric overload" do
+      p = UnicodePlot.heatmap([[1, 2], [3, 4]])
+      p.to_s.should be_a(String)
+    end
   end
 
   describe "stairs" do
@@ -326,6 +346,11 @@ describe UnicodePlot do
 
     it "ignores extreme finite values without overflowing during rasterization" do
       p = UnicodePlot.stairs([Float64::MAX, 0.5], [0.5, 0.5])
+      p.to_s.should be_a(String)
+    end
+
+    it "accepts Int arrays via generic numeric overload" do
+      p = UnicodePlot.stairs([1, 2, 3], [4, 5, 6])
       p.to_s.should be_a(String)
     end
   end

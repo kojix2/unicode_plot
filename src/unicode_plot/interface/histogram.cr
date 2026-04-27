@@ -305,7 +305,7 @@ module UnicodePlot
     )
   end
 
-  def histogram(data : Array(Number), **kwargs) : Plot
-    histogram(data.map(&.to_f), **kwargs)
+  def histogram(data : Array(T), **kwargs) : Plot forall T
+    histogram(to_plot_f64(data), **kwargs)
   end
 end

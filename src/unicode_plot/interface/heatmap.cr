@@ -11,6 +11,7 @@ module UnicodePlot
     height_in : Int32?, width_in : Int32?,
     margin : Int32, padding : Int32,
     fix_ar : Bool,
+    out_stream : IO? = nil,
   ) : {Int32, Int32}
     return {0, 0} if size_nrows == 0 && size_ncols == 0
     size_nrows = size_nrows.clamp(1, Int32::MAX)
@@ -22,9 +23,10 @@ module UnicodePlot
     canv_width = size_ncols.to_f
     canv_ar = canv_height > 0.0 ? canv_width / canv_height : 1.0
 
+    term_height, term_width = out_stream_size(out_stream)
     width_diff = margin + padding + size_ncols.to_s.size
-    max_h = max_height_in > 0 ? max_height_in : 24
-    max_w = max_width_in > 0 ? max_width_in : (80 - width_diff)
+    max_h = max_height_in > 0 ? max_height_in : term_height
+    max_w = max_width_in > 0 ? max_width_in : (term_width - width_diff)
 
     min_canv_h = canv_height.ceil.to_i
     min_canv_w = canv_width.ceil.to_i
@@ -129,7 +131,8 @@ z : Array(Array(Float64)),
               colorbar_border : Symbol = :solid,
               height : Int32? = nil,
               width : Int32? = nil,
-              fix_ar : Bool = false,) : Plot
+              fix_ar : Bool = false,
+              out_stream : IO? = nil,) : Plot
     raise ArgumentError.new("z must not be empty") if z.empty?
 
     data_nrows = z.size
@@ -222,6 +225,7 @@ z : Array(Array(Float64)),
       max_height_in, max_width_in,
       height, width,
       margin, padding, fix_ar,
+      out_stream,
     )
 
     # zmin/zmax from data or explicit zlim.
@@ -294,7 +298,7 @@ z : Array(Array(Float64)),
     plot
   end
 
-  def heatmap(z : Array(Array(Number)), **kwargs) : Plot
-    heatmap(z.map { |row| row.map(&.to_f) }, **kwargs)
+  def heatmap(z : Array(Array(T)), **kwargs) : Plot forall T
+    heatmap(z.map { |row| to_plot_f64(row) }, **kwargs)
   end
 end

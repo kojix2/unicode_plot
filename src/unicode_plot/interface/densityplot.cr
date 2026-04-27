@@ -64,8 +64,8 @@ module UnicodePlot
     plot
   end
 
-  def densityplot(x : Array(Number), y : Array(Number), **kwargs) : Plot
-    densityplot(x.map(&.to_f), y.map(&.to_f), **kwargs)
+  def densityplot(x : Array(T), y : Array(U), **kwargs) : Plot forall T, U
+    densityplot(to_plot_f64(x), to_plot_f64(y), **kwargs)
   end
 
   def densityplot!(
@@ -80,7 +80,7 @@ module UnicodePlot
     scatterplot!(plot, x, y, name: name, color: color)
   end
 
-  def densityplot!(plot : Plot, x : Array(Number), y : Array(Number), **kwargs) : Plot
-    densityplot!(plot, x.map(&.to_f), y.map(&.to_f), **kwargs)
+  def densityplot!(plot : Plot, x : Array(T), y : Array(U), **kwargs) : Plot forall T, U
+    densityplot!(plot, to_plot_f64(x), to_plot_f64(y), **kwargs)
   end
 end
