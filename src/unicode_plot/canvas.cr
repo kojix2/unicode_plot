@@ -89,11 +89,13 @@ module UnicodePlot
     end
 
     def valid_y?(y : Float64) : Bool
+      return false unless y.finite?
       sy = @yscale.call(y)
       sy.finite? && @origin_y <= sy <= @origin_y + @height
     end
 
     def valid_x?(x : Float64) : Bool
+      return false unless x.finite?
       sx = @xscale.call(x)
       sx.finite? && @origin_x <= sx <= @origin_x + @width
     end
