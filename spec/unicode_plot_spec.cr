@@ -59,6 +59,11 @@ describe UnicodePlot do
       p.to_s.should be_a(String)
     end
 
+    it "accepts Int128 arrays via numeric overload" do
+      p = UnicodePlot.lineplot([1_i128, 2_i128, 3_i128], [1_i128, 4_i128, 9_i128])
+      p.to_s.should be_a(String)
+    end
+
     it "accepts mixed numeric x/y element types" do
       p = UnicodePlot.lineplot([1_i32, 2_i32, 3_i32], [1.0_f32, 4.0_f32, 9.0_f32])
       p.to_s.should be_a(String)
@@ -85,6 +90,13 @@ describe UnicodePlot do
       p = UnicodePlot.lineplot([1, 2, 3])
       prev_series = p.series
       UnicodePlot.lineplot!(p, [4, 5, 6])
+      p.series.should eq(prev_series + 1)
+    end
+
+    it "accepts y-only UInt128 overload in lineplot!" do
+      p = UnicodePlot.lineplot([1_u128, 2_u128, 3_u128])
+      prev_series = p.series
+      UnicodePlot.lineplot!(p, [4_u128, 5_u128, 6_u128])
       p.series.should eq(prev_series + 1)
     end
 
@@ -214,6 +226,11 @@ describe UnicodePlot do
 
     it "accepts Int arrays via generic numeric overload" do
       p = UnicodePlot.histogram([1, 2, 3, 2, 1])
+      p.to_s.should be_a(String)
+    end
+
+    it "accepts UInt128 arrays via generic numeric overload" do
+      p = UnicodePlot.histogram([1_u128, 2_u128, 3_u128, 2_u128, 1_u128])
       p.to_s.should be_a(String)
     end
   end
@@ -348,6 +365,11 @@ describe UnicodePlot do
       p = UnicodePlot.heatmap([[1, 2], [3, 4]])
       p.to_s.should be_a(String)
     end
+
+    it "accepts Int128 matrix via generic numeric overload" do
+      p = UnicodePlot.heatmap([[1_i128, 2_i128], [3_i128, 4_i128]])
+      p.to_s.should be_a(String)
+    end
   end
 
   describe "stairs" do
@@ -365,6 +387,11 @@ describe UnicodePlot do
 
     it "accepts Int arrays via generic numeric overload" do
       p = UnicodePlot.stairs([1, 2, 3], [4, 5, 6])
+      p.to_s.should be_a(String)
+    end
+
+    it "accepts UInt128 arrays via generic numeric overload" do
+      p = UnicodePlot.stairs([1_u128, 2_u128, 3_u128], [4_u128, 5_u128, 6_u128])
       p.to_s.should be_a(String)
     end
   end
