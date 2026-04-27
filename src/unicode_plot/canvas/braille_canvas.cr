@@ -80,5 +80,4 @@ module UnicodePlot
       grid_at(row, col).chr
     end
   end
-
 end

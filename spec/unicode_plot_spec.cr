@@ -214,9 +214,14 @@ describe UnicodePlot do
       p_right.to_s.should be_a(String)
     end
 
-    it "applies xscale and reflects transformed xlabel" do
+    it "applies xscale; custom xlabel used as-is (no scale suffix), default xlabel gets suffix" do
+      # Custom xlabel: no [log10] suffix (matches Julia behavior)
       p = UnicodePlot.histogram([1.0, 10.0, 100.0], xscale: :log10, xlabel: "x")
-      p.to_s.should contain("x [log10]")
+      p.to_s.should contain("x")
+      p.to_s.should_not contain("x [log10]")
+      # Default xlabel: gets [log10] suffix
+      p2 = UnicodePlot.histogram([1.0, 10.0, 100.0], xscale: :log10)
+      p2.to_s.should contain("Frequency [log10]")
     end
 
     it "accepts RGB tuple color" do

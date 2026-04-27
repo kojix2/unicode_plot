@@ -112,8 +112,13 @@ module UnicodePlot
       UnicodePlot.print_color(io, color, @symbols[nsyms - 1].to_s * bar_head, use_color)
       if nsyms > 1
         frac_cells = frac * max_bar_width - bar_head
-        sub_idx = (frac_cells * nsyms).round.to_i32
-        sub_char = sub_idx <= 0 ? ' ' : @symbols[(sub_idx - 1).clamp(0, nsyms - 1)]
+        rem = frac_cells * (nsyms - 2)
+        sub_char = if rem <= 0
+                     ' '
+                   else
+                     ri = rem.round.to_i32
+                     @symbols[ri.clamp(0, nsyms - 2)]
+                   end
         UnicodePlot.print_color(io, color, sub_char.to_s, use_color)
         bar_head += 1
       end

@@ -4,18 +4,17 @@ module UnicodePlot
     (Math.log2(n) + 1).ceil.to_i32
   end
 
-  # Round step up to next "nice" value ({1,2,2.5,5} × 10^k), matching Julia's histrange.
+  # Round step up to next "nice" value ({1,2,5} × 10^k), matching Julia's StatsBase histrange.
+  # Thresholds 1.1, 2.2, 5.5 are taken directly from StatsBase._histrange_step.
   private def nice_hist_step(step : Float64) : Float64
     return step if step <= 0.0
     mag = 10.0 ** Math.log10(step).floor
     k = step / mag
-    n = if k <= 1.0
+    n = if k <= 1.1
           1.0
-        elsif k <= 2.0
+        elsif k <= 2.2
           2.0
-        elsif k <= 2.5
-          2.5
-        elsif k <= 5.0
+        elsif k <= 5.5
           5.0
         else
           10.0
@@ -293,7 +292,7 @@ module UnicodePlot
       pr2 = " " * (pad_right - (s2.size - dot2))
       "#{l_chr}#{pl1}#{s1}#{pr1}, #{pl2}#{s2}#{pr2}#{r_chr}"
     end
-    barplot(
+    plot = barplot(
       labels_arr, counts,
       color: color, title: title,
       xlabel: xlabel.empty? ? "Frequency" : xlabel,
@@ -303,6 +302,10 @@ module UnicodePlot
       thousands_separator: thousands_separator, symbols: symbols,
       width: width
     )
+    # When a custom xlabel is provided, use it as-is (no scale-name suffix),
+    # matching Julia's behavior where kw... overrides the default transform_name label.
+    plot.xlabel = xlabel unless xlabel.empty?
+    plot
   end
 
   def histogram(data : Array(T), **kwargs) : Plot forall T
