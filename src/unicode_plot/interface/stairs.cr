@@ -56,7 +56,7 @@ module UnicodePlot
   end
 
   def stairs(y : Array(Float64), **kwargs) : Plot
-    stairs((0...y.size).map(&.to_f), y, **kwargs)
+    stairs((1..y.size).map(&.to_f), y, **kwargs)
   end
 
   def stairs(y : Array(Number), **kwargs) : Plot
