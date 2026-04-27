@@ -267,13 +267,6 @@ module UnicodePlot
             yflip: yflip, xflip: xflip,
             yscale: yscale.is_a?(Symbol) ? yscale.as(Symbol) : yscale.as(Proc(Float64, Float64)),
             xscale: xscale.is_a?(Symbol) ? xscale.as(Symbol) : xscale.as(Proc(Float64, Float64)))
-          when :vhist then VHistCanvas.new(h, w,
-            origin_y: my, origin_x: mx,
-            height: by - my, width: bx - mx,
-            blend: blend, visible: (w >= 0),
-            yflip: yflip, xflip: xflip,
-            yscale: yscale.is_a?(Symbol) ? yscale.as(Symbol) : yscale.as(Proc(Float64, Float64)),
-            xscale: xscale.is_a?(Symbol) ? xscale.as(Symbol) : xscale.as(Proc(Float64, Float64)))
           else BrailleCanvas.new(h, w,
             origin_y: my, origin_x: mx,
             height: by - my, width: bx - mx,

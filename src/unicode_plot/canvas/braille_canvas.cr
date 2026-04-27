@@ -81,11 +81,4 @@ module UnicodePlot
     end
   end
 
-  # BrailleCanvas variant where blank is a space instead of ⠀.
-  # Used for vertical histograms so that title/xlabel decorations render cleanly.
-  class VHistCanvas < BrailleCanvas
-    def blank : Char
-      ' '
-    end
-  end
 end
