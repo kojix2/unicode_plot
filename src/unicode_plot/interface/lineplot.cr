@@ -107,6 +107,7 @@ module UnicodePlot
     head_tail : Symbol? = nil,
     head_tail_frac : Float64 = 0.05,
   ) : Plot
+    raise ArgumentError.new("x and y must have the same length") unless x.size == y.size
     c = color == :auto ? plot.next_color! : color
     col = plot_color(c)
     plot.label!(:r, name, col) unless name.empty?
