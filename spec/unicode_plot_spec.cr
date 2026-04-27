@@ -49,6 +49,12 @@ describe UnicodePlot do
       end
     end
 
+    it "raises on unknown canvas" do
+      expect_raises(ArgumentError, /unknown canvas: mystery/) do
+        UnicodePlot.lineplot([1.0, 2.0], [1.0, 4.0], canvas: :mystery)
+      end
+    end
+
     it "accepts RGB tuple color" do
       p = UnicodePlot.lineplot([1.0, 2.0], [1.0, 2.0], color: {0, 0, 255})
       p.to_s.should be_a(String)
@@ -374,6 +380,12 @@ describe UnicodePlot do
     it "accepts Int128 matrix via generic numeric overload" do
       p = UnicodePlot.heatmap([[1_i128, 2_i128], [3_i128, 4_i128]])
       p.to_s.should be_a(String)
+    end
+
+    it "raises on unknown colormap" do
+      expect_raises(ArgumentError, /unknown colormap: mystery/) do
+        UnicodePlot.heatmap([[1.0, 2.0], [3.0, 4.0]], colormap: :mystery)
+      end
     end
   end
 

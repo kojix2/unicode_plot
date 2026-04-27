@@ -33,7 +33,7 @@ module UnicodePlot
   }
 
   def colormap_callback(name : Symbol) : Proc(Float64, Float64, Float64, UInt32)
-    stops = COLORMAP_STOPS[name]? || COLORMAP_STOPS[:viridis]
+    stops = COLORMAP_STOPS[name]? || raise ArgumentError.new("unknown colormap: #{name}")
     ->(z : Float64, zmin : Float64, zmax : Float64) {
       return INVALID_COLOR unless z.finite?
       t = zmax > zmin ? ((z - zmin) / (zmax - zmin)).clamp(0.0, 1.0) : 0.5
