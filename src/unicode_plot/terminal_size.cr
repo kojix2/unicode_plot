@@ -20,7 +20,7 @@ module UnicodePlot
           ws_ypixel : UInt16
         end
 
-        fun ioctl(fd : Int32, request : ULong, ...) : Int32
+        fun ioctl(fd : Int32, request : LibC::ULong, ...) : Int32
       end
     {% end %}
 
