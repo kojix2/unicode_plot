@@ -129,8 +129,12 @@ module UnicodePlot
             io << ' '
           end
         else
-          # No color: just output the character (▄) so strip-ANSI comparison works
-          io << HALF_BLOCK
+          # No color: keep missing cells blank just like the color path.
+          if fg != INVALID_COLOR || bg != INVALID_COLOR
+            io << HALF_BLOCK
+          else
+            io << ' '
+          end
         end
       end
     end
