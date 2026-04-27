@@ -32,8 +32,9 @@ jobs:
         run: crystal spec
 
       - name: Build examples
+        shell: bash
         run: |
-          find examples -name "*.cr" | sort | while read f; do
+          find examples -name "*.cr" | sort | while read -r f; do
             echo "Building $f ..."
             crystal build --no-codegen "$f"
           done
