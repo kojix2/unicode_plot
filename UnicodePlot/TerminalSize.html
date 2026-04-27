@@ -14,7 +14,7 @@
 <script type="text/javascript" src="../js/doc.js"></script>
 
   <meta name="repository-name" content="unicode_plot">
-  <title>UnicodePlot::ColorType - unicode_plot main</title>
+  <title>UnicodePlot::TerminalSize - unicode_plot main</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../";
   </script>
@@ -112,7 +112,7 @@
       
     </li>
   
-  <li class=" current" data-id="unicode_plot/UnicodePlot/ColorType" data-name="unicodeplot::colortype">
+  <li class=" " data-id="unicode_plot/UnicodePlot/ColorType" data-name="unicodeplot::colortype">
       <a href="../UnicodePlot/ColorType.html">ColorType</a>
       
     </li>
@@ -147,7 +147,7 @@
       
     </li>
   
-  <li class=" " data-id="unicode_plot/UnicodePlot/TerminalSize" data-name="unicodeplot::terminalsize">
+  <li class=" current" data-id="unicode_plot/UnicodePlot/TerminalSize" data-name="unicodeplot::terminalsize">
       <a href="../UnicodePlot/TerminalSize.html">TerminalSize</a>
       
     </li>
@@ -172,8 +172,8 @@
 <h1 class="type-name">
 
   <span class="kind">
-    alias
-  </span> UnicodePlot::<wbr>ColorType
+    module
+  </span> UnicodePlot::<wbr>TerminalSize
 
 </h1>
 
@@ -183,21 +183,25 @@
 
 
 
+
+
+
+
+
+
   <h2>
-    <a id="alias-definition" class="anchor" href="#alias-definition">
+    <a id="extended-modules" class="anchor" href="#extended-modules">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>
-    Alias Definition
+    Extended Modules
   </h2>
-  <code>UInt32</code>
-
-
-
-
-
-
+  <ul class="other-types-list">
+    
+      <li class="other-type"><a href="../UnicodePlot/TerminalSize.html">UnicodePlot::TerminalSize</a></li>
+    
+  </ul>
 
 
 
@@ -216,8 +220,8 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/unicode_plot/blob/0fe52d2f99e1a92ff726edf928fde93dce446b24/src/unicode_plot/common.cr#L8" target="_blank">
-        unicode_plot/common.cr
+      <a href="https://github.com/kojix2/unicode_plot/blob/0fe52d2f99e1a92ff726edf928fde93dce446b24/src/unicode_plot/terminal_size.cr#L2" target="_blank">
+        unicode_plot/terminal_size.cr
       </a>
     
     <br/>
@@ -225,6 +229,35 @@
 
 
 
+  
+    <h2>
+      <a id="constant-summary" class="anchor" href="#constant-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+      Constant Summary
+    </h2>
+  
+  <dl>
+    
+      <dt class="entry-const" id="DEFAULT_HEIGHT">
+        <strong>DEFAULT_HEIGHT</strong> = <code><span class="n">24</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="DEFAULT_WIDTH">
+        <strong>DEFAULT_WIDTH</strong> = <code><span class="n">80</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="TIOCGWINSZ">
+        <strong>TIOCGWINSZ</strong> = <code><span class="n">21523_u64</span></code>
+      </dt>
+      
+    
+  </dl>
+
 
 
   
@@ -234,6 +267,28 @@
   
 
   
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#displaysize%28io%3AIO%29%3ATuple%28Int32%2CInt32%29-instance-method" class="signature"><strong>#displaysize</strong>(io : IO) : Tuple(Int32, Int32)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#displaysize%3ATuple%28Int32%2CInt32%29-instance-method" class="signature"><strong>#displaysize</strong> : Tuple(Int32, Int32)</a>
+        
+      </li>
+    
+  </ul>
+
 
 
   <div class="methods-inherited">
@@ -247,6 +302,48 @@
   
 
   
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="displaysize(io:IO):Tuple(Int32,Int32)-instance-method">
+      <div class="signature">
+        
+        def <strong>displaysize</strong>(io : IO) : Tuple(Int32, Int32)
+
+        <a class="method-permalink" href="#displaysize%28io%3AIO%29%3ATuple%28Int32%2CInt32%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/0fe52d2f99e1a92ff726edf928fde93dce446b24/src/unicode_plot/terminal_size.cr#L31" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="displaysize:Tuple(Int32,Int32)-instance-method">
+      <div class="signature">
+        
+        def <strong>displaysize</strong> : Tuple(Int32, Int32)
+
+        <a class="method-permalink" href="#displaysize%3ATuple%28Int32%2CInt32%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/0fe52d2f99e1a92ff726edf928fde93dce446b24/src/unicode_plot/terminal_size.cr#L27" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
 
 
 </div>
