@@ -72,11 +72,12 @@ module UnicodePlot
     color : Symbol | UInt32 | {Int32, Int32, Int32} = :auto,
     style : Symbol = :post,
   ) : Plot
+    raise ArgumentError.new("x and y must have the same length") unless x.size == y.size
+
     c = color == :auto ? plot.next_color! : color
     col = plot_color(c)
     plot.label!(:r, name, col) unless name.empty?
 
-    raise ArgumentError.new("x and y must have the same length") unless x.size == y.size
     can = plot.canvas
     blend = can.blend?
     n = x.size
