@@ -4,18 +4,6 @@ module UnicodePlot
     (Math.log2(n) + 1).ceil.to_i32
   end
 
-  # Scott's rule: bin_width = 3.49 * σ * n^(-1/3).
-  private def scott_bins(data : Array(Float64)) : Int32
-    n = data.size
-    return 2 if n < 2
-    mean = data.sum / n
-    std = Math.sqrt(data.sum { |v| (v - mean) ** 2 } / n)
-    return sturges(n) if std == 0.0
-    bw = 3.49 * std * (n.to_f ** (-1.0 / 3.0))
-    bins = ((data.max - data.min) / bw).ceil.to_i32
-    Math.max(sturges(n), Math.max(2, bins))
-  end
-
   # Round step up to next "nice" value ({1,2,2.5,5} × 10^k), matching Julia's histrange.
   private def nice_hist_step(step : Float64) : Float64
     return step if step <= 0.0
@@ -45,7 +33,7 @@ module UnicodePlot
     color : Symbol | UInt32 | {Int32, Int32, Int32} = :green,
     title : String = "",
     xlabel : String = "",
-    ylabel : String = "",
+    ylabel : String = "", # currently unused; kept for API compatibility
     border : Symbol = :barplot,
     margin : Int32 = 3,
     padding : Int32 = 1,
@@ -56,41 +44,40 @@ module UnicodePlot
     symbols : Array(Char) = ['▏', '▎', '▍', '▌', '▋', '▊', '▉', '█'],
     width : Int32? = nil,
   ) : Plot
+    if vertical
+      unless xscale.is_a?(Symbol) && xscale == :identity
+        raise ArgumentError.new("xscale is not supported for vertical histogram")
+      end
+    end
+
     return barplot([] of String, [] of Float64) if data.empty?
 
-    scale_fn = xscale.is_a?(Symbol) ? scale_callback(xscale.as(Symbol)) : xscale.as(Proc(Float64, Float64))
-    scaled_data = data.map { |v| scale_fn.call(v) }.select(&.finite?)
-    return barplot([] of String, [] of Float64) if scaled_data.empty?
+    raw_data = data.select(&.finite?)
+    return barplot([] of String, [] of Float64) if raw_data.empty?
 
-    n_bins = histogram_bin_count(scaled_data, nbins, vertical)
-    dmin, dmax = histogram_data_bounds(scaled_data)
-    xlab = xscale.is_a?(Symbol) ? transform_name(xscale.as(Symbol), xlabel) : transform_name(scale_fn, xlabel)
+    n_bins = histogram_bin_count(raw_data, nbins)
+    dmin, dmax = histogram_data_bounds(raw_data)
 
     if vertical
-      histogram_vertical_plot(scaled_data, n_bins, dmin, dmax,
-        stats: stats, xlabel: xlab,
+      histogram_vertical_plot(raw_data, n_bins, dmin, dmax,
+        stats: stats, xlabel: xlabel,
         color: color, title: title,
         unicode_exponent: unicode_exponent,
         thousands_separator: thousands_separator,
         width: width)
     else
-      histogram_horizontal_plot(scaled_data, n_bins, dmin, dmax,
+      histogram_horizontal_plot(raw_data, n_bins, dmin, dmax,
         closed: closed,
-        color: color, title: title, xlabel: xlab,
+        xscale: xscale,
+        color: color, title: title, xlabel: xlabel,
         border: border, margin: margin, padding: padding,
         labels: labels, unicode_exponent: unicode_exponent,
         thousands_separator: thousands_separator, symbols: symbols, width: width)
     end
   end
 
-  private def histogram_bin_count(data : Array(Float64), nbins : Int32?, vertical : Bool) : Int32
-    n_bins = if nbins
-               nbins
-             elsif vertical
-               scott_bins(data)
-             else
-               Math.min(scott_bins(data), Math.max(sturges(data.size), 30))
-             end
+  private def histogram_bin_count(data : Array(Float64), nbins : Int32?) : Int32
+    n_bins = nbins || sturges(data.size)
     Math.max(n_bins, 2)
   end
 
@@ -154,6 +141,7 @@ module UnicodePlot
     dmax : Float64,
     *,
     closed : Symbol,
+    xscale : Symbol | Proc(Float64, Float64),
     color : Symbol | UInt32 | {Int32, Int32, Int32},
     title : String,
     xlabel : String,
@@ -186,6 +174,7 @@ module UnicodePlot
 
     histogram_horizontal(counts, edge_min, bin_width, n_actual,
       closed: closed,
+      xscale: xscale,
       color: color, title: title, xlabel: xlabel,
       border: border, margin: margin, padding: padding,
       labels: labels, unicode_exponent: unicode_exponent,
@@ -274,7 +263,7 @@ module UnicodePlot
 
   private def histogram_horizontal(
     counts : Array(Float64), dmin : Float64, bin_width : Float64, n_bins : Int32,
-    *, closed : Symbol, color : Symbol | UInt32 | {Int32, Int32, Int32}, title : String, xlabel : String,
+    *, closed : Symbol, xscale : Symbol | Proc(Float64, Float64), color : Symbol | UInt32 | {Int32, Int32, Int32}, title : String, xlabel : String,
     border : Symbol, margin : Int32, padding : Int32, labels : Bool,
     unicode_exponent : Bool, thousands_separator : Char,
     symbols : Array(Char), width : Int32?,
@@ -308,6 +297,7 @@ module UnicodePlot
       labels_arr, counts,
       color: color, title: title,
       xlabel: xlabel.empty? ? "Frequency" : xlabel,
+      xscale: xscale,
       border: border, margin: margin, padding: padding,
       labels: labels, unicode_exponent: unicode_exponent,
       thousands_separator: thousands_separator, symbols: symbols,
