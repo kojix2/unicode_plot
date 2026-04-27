@@ -75,10 +75,19 @@ module UnicodePlot
     end
 
     def preprocess(io : IO) : GraphicsArea ->
+      if @bars.empty?
+        @max_val = Math.max(0.0, @maximum)
+        @max_len = 0
+        return ->(grph : GraphicsArea) {
+          bg = grph.as(BarplotGraphics)
+          bg.max_val = -Float64::INFINITY
+          bg.max_len = 0
+        }
+      end
       scaled = @bars.map { |bar| @xscale.call(bar) }
       max_val, max_idx = scaled.each_with_index.max_by { |v, _| v }
       @max_val = Math.max(max_val || -Float64::INFINITY, @maximum)
-      @max_len = @bars.empty? ? 0 : @formatter.call(@bars[max_idx || 0]).size
+      @max_len = @formatter.call(@bars[max_idx || 0]).size
       ->(grph : GraphicsArea) {
         bg = grph.as(BarplotGraphics)
         bg.max_val = -Float64::INFINITY
