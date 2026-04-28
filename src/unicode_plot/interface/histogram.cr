@@ -295,16 +295,13 @@ module UnicodePlot
     plot = barplot(
       labels_arr, counts,
       color: color, title: title,
-      xlabel: xlabel.empty? ? "Frequency" : xlabel,
+      xlabel: xlabel.empty? ? transform_name(xscale, "Frequency") : xlabel,
       xscale: xscale,
       border: border, margin: margin, padding: padding,
       labels: labels, unicode_exponent: unicode_exponent,
       thousands_separator: thousands_separator, symbols: symbols,
       width: width
     )
-    # When a custom xlabel is provided, use it as-is (no scale-name suffix),
-    # matching Julia's behavior where kw... overrides the default transform_name label.
-    plot.xlabel = xlabel unless xlabel.empty?
     plot
   end
 
