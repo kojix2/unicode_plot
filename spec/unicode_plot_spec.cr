@@ -60,6 +60,25 @@ describe UnicodePlot do
       p.to_s.should be_a(String)
     end
 
+    it "accepts multi-series input with per-series colors" do
+      p = UnicodePlot.lineplot(
+        [[-1.0, 2.0], [2.0, 3.0], [3.0, 7.0]],
+        [[-1.0, 2.0], [2.0, 9.0], [9.0, 4.0]],
+        color: [:red, :green, :blue]
+      )
+      p.series.should eq(3)
+    end
+
+    it "raises when color vector length does not match series count" do
+      expect_raises(ArgumentError, /color vector must have the same length as the number of series/) do
+        UnicodePlot.lineplot(
+          [[1.0, 2.0], [3.0, 4.0]],
+          [[1.0, 2.0], [3.0, 4.0]],
+          color: [:red]
+        )
+      end
+    end
+
     it "accepts Int64 arrays via numeric overload" do
       p = UnicodePlot.lineplot([1_i64, 2_i64, 3_i64], [1_i64, 4_i64, 9_i64])
       p.to_s.should be_a(String)
@@ -138,6 +157,15 @@ describe UnicodePlot do
     it "accepts mixed numeric x/y element types" do
       p = UnicodePlot.scatterplot([1_i32, 2_i32, 3_i32], [1.0_f64, 4.0_f64, 9.0_f64])
       p.to_s.should be_a(String)
+    end
+
+    it "accepts multi-series input with per-series colors" do
+      p = UnicodePlot.scatterplot(
+        [[1.0, 2.0], [2.0, 3.0]],
+        [[1.0, 4.0], [4.0, 9.0]],
+        color: [:red, :green]
+      )
+      p.series.should eq(2)
     end
 
     it "accepts y-only numeric overload" do

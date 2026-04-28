@@ -251,10 +251,13 @@ describe "Julia reference output compatibility" do
     end
 
     it "matches lineplot/color_vector" do
-      p = UnicodePlot.lineplot([Float64::NAN], [Float64::NAN], xlim: {-1.0, 7.0}, ylim: {-1.0, 9.0})
-      UnicodePlot.lineplot!(p, [-1.0, 2.0], [-1.0, 2.0], color: :red)
-      UnicodePlot.lineplot!(p, [2.0, 3.0], [2.0, 9.0], color: :green)
-      UnicodePlot.lineplot!(p, [3.0, 7.0], [9.0, 4.0], color: :blue)
+      p = UnicodePlot.lineplot(
+        [[-1.0, 2.0], [2.0, 3.0], [3.0, 7.0]],
+        [[-1.0, 2.0], [2.0, 9.0], [9.0, 4.0]],
+        color: [:red, :green, :blue],
+        xlim: {-1.0, 7.0},
+        ylim: {-1.0, 9.0},
+      )
       test_ref("lineplot/color_vector.txt", p)
     end
 

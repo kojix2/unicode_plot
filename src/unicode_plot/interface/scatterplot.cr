@@ -5,7 +5,7 @@ module UnicodePlot
     *,
     canvas : Symbol = :braille,
     name : String = "",
-    color : Symbol | UInt32 | {Int32, Int32, Int32} = :auto,
+    color : PlotColor = :auto,
     marker : Symbol | Char | String = :pixel,
     title : String = "",
     xlabel : String = "",
@@ -34,8 +34,88 @@ module UnicodePlot
     thousands_separator : Char = ' ',
   ) : Plot
     raise ArgumentError.new("x and y must have the same length") unless x.size == y.size
+    scatterplot(
+      [x], [y],
+      canvas: canvas,
+      name: name,
+      color: color,
+      marker: marker,
+      title: title,
+      xlabel: xlabel,
+      ylabel: ylabel,
+      xscale: xscale,
+      yscale: yscale,
+      height: height,
+      width: width,
+      border: border,
+      compact_labels: compact_labels,
+      compact: compact,
+      blend: blend,
+      xlim: xlim,
+      ylim: ylim,
+      margin: margin,
+      padding: padding,
+      labels: labels,
+      grid: grid,
+      yticks: yticks,
+      xticks: xticks,
+      min_height: min_height,
+      min_width: min_width,
+      yflip: yflip,
+      xflip: xflip,
+      unicode_exponent: unicode_exponent,
+      thousands_separator: thousands_separator,
+    )
+  end
+
+  def scatterplot(
+    x : Array(Array(Float64)),
+    y : Array(Array(Float64)),
+    *,
+    canvas : Symbol = :braille,
+    name : String = "",
+    color : PlotColorArg = :auto,
+    marker : Symbol | Char | String = :pixel,
+    title : String = "",
+    xlabel : String = "",
+    ylabel : String = "",
+    xscale : Symbol | Proc(Float64, Float64) = :identity,
+    yscale : Symbol | Proc(Float64, Float64) = :identity,
+    height : Int32? = nil,
+    width : Int32? = nil,
+    border : Symbol = :solid,
+    compact_labels : Bool = false,
+    compact : Bool = false,
+    blend : Bool = true,
+    xlim : {Float64, Float64} = {0.0, 0.0},
+    ylim : {Float64, Float64} = {0.0, 0.0},
+    margin : Int32 = 3,
+    padding : Int32 = 1,
+    labels : Bool = true,
+    grid : Bool = true,
+    yticks : Bool = true,
+    xticks : Bool = true,
+    min_height : Int32 = 2,
+    min_width : Int32 = 5,
+    yflip : Bool = false,
+    xflip : Bool = false,
+    unicode_exponent : Bool = true,
+    thousands_separator : Char = ' ',
+  ) : Plot
+    raise ArgumentError.new("x and y must have the same number of series") unless x.size == y.size
+    if color.is_a?(Array)
+      raise ArgumentError.new("color vector must have the same length as the number of series") unless color.size == x.size
+    end
+
+    x.each_with_index do |x_values, i|
+      yv = y[i]
+      raise ArgumentError.new("x and y series must have the same length") unless x_values.size == yv.size
+    end
+
+    flat_x = x.flatten
+    flat_y = y.flatten
     plot = build_plot(
-      x, y,
+      flat_x, flat_y,
       canvas_type: canvas,
       title: title, xlabel: xlabel, ylabel: ylabel,
       xscale: xscale, yscale: yscale,
@@ -66,16 +146,58 @@ module UnicodePlot
     scatterplot(to_plot_f64(x), to_plot_f64(y), **kwargs)
   end
 
+  def scatterplot(x : Array(Array(T)), y : Array(Array(U)), **kwargs) : Plot forall T, U
+    xs = x.map { |vals| to_plot_f64(vals) }
+    ys = y.map { |vals| to_plot_f64(vals) }
+    scatterplot(xs, ys, **kwargs)
+  end
+
   def scatterplot!(
     plot : Plot,
     x : Array(Float64),
     y : Array(Float64),
     *,
     name : String = "",
-    color : Symbol | UInt32 | {Int32, Int32, Int32} = :auto,
+    color : PlotColor = :auto,
     marker : Symbol | Char | String = :pixel,
   ) : Plot
     raise ArgumentError.new("x and y must have the same length") unless x.size == y.size
+    scatterplot!(plot, [x], [y], name: name, color: color, marker: marker)
+  end
+
+  def scatterplot!(
+    plot : Plot,
+    x : Array(Array(Float64)),
+    y : Array(Array(Float64)),
+    *,
+    name : String = "",
+    color : PlotColorArg = :auto,
+    marker : Symbol | Char | String = :pixel,
+  ) : Plot
+    raise ArgumentError.new("x and y must have the same number of series") unless x.size == y.size
+    if color.is_a?(Array)
+      raise ArgumentError.new("color vector must have the same length as the number of series") unless color.size == x.size
+    end
+
+    x.each_with_index do |x_values, i|
+      yv = y[i]
+      raise ArgumentError.new("x and y series must have the same length") unless x_values.size == yv.size
+
+      series_color = color.is_a?(Array) ? color[i] : color
+      scatterplot_single!(plot, x_values, yv, name: name, color: series_color, marker: marker)
+    end
+    plot
+  end
+
+  private def scatterplot_single!(
+    plot : Plot,
+    x : Array(Float64),
+    y : Array(Float64),
+    *,
+    name : String = "",
+    color : PlotColor = :auto,
+    marker : Symbol | Char | String = :pixel,
+  ) : Plot
     c = color == :auto ? plot.next_color! : color
     col = plot_color(c)
     plot.label!(:r, name, col) unless name.empty?
@@ -96,6 +218,12 @@ module UnicodePlot
 
   def scatterplot!(plot : Plot, x : Array(T), y : Array(U), **kwargs) : Plot forall T, U
     scatterplot!(plot, to_plot_f64(x), to_plot_f64(y), **kwargs)
+  end
+
+  def scatterplot!(plot : Plot, x : Array(Array(T)), y : Array(Array(U)), **kwargs) : Plot forall T, U
+    xs = x.map { |vals| to_plot_f64(vals) }
+    ys = y.map { |vals| to_plot_f64(vals) }
+    scatterplot!(plot, xs, ys, **kwargs)
   end
 
   def scatterplot!(plot : Plot, y : Array(T), **kwargs) : Plot forall T

@@ -6,6 +6,8 @@ module UnicodePlot
   HALF_BLOCK    = '▄'
 
   alias ColorType = UInt32
+  alias PlotColor = Symbol | UInt32 | {Int32, Int32, Int32}
+  alias PlotColorArg = PlotColor | Array(Symbol) | Array(UInt32) | Array({Int32, Int32, Int32})
   INVALID_COLOR = UInt32::MAX
   THRESHOLD     = 256_u32 ** 3 # 16_777_216 — 8bit/24bit threshold
 
