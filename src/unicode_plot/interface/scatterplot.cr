@@ -32,6 +32,8 @@ module UnicodePlot
     xflip : Bool = false,
     unicode_exponent : Bool = true,
     thousands_separator : Char = ' ',
+    xunit : String? = nil,
+    yunit : String? = nil,
   ) : Plot
     raise ArgumentError.new("x and y must have the same length") unless x.size == y.size
     scatterplot(
@@ -41,8 +43,8 @@ module UnicodePlot
       color: color,
       marker: marker,
       title: title,
-      xlabel: xlabel,
-      ylabel: ylabel,
+      xlabel: unit_label(xlabel, xunit),
+      ylabel: unit_label(ylabel, yunit),
       xscale: xscale,
       yscale: yscale,
       height: height,
@@ -65,6 +67,8 @@ module UnicodePlot
       xflip: xflip,
       unicode_exponent: unicode_exponent,
       thousands_separator: thousands_separator,
+      xunit: nil,
+      yunit: nil,
     )
   end
 
@@ -101,6 +105,8 @@ module UnicodePlot
     xflip : Bool = false,
     unicode_exponent : Bool = true,
     thousands_separator : Char = ' ',
+    xunit : String? = nil,
+    yunit : String? = nil,
   ) : Plot
     raise ArgumentError.new("x and y must have the same number of series") unless x.size == y.size
     if color.is_a?(Array)
@@ -114,10 +120,12 @@ module UnicodePlot
 
     flat_x = x.flatten
     flat_y = y.flatten
+    xlabel_with_unit = unit_label(xlabel, xunit)
+    ylabel_with_unit = unit_label(ylabel, yunit)
     plot = build_plot(
       flat_x, flat_y,
       canvas_type: canvas,
-      title: title, xlabel: xlabel, ylabel: ylabel,
+      title: title, xlabel: xlabel_with_unit, ylabel: ylabel_with_unit,
       xscale: xscale, yscale: yscale,
       height: height, width: width,
       border: border, compact_labels: compact_labels, compact: compact,
@@ -137,9 +145,51 @@ module UnicodePlot
     scatterplot(x, y, **kwargs)
   end
 
+  def scatterplot(y : Array(Quantity), **kwargs) : Plot
+    x = (1..y.size).map(&.to_f64)
+    y_nu = number_unit(y)
+    y_values = y_nu[0]
+    y_unit = y_nu[1]
+    opts = kwargs.merge({yunit: y_unit})
+    scatterplot(x, y_values, **opts)
+  end
+
   def scatterplot(y : Array(T), **kwargs) : Plot forall T
     x = (1..y.size).map(&.to_f64)
     scatterplot(x, to_plot_f64(y), **kwargs)
+  end
+
+  def scatterplot(x : Array(Quantity), y : Array(Quantity), **kwargs) : Plot
+    x_nu = number_unit(x)
+    x_values = x_nu[0]
+    x_unit = x_nu[1]
+    y_nu = number_unit(y)
+    y_values = y_nu[0]
+    y_unit = y_nu[1]
+    opts = kwargs.merge({xunit: x_unit, yunit: y_unit})
+    scatterplot(x_values, y_values, **opts)
+  end
+
+  def scatterplot(x : Array(T), y : Array(Quantity), **kwargs) : Plot forall T
+    {% unless T <= Number %}
+      {% raise "scatterplot(x, y_quantity) requires numeric x values" %}
+    {% end %}
+    y_nu = number_unit(y)
+    y_values = y_nu[0]
+    y_unit = y_nu[1]
+    opts = kwargs.merge({yunit: y_unit})
+    scatterplot(to_plot_f64(x), y_values, **opts)
+  end
+
+  def scatterplot(x : Array(Quantity), y : Array(T), **kwargs) : Plot forall T
+    {% unless T <= Number %}
+      {% raise "scatterplot(x_quantity, y) requires numeric y values" %}
+    {% end %}
+    x_nu = number_unit(x)
+    x_values = x_nu[0]
+    x_unit = x_nu[1]
+    opts = kwargs.merge({xunit: x_unit})
+    scatterplot(x_values, to_plot_f64(y), **opts)
   end
 
   def scatterplot(x : Array(T), y : Array(U), **kwargs) : Plot forall T, U
@@ -220,6 +270,28 @@ module UnicodePlot
     scatterplot!(plot, to_plot_f64(x), to_plot_f64(y), **kwargs)
   end
 
+  def scatterplot!(plot : Plot, x : Array(Quantity), y : Array(Quantity), **kwargs) : Plot
+    x_values = number_unit(x)[0]
+    y_values = number_unit(y)[0]
+    scatterplot!(plot, x_values, y_values, **kwargs)
+  end
+
+  def scatterplot!(plot : Plot, x : Array(T), y : Array(Quantity), **kwargs) : Plot forall T
+    {% unless T <= Number %}
+      {% raise "scatterplot!(x, y_quantity) requires numeric x values" %}
+    {% end %}
+    y_values = number_unit(y)[0]
+    scatterplot!(plot, to_plot_f64(x), y_values, **kwargs)
+  end
+
+  def scatterplot!(plot : Plot, x : Array(Quantity), y : Array(T), **kwargs) : Plot forall T
+    {% unless T <= Number %}
+      {% raise "scatterplot!(x_quantity, y) requires numeric y values" %}
+    {% end %}
+    x_values = number_unit(x)[0]
+    scatterplot!(plot, x_values, to_plot_f64(y), **kwargs)
+  end
+
   def scatterplot!(plot : Plot, x : Array(Array(T)), y : Array(Array(U)), **kwargs) : Plot forall T, U
     xs = x.map { |vals| to_plot_f64(vals) }
     ys = y.map { |vals| to_plot_f64(vals) }
@@ -229,5 +301,11 @@ module UnicodePlot
   def scatterplot!(plot : Plot, y : Array(T), **kwargs) : Plot forall T
     x = (1..y.size).map(&.to_f64)
     scatterplot!(plot, x, to_plot_f64(y), **kwargs)
+  end
+
+  def scatterplot!(plot : Plot, y : Array(Quantity), **kwargs) : Plot
+    x = (1..y.size).map(&.to_f64)
+    y_values = number_unit(y)[0]
+    scatterplot!(plot, x, y_values, **kwargs)
   end
 end

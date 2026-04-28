@@ -33,6 +33,8 @@ module UnicodePlot
     xflip : Bool = false,
     unicode_exponent : Bool = true,
     thousands_separator : Char = ' ',
+    xunit : String? = nil,
+    yunit : String? = nil,
   ) : Plot
     raise ArgumentError.new("x and y must have the same length") unless x.size == y.size
     lineplot(
@@ -43,8 +45,8 @@ module UnicodePlot
       head_tail: head_tail,
       head_tail_frac: head_tail_frac,
       title: title,
-      xlabel: xlabel,
-      ylabel: ylabel,
+      xlabel: unit_label(xlabel, xunit),
+      ylabel: unit_label(ylabel, yunit),
       xscale: xscale,
       yscale: yscale,
       height: height,
@@ -67,6 +69,8 @@ module UnicodePlot
       xflip: xflip,
       unicode_exponent: unicode_exponent,
       thousands_separator: thousands_separator,
+      xunit: nil,
+      yunit: nil,
     )
   end
 
@@ -104,6 +108,8 @@ module UnicodePlot
     xflip : Bool = false,
     unicode_exponent : Bool = true,
     thousands_separator : Char = ' ',
+    xunit : String? = nil,
+    yunit : String? = nil,
   ) : Plot
     raise ArgumentError.new("x and y must have the same number of series") unless x.size == y.size
     if color.is_a?(Array)
@@ -117,10 +123,12 @@ module UnicodePlot
 
     flat_x = x.flatten
     flat_y = y.flatten
+    xlabel_with_unit = unit_label(xlabel, xunit)
+    ylabel_with_unit = unit_label(ylabel, yunit)
     plot = build_plot(
       flat_x, flat_y,
       canvas_type: canvas,
-      title: title, xlabel: xlabel, ylabel: ylabel,
+      title: title, xlabel: xlabel_with_unit, ylabel: ylabel_with_unit,
       xscale: xscale, yscale: yscale,
       height: height, width: width,
       border: border, compact_labels: compact_labels, compact: compact,
@@ -141,9 +149,130 @@ module UnicodePlot
     lineplot(x, y, **kwargs)
   end
 
+  def lineplot(y : Array(Quantity)) : Plot
+    x = (1..y.size).map(&.to_f64)
+    y_nu = number_unit(y)
+    y_values = y_nu[0]
+    y_unit = y_nu[1]
+    lineplot(x, y_values, yunit: y_unit)
+  end
+
   def lineplot(y : Array(T), **kwargs) : Plot forall T
     x = (1..y.size).map(&.to_f64)
-    lineplot(x, to_plot_f64(y), **kwargs)
+    {% if T <= Number %}
+      lineplot(x, to_plot_f64(y), **kwargs)
+    {% else %}
+      raise ArgumentError.new("lineplot(y) requires numeric y values")
+    {% end %}
+  end
+
+  def lineplot(
+    x : Array(Quantity),
+    y : Array(Quantity),
+    *,
+    canvas : Symbol = :braille,
+    name : String = "",
+    color : PlotColor = :auto,
+    head_tail : Symbol? = nil,
+    head_tail_frac : Float64 = 0.05,
+    title : String = "",
+    xlabel : String = "",
+    ylabel : String = "",
+    xscale : Symbol | Proc(Float64, Float64) = :identity,
+    yscale : Symbol | Proc(Float64, Float64) = :identity,
+    height : Int32? = nil,
+    width : Int32? = nil,
+    border : Symbol = :solid,
+    compact_labels : Bool = false,
+    compact : Bool = false,
+    blend : Bool = true,
+    xlim : {Float64, Float64} = {0.0, 0.0},
+    ylim : {Float64, Float64} = {0.0, 0.0},
+    margin : Int32 = 3,
+    padding : Int32 = 1,
+    labels : Bool = true,
+    grid : Bool = true,
+    yticks : Bool = true,
+    xticks : Bool = true,
+    min_height : Int32 = 2,
+    min_width : Int32 = 5,
+    yflip : Bool = false,
+    xflip : Bool = false,
+    unicode_exponent : Bool = true,
+    thousands_separator : Char = ' ',
+    xunit : String? = nil,
+    yunit : String? = nil,
+  ) : Plot
+    x_nu = number_unit(x)
+    x_values = x_nu[0]
+    inferred_xunit = x_nu[1]
+    y_nu = number_unit(y)
+    y_values = y_nu[0]
+    inferred_yunit = y_nu[1]
+    lineplot(
+      x_values,
+      y_values,
+      canvas: canvas,
+      name: name,
+      color: color,
+      head_tail: head_tail,
+      head_tail_frac: head_tail_frac,
+      title: title,
+      xlabel: xlabel,
+      ylabel: ylabel,
+      xscale: xscale,
+      yscale: yscale,
+      height: height,
+      width: width,
+      border: border,
+      compact_labels: compact_labels,
+      compact: compact,
+      blend: blend,
+      xlim: xlim,
+      ylim: ylim,
+      margin: margin,
+      padding: padding,
+      labels: labels,
+      grid: grid,
+      yticks: yticks,
+      xticks: xticks,
+      min_height: min_height,
+      min_width: min_width,
+      yflip: yflip,
+      xflip: xflip,
+      unicode_exponent: unicode_exponent,
+      thousands_separator: thousands_separator,
+      xunit: xunit || inferred_xunit,
+      yunit: yunit || inferred_yunit,
+    )
+  end
+
+  def lineplot(x : Array(T), y : Array(Quantity)) : Plot forall T
+    y_nu = number_unit(y)
+    y_values = y_nu[0]
+    y_unit = y_nu[1]
+    {% if T == Quantity %}
+      x_nu = number_unit(x)
+      x_values = x_nu[0]
+      x_unit = x_nu[1]
+      lineplot(x_values, y_values, xunit: x_unit, yunit: y_unit)
+    {% else %}
+      lineplot(to_plot_f64(x), y_values, yunit: y_unit)
+    {% end %}
+  end
+
+  def lineplot(x : Array(Quantity), y : Array(T)) : Plot forall T
+    x_nu = number_unit(x)
+    x_values = x_nu[0]
+    x_unit = x_nu[1]
+    {% if T == Quantity %}
+      y_nu = number_unit(y)
+      y_values = y_nu[0]
+      y_unit = y_nu[1]
+      lineplot(x_values, y_values, xunit: x_unit, yunit: y_unit)
+    {% else %}
+      lineplot(x_values, to_plot_f64(y), xunit: x_unit)
+    {% end %}
   end
 
   def lineplot(x : Array(Float64), f : Float64 -> Float64, **kwargs) : Plot
@@ -168,13 +297,21 @@ module UnicodePlot
 
   # Generic numeric overloads for lineplot
   def lineplot(x : Array(T), y : Array(U), **kwargs) : Plot forall T, U
-    lineplot(to_plot_f64(x), to_plot_f64(y), **kwargs)
+    {% if T <= Number && U <= Number %}
+      lineplot(to_plot_f64(x), to_plot_f64(y), **kwargs)
+    {% else %}
+      raise ArgumentError.new("lineplot(x, y) requires numeric arrays")
+    {% end %}
   end
 
   def lineplot(x : Array(Array(T)), y : Array(Array(U)), **kwargs) : Plot forall T, U
-    xs = x.map { |vals| to_plot_f64(vals) }
-    ys = y.map { |vals| to_plot_f64(vals) }
-    lineplot(xs, ys, **kwargs)
+    {% if T <= Number && U <= Number %}
+      xs = x.map { |vals| to_plot_f64(vals) }
+      ys = y.map { |vals| to_plot_f64(vals) }
+      lineplot(xs, ys, **kwargs)
+    {% else %}
+      raise ArgumentError.new("lineplot multi-series requires numeric arrays")
+    {% end %}
   end
 
   def lineplot!(
@@ -258,19 +395,102 @@ module UnicodePlot
     plot
   end
 
-  def lineplot!(plot : Plot, x : Array(T), y : Array(U), **kwargs) : Plot forall T, U
-    lineplot!(plot, to_plot_f64(x), to_plot_f64(y), **kwargs)
+  def lineplot!(
+    plot : Plot,
+    x : Array,
+    y : Array,
+    *,
+    name : String = "",
+    color : PlotColor = :auto,
+    head_tail : Symbol? = nil,
+    head_tail_frac : Float64 = 0.05,
+  ) : Plot
+    lineplot!(plot, to_plot_f64(x), to_plot_f64(y), name: name, color: color, head_tail: head_tail, head_tail_frac: head_tail_frac)
   end
 
-  def lineplot!(plot : Plot, x : Array(Array(T)), y : Array(Array(U)), **kwargs) : Plot forall T, U
+  def lineplot!(
+    plot : Plot,
+    x : Array(Quantity),
+    y : Array(Quantity),
+    *,
+    name : String = "",
+    color : PlotColor = :auto,
+    head_tail : Symbol? = nil,
+    head_tail_frac : Float64 = 0.05,
+  ) : Plot
+    x_values = number_unit(x)[0]
+    y_values = number_unit(y)[0]
+    lineplot!(plot, x_values, y_values, name: name, color: color, head_tail: head_tail, head_tail_frac: head_tail_frac)
+  end
+
+  def lineplot!(
+    plot : Plot,
+    x : Array,
+    y : Array(Quantity),
+    *,
+    name : String = "",
+    color : PlotColor = :auto,
+    head_tail : Symbol? = nil,
+    head_tail_frac : Float64 = 0.05,
+  ) : Plot
+    y_values = number_unit(y)[0]
+    lineplot!(plot, to_plot_f64(x), y_values, name: name, color: color, head_tail: head_tail, head_tail_frac: head_tail_frac)
+  end
+
+  def lineplot!(
+    plot : Plot,
+    x : Array(Quantity),
+    y : Array,
+    *,
+    name : String = "",
+    color : PlotColor = :auto,
+    head_tail : Symbol? = nil,
+    head_tail_frac : Float64 = 0.05,
+  ) : Plot
+    x_values = number_unit(x)[0]
+    lineplot!(plot, x_values, to_plot_f64(y), name: name, color: color, head_tail: head_tail, head_tail_frac: head_tail_frac)
+  end
+
+  def lineplot!(
+    plot : Plot,
+    x : Array(Array),
+    y : Array(Array),
+    *,
+    name : String = "",
+    color : PlotColorArg = :auto,
+    head_tail : Symbol? = nil,
+    head_tail_frac : Float64 = 0.05,
+  ) : Plot
     xs = x.map { |vals| to_plot_f64(vals) }
     ys = y.map { |vals| to_plot_f64(vals) }
-    lineplot!(plot, xs, ys, **kwargs)
+    lineplot!(plot, xs, ys, name: name, color: color, head_tail: head_tail, head_tail_frac: head_tail_frac)
   end
 
-  def lineplot!(plot : Plot, y : Array(T), **kwargs) : Plot forall T
+  def lineplot!(
+    plot : Plot,
+    y : Array,
+    *,
+    name : String = "",
+    color : PlotColor = :auto,
+    head_tail : Symbol? = nil,
+    head_tail_frac : Float64 = 0.05,
+  ) : Plot
     x = (1..y.size).map(&.to_f64)
-    lineplot!(plot, x, to_plot_f64(y), **kwargs)
+    lineplot!(plot, x, to_plot_f64(y), name: name, color: color, head_tail: head_tail, head_tail_frac: head_tail_frac)
+  end
+
+  def lineplot!(
+    plot : Plot,
+    y : Array(Quantity),
+    *,
+    name : String = "",
+    color : PlotColor = :auto,
+    head_tail : Symbol? = nil,
+    head_tail_frac : Float64 = 0.05,
+  ) : Plot
+    x = (1..y.size).map(&.to_f64)
+    y_values = number_unit(y)[0]
+    lineplot!(plot, x, y_values, name: name, color: color, head_tail: head_tail, head_tail_frac: head_tail_frac)
   end
 
   def lineplot!(plot : Plot, intercept : Number, slope : Number, **kwargs) : Plot

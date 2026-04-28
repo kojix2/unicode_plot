@@ -319,10 +319,12 @@ describe "Julia reference output compatibility" do
 
     it "matches lineplot/units_pos_vel" do
       t = (0..100).map(&.to_f64)
-      pos = t.map { |val| 0.5 * val * val }
-      vel = t
+      pos_values = t.map { |val| 0.5 * val * val }
+      vel_values = t
+      pos = UnicodePlot.quantity(pos_values, "m")
+      vel = UnicodePlot.quantity(vel_values, "m s⁻¹")
       p = UnicodePlot.lineplot(pos, vel, xlabel: "position (m)", ylabel: "speed (m s⁻¹)")
-      UnicodePlot.lineplot!(p, [pos.min, pos.max], [vel.max, vel.max], color: :red)
+      UnicodePlot.lineplot!(p, [pos_values.min, pos_values.max], [vel_values.max, vel_values.max], color: :red)
       test_ref("lineplot/units_pos_vel.txt", p)
     end
 
@@ -516,12 +518,10 @@ describe "Julia reference output compatibility" do
     end
 
     it "matches scatterplot/units_temp" do
-      p = UnicodePlot.scatterplot(
-        [22.0, 23.0, 24.0],
-        marker: :circle,
-        ylabel: "°C",
-      )
-      UnicodePlot.scatterplot!(p, [23.5, 22.5, 23.0], marker: :cross, color: :red)
+      y1 = UnicodePlot.quantity([22.0, 23.0, 24.0], "°C")
+      p = UnicodePlot.scatterplot(y1, marker: :circle)
+      y2 = UnicodePlot.quantity([23.5, 22.5, 23.0], "°C")
+      UnicodePlot.scatterplot!(p, y2, marker: :cross, color: :red)
       test_ref("scatterplot/units_temp.txt", p)
     end
   end

@@ -1,4 +1,13 @@
 module UnicodePlot
+  struct Quantity
+    getter value : Float64
+    getter unit : String
+
+    def initialize(value : Number, @unit : String)
+      @value = value.to_f64
+    end
+  end
+
   BLANK         = 0x0020_u32
   BLANK_BRAILLE = 0x2800_u32
   FULL_BRAILLE  = 0x28ff_u32
@@ -174,6 +183,45 @@ module UnicodePlot
   def char_marker(marker : String) : Char
     marker.size == 1 || raise ArgumentError.new("`marker` must have length 1")
     marker[0]
+  end
+
+  def quantity(value : Number, unit : String) : Quantity
+    Quantity.new(value, unit)
+  end
+
+  def quantity(values : Array(T), unit : String) : Array(Quantity) forall T
+    {% unless T <= Number %}
+      {% raise "quantity(values, unit) requires numeric array elements" %}
+    {% end %}
+    values.map { |v| Quantity.new(v.to_f64, unit) }
+  end
+
+  def unit_label(label : String, unit : String?) : String
+    stripped = label.rstrip
+    return stripped unless unit
+    unit_suffix = "(#{unit})"
+    return stripped if stripped.ends_with?(unit_suffix)
+    stripped.empty? ? unit : "#{stripped} (#{unit})"
+  end
+
+  def number_unit(values : Array(Quantity)) : {Array(Float64), String?}
+    return {[] of Float64, nil} if values.empty?
+    unit = values.first.unit
+    nums = Array(Float64).new(values.size)
+    values.each do |quantity|
+      unless quantity.unit == unit
+        raise ArgumentError.new("mixed units are not supported in one axis: #{unit} and #{quantity.unit}")
+      end
+      nums << quantity.value
+    end
+    {nums, unit}
+  end
+
+  def number_unit(values : Array(T)) : {Array(Float64), String?} forall T
+    {% unless T <= Number %}
+      {% raise "number_unit requires numeric array elements" %}
+    {% end %}
+    {to_plot_f64(values), nil}
   end
 
   private def to_plot_f64(values : Array(T)) : Array(Float64) forall T

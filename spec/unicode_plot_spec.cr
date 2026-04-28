@@ -129,6 +129,22 @@ describe UnicodePlot do
       p = UnicodePlot.lineplot([Float64::MAX, 0.5], [0.5, 0.5])
       p.to_s.should be_a(String)
     end
+
+    it "auto-applies unit labels from quantity arrays" do
+      x = UnicodePlot.quantity([0.0, 1.0, 2.0], "m")
+      y = UnicodePlot.quantity([0.0, 1.0, 4.0], "m s⁻¹")
+      p = UnicodePlot.lineplot(x, y)
+      p.xlabel.should eq("m")
+      p.ylabel.should eq("m s⁻¹")
+    end
+
+    it "raises on mixed units within one axis" do
+      x = [UnicodePlot.quantity(0.0, "m"), UnicodePlot.quantity(1.0, "cm")]
+      y = [0.0, 1.0]
+      expect_raises(ArgumentError, /mixed units/) do
+        UnicodePlot.lineplot(x, y)
+      end
+    end
   end
 
   describe "scatterplot" do
@@ -185,6 +201,12 @@ describe UnicodePlot do
       prev_series = p.series
       UnicodePlot.scatterplot!(p, [4, 5, 6])
       p.series.should eq(prev_series + 1)
+    end
+
+    it "auto-applies y label from quantity y-only input" do
+      y = UnicodePlot.quantity([22.0, 23.0, 24.0], "°C")
+      p = UnicodePlot.scatterplot(y)
+      p.ylabel.should eq("°C")
     end
   end
 
