@@ -463,6 +463,13 @@ describe "Julia reference output compatibility" do
       test_ref("scatterplot/scale2.txt", p)
     end
 
+    it "matches scatterplot/scale3" do
+      miny = -1.2796649117521434e218
+      maxy = -miny
+      p = UnicodePlot.scatterplot([1.0], [miny], xlim: {1.0, 1.0}, ylim: {miny, maxy})
+      test_ref("scatterplot/scale3.txt", p)
+    end
+
     it "matches scatterplot/limits" do
       p = UnicodePlot.scatterplot(x, y, xlim: {-1.5, 3.5}, ylim: {-5.5, 2.5})
       test_ref("scatterplot/limits.txt", p)
@@ -506,6 +513,16 @@ describe "Julia reference output compatibility" do
     it "matches scatterplot/canvassize" do
       p = UnicodePlot.scatterplot(x, y, title: "Scatter", canvas: :dot, height: 5, width: 10)
       test_ref("scatterplot/canvassize.txt", p)
+    end
+
+    it "matches scatterplot/units_temp" do
+      p = UnicodePlot.scatterplot(
+        [22.0, 23.0, 24.0],
+        marker: :circle,
+        ylabel: "°C",
+      )
+      UnicodePlot.scatterplot!(p, [23.5, 22.5, 23.0], marker: :cross, color: :red)
+      test_ref("scatterplot/units_temp.txt", p)
     end
   end
 

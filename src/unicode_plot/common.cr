@@ -232,6 +232,7 @@ module UnicodePlot
       parts = str.split('e')
       left = parts[0]
       right = parts[1]
+      right = right.starts_with?("+") ? right[1..] : right
       right = superscript(right) if unicode_exponent
       "#{left}e#{right}"
     else

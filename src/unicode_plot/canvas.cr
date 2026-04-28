@@ -131,6 +131,17 @@ module UnicodePlot
       floored.to_i32
     end
 
+    # Convert pixel coordinates to 1-based char-cell coordinates.
+    # Boundary pixels are nudged one step inward to match Julia's canvas mapping.
+    private def pixel_to_char_point(pixel_x : Float64, pixel_y : Float64) : Tuple(Int32, Int32)?
+      px = pixel_x >= @pixel_width ? pixel_x - 1.0 : pixel_x
+      py = pixel_y >= @pixel_height ? pixel_y - 1.0 : pixel_y
+      cx = floor_to_i32(px / x_pixel_per_char.to_f)
+      cy = floor_to_i32(py / y_pixel_per_char.to_f)
+      return unless cx && cy
+      {cx + 1, cy + 1}
+    end
+
     private def plot_pixel_if_visible(
       pixel_x : Float64,
       pixel_y : Float64,
@@ -238,12 +249,9 @@ module UnicodePlot
     # Annotate a character at canvas coords (x, y)
     def annotate!(x : Float64, y : Float64, char : Char, color : UInt32, blend : Bool) : self
       return self unless valid_x?(x) && valid_y?(y)
-      cx = floor_to_i32(scale_x_to_pixel(x) / x_pixel_per_char.to_f)
-      cy = floor_to_i32(scale_y_to_pixel(y) / y_pixel_per_char.to_f)
-      return self unless cx && cy
-
-      cx += 1
-      cy += 1
+      point = pixel_to_char_point(scale_x_to_pixel(x), scale_y_to_pixel(y))
+      return self unless point
+      cx, cy = point
       char_point!(cx, cy, char, color, blend)
       self
     end
@@ -253,12 +261,9 @@ module UnicodePlot
       return self unless valid_x?(x) && valid_y?(y)
       px = scale_x_to_pixel(x)
       py = scale_y_to_pixel(y)
-      cx = floor_to_i32(px / x_pixel_per_char.to_f)
-      cy = floor_to_i32(py / y_pixel_per_char.to_f)
-      return self unless cx && cy
-
-      cx += 1
-      cy += 1
+      point = pixel_to_char_point(px, py)
+      return self unless point
+      cx, cy = point
       n = text.size
       cx = case halign
            when :center, :hcenter then cx - n // 2
