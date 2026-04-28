@@ -14,7 +14,7 @@
 <script type="text/javascript" src="../js/doc.js"></script>
 
   <meta name="repository-name" content="unicode_plot">
-  <title>UnicodePlot::Border - unicode_plot main</title>
+  <title>UnicodePlot::Quantity - unicode_plot main</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../";
   </script>
@@ -77,7 +77,7 @@
       
     </li>
   
-  <li class=" current" data-id="unicode_plot/UnicodePlot/Border" data-name="unicodeplot::border">
+  <li class=" " data-id="unicode_plot/UnicodePlot/Border" data-name="unicodeplot::border">
       <a href="../UnicodePlot/Border.html">Border</a>
       
     </li>
@@ -157,7 +157,7 @@
       
     </li>
   
-  <li class=" " data-id="unicode_plot/UnicodePlot/Quantity" data-name="unicodeplot::quantity">
+  <li class=" current" data-id="unicode_plot/UnicodePlot/Quantity" data-name="unicodeplot::quantity">
       <a href="../UnicodePlot/Quantity.html">Quantity</a>
       
     </li>
@@ -183,12 +183,12 @@
 
   <span class="kind">
     struct
-  </span> UnicodePlot::<wbr>Border
+  </span> UnicodePlot::<wbr>Quantity
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../UnicodePlot/Border.html">UnicodePlot::Border</a></li><li class="superclass">Struct</li><li class="superclass">Value</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../UnicodePlot/Quantity.html">UnicodePlot::Quantity</a></li><li class="superclass">Struct</li><li class="superclass">Value</li><li class="superclass">Object</li></ul>
 
 
 
@@ -218,7 +218,7 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/unicode_plot/blob/1c98e7c781403a756a1fa4b5b2d8cce23d349ee0/src/unicode_plot/common.cr#L30" target="_blank">
+      <a href="https://github.com/kojix2/unicode_plot/blob/1c98e7c781403a756a1fa4b5b2d8cce23d349ee0/src/unicode_plot/common.cr#L2" target="_blank">
         unicode_plot/common.cr
       </a>
     
@@ -241,7 +241,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new%28tl%3AChar%2Ctr%3AChar%2Cbl%3AChar%2Cbr%3AChar%2Ct%3AChar%2Cl%3AChar%2Cb%3AChar%2Cr%3AChar%29-class-method" class="signature"><strong>.new</strong>(tl : Char, tr : Char, bl : Char, br : Char, t : Char, l : Char, b : Char, r : Char)</a>
+        <a href="#new%28value%3ANumber%2Cunit%3AString%29-class-method" class="signature"><strong>.new</strong>(value : Number, unit : String)</a>
         
       </li>
     
@@ -264,52 +264,12 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#b%3AChar-instance-method" class="signature"><strong>#b</strong> : Char</a>
+        <a href="#unit%3AString-instance-method" class="signature"><strong>#unit</strong> : String</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#bl%3AChar-instance-method" class="signature"><strong>#bl</strong> : Char</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#br%3AChar-instance-method" class="signature"><strong>#br</strong> : Char</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#clone-instance-method" class="signature"><strong>#clone</strong></a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#copy_with%28tl_tl%3D%40tl%2Ctr_tr%3D%40tr%2Cbl_bl%3D%40bl%2Cbr_br%3D%40br%2Ct_t%3D%40t%2Cl_l%3D%40l%2Cb_b%3D%40b%2Cr_r%3D%40r%29-instance-method" class="signature"><strong>#copy_with</strong>(tl _tl = @tl, tr _tr = @tr, bl _bl = @bl, br _br = @br, t _t = @t, l _l = @l, b _b = @b, r _r = @r)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#l%3AChar-instance-method" class="signature"><strong>#l</strong> : Char</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#r%3AChar-instance-method" class="signature"><strong>#r</strong> : Char</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#t%3AChar-instance-method" class="signature"><strong>#t</strong> : Char</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#tl%3AChar-instance-method" class="signature"><strong>#tl</strong> : Char</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#tr%3AChar-instance-method" class="signature"><strong>#tr</strong> : Char</a>
+        <a href="#value%3AFloat64-instance-method" class="signature"><strong>#value</strong> : Float64</a>
         
       </li>
     
@@ -370,18 +330,18 @@
     Constructor Detail
   </h2>
   
-    <div class="entry-detail" id="new(tl:Char,tr:Char,bl:Char,br:Char,t:Char,l:Char,b:Char,r:Char)-class-method">
+    <div class="entry-detail" id="new(value:Number,unit:String)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(tl : Char, tr : Char, bl : Char, br : Char, t : Char, l : Char, b : Char, r : Char)
+        def self.<strong>new</strong>(value : Number, unit : String)
 
-        <a class="method-permalink" href="#new%28tl%3AChar%2Ctr%3AChar%2Cbl%3AChar%2Cbr%3AChar%2Ct%3AChar%2Cl%3AChar%2Cb%3AChar%2Cr%3AChar%29-class-method">#</a>
+        <a class="method-permalink" href="#new%28value%3ANumber%2Cunit%3AString%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/1c98e7c781403a756a1fa4b5b2d8cce23d349ee0/src/unicode_plot/common.cr#L30" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/1c98e7c781403a756a1fa4b5b2d8cce23d349ee0/src/unicode_plot/common.cr#L6" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -402,146 +362,34 @@
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="b:Char-instance-method">
+    <div class="entry-detail" id="unit:String-instance-method">
       <div class="signature">
         
-        def <strong>b</strong> : Char
+        def <strong>unit</strong> : String
 
-        <a class="method-permalink" href="#b%3AChar-instance-method">#</a>
+        <a class="method-permalink" href="#unit%3AString-instance-method">#</a>
       </div>
       
       <br/>
       <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/1c98e7c781403a756a1fa4b5b2d8cce23d349ee0/src/unicode_plot/common.cr#L4" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="bl:Char-instance-method">
+    <div class="entry-detail" id="value:Float64-instance-method">
       <div class="signature">
         
-        def <strong>bl</strong> : Char
+        def <strong>value</strong> : Float64
 
-        <a class="method-permalink" href="#bl%3AChar-instance-method">#</a>
+        <a class="method-permalink" href="#value%3AFloat64-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="br:Char-instance-method">
-      <div class="signature">
-        
-        def <strong>br</strong> : Char
-
-        <a class="method-permalink" href="#br%3AChar-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="clone-instance-method">
-      <div class="signature">
-        
-        def <strong>clone</strong>
-
-        <a class="method-permalink" href="#clone-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/unicode_plot/blob/1c98e7c781403a756a1fa4b5b2d8cce23d349ee0/src/unicode_plot/common.cr#L30" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="copy_with(tl_tl=@tl,tr_tr=@tr,bl_bl=@bl,br_br=@br,t_t=@t,l_l=@l,b_b=@b,r_r=@r)-instance-method">
-      <div class="signature">
-        
-        def <strong>copy_with</strong>(tl _tl = @tl, tr _tr = @tr, bl _bl = @bl, br _br = @br, t _t = @t, l _l = @l, b _b = @b, r _r = @r)
-
-        <a class="method-permalink" href="#copy_with%28tl_tl%3D%40tl%2Ctr_tr%3D%40tr%2Cbl_bl%3D%40bl%2Cbr_br%3D%40br%2Ct_t%3D%40t%2Cl_l%3D%40l%2Cb_b%3D%40b%2Cr_r%3D%40r%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/unicode_plot/blob/1c98e7c781403a756a1fa4b5b2d8cce23d349ee0/src/unicode_plot/common.cr#L30" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="l:Char-instance-method">
-      <div class="signature">
-        
-        def <strong>l</strong> : Char
-
-        <a class="method-permalink" href="#l%3AChar-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="r:Char-instance-method">
-      <div class="signature">
-        
-        def <strong>r</strong> : Char
-
-        <a class="method-permalink" href="#r%3AChar-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="t:Char-instance-method">
-      <div class="signature">
-        
-        def <strong>t</strong> : Char
-
-        <a class="method-permalink" href="#t%3AChar-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="tl:Char-instance-method">
-      <div class="signature">
-        
-        def <strong>tl</strong> : Char
-
-        <a class="method-permalink" href="#tl%3AChar-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="tr:Char-instance-method">
-      <div class="signature">
-        
-        def <strong>tr</strong> : Char
-
-        <a class="method-permalink" href="#tr%3AChar-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
+          [<a href="https://github.com/kojix2/unicode_plot/blob/1c98e7c781403a756a1fa4b5b2d8cce23d349ee0/src/unicode_plot/common.cr#L3" target="_blank">View source</a>]
         
       </div>
     </div>
