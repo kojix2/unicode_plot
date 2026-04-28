@@ -170,21 +170,21 @@ module UnicodePlot
   end
 
   # vline! and hline! helpers
+  private def linspace(a : Float64, b : Float64, n : Int32) : Array(Float64)
+    return [] of Float64 if n <= 0
+    return [a] if n == 1
+    (0...n).map { |i| a + (b - a) * i.to_f64 / (n - 1).to_f64 }
+  end
+
   def vline!(plot : Plot, x : Float64, y : Array(Float64)? = nil, **kwargs) : Plot
     can = plot.canvas
-    ys = y || begin
-      o = can.origin_y
-      (0..can.nrows).map { |i| o + (i.to_f / can.nrows) * can.height }
-    end
+    ys = y || linspace(can.origin_y, can.origin_y + can.height, can.nrows)
     lineplot!(plot, Array.new(ys.size, x), ys, **kwargs)
   end
 
   def hline!(plot : Plot, y : Float64, x : Array(Float64)? = nil, **kwargs) : Plot
     can = plot.canvas
-    xs = x || begin
-      o = can.origin_x
-      (0..can.ncols).map { |i| o + (i.to_f / can.ncols) * can.width }
-    end
+    xs = x || linspace(can.origin_x, can.origin_x + can.width, can.ncols)
     lineplot!(plot, xs, Array.new(xs.size, y), **kwargs)
   end
 
