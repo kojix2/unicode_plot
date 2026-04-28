@@ -64,9 +64,9 @@ def known_dates2_braille_jitter?(expected : String, actual : String) : Bool
 
     allowed =
       (exp_char == '⠦' && act_char == '⢦') ||
-      (exp_char == '⡤' && act_char == '⢤') ||
-      (exp_char == '⠘' && act_char == '⠈') ||
-      (exp_char == '⠵' && act_char == '⢵')
+        (exp_char == '⡤' && act_char == '⢤') ||
+        (exp_char == '⠘' && act_char == '⠈') ||
+        (exp_char == '⠵' && act_char == '⢵')
     return false unless allowed
     diffs += 1
   end
