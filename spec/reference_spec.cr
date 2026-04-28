@@ -316,7 +316,7 @@ describe "Julia reference output compatibility" do
 
     it "matches lineplot/units_pos_vel" do
       t = (0..100).map(&.to_f64)
-      pos = t.map { |tv| 0.5 * tv * tv }
+      pos = t.map { |val| 0.5 * val * val }
       vel = t
       p = UnicodePlot.lineplot(pos, vel, xlabel: "position (m)", ylabel: "speed (m s⁻¹)")
       UnicodePlot.lineplot!(p, [pos.min, pos.max], [vel.max, vel.max], color: :red)

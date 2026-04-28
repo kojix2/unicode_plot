@@ -33,6 +33,8 @@ module UnicodePlot
     unicode_exponent : Bool = true,
     thousands_separator : Char = ' ',
   ) : Plot
+    raise ArgumentError.new("x and y must have the same length") unless x.size == y.size
+    raise ArgumentError.new("style must be :post or :pre") unless style == :post || style == :pre
     plot = build_plot(
       x, y,
       canvas_type: canvas,
@@ -73,6 +75,7 @@ module UnicodePlot
     style : Symbol = :post,
   ) : Plot
     raise ArgumentError.new("x and y must have the same length") unless x.size == y.size
+    raise ArgumentError.new("style must be :post or :pre") unless style == :post || style == :pre
 
     c = color == :auto ? plot.next_color! : color
     col = plot_color(c)
