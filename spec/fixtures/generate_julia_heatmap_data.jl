@@ -21,29 +21,36 @@ end
 function main()
     rng = StableRNG(1_337)
 
-    seed!(rng, 1_337)
-    x60 = randn(rng, 60, 60)
+    dims = [
+        (60, 60),
+        (10, 10),
+        (10, 11),
+        (1, 1),
+        (1, 2),
+        (2, 1),
+        (10, 15),
+        (15, 10),
+        (20, 200),
+        (200, 20),
+    ]
 
-    seed!(rng, 1_337)
-    x10 = randn(rng, 10, 10)
-
-    seed!(rng, 1_337)
-    x11 = randn(rng, 10, 11)
+    mats = Dict{String, Matrix{Float64}}()
+    for (m, n) in dims
+        seed!(rng, 1_337)
+        mats["$(m)x$(n)"] = randn(rng, m, n)
+    end
 
     out_path = joinpath(@__DIR__, "julia_heatmap_data.json")
     open(out_path, "w") do io
         println(io, "{")
         println(io, "  \"generated_by\": \"spec/fixtures/generate_julia_heatmap_data.jl\",")
         println(io, "  \"seed\": 1337,")
-        print(io, "  \"60x60\": ")
-        write_matrix_json(io, x60)
-        println(io, ",")
-        print(io, "  \"10x10\": ")
-        write_matrix_json(io, x10)
-        println(io, ",")
-        print(io, "  \"10x11\": ")
-        write_matrix_json(io, x11)
-        println(io)
+        for (idx, (m, n)) in enumerate(dims)
+            key = "$(m)x$(n)"
+            print(io, "  \"$(key)\": ")
+            write_matrix_json(io, mats[key])
+            idx < length(dims) ? println(io, ",") : println(io)
+        end
         println(io, "}")
     end
 

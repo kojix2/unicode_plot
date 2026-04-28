@@ -749,6 +749,55 @@ describe "Julia reference output compatibility" do
       test_ref("heatmap/zeros_20x20.txt", p)
     end
 
+    # sizing defaults from Julia tst_heatmap.jl (labels=false)
+    it "matches heatmap/default_1x1" do
+      z = heatmap_fixture_matrix("1x1")
+      p = UnicodePlot.heatmap(z, labels: false)
+      test_ref("heatmap/default_1x1.txt", p)
+    end
+
+    it "matches heatmap/default_1x2" do
+      z = heatmap_fixture_matrix("1x2")
+      p = UnicodePlot.heatmap(z, labels: false)
+      test_ref("heatmap/default_1x2.txt", p)
+    end
+
+    it "matches heatmap/default_2x1" do
+      z = heatmap_fixture_matrix("2x1")
+      p = UnicodePlot.heatmap(z, labels: false)
+      test_ref("heatmap/default_2x1.txt", p)
+    end
+
+    it "matches heatmap/default_10x10" do
+      z = heatmap_fixture_matrix("10x10")
+      p = UnicodePlot.heatmap(z, labels: false)
+      test_ref("heatmap/default_10x10.txt", p)
+    end
+
+    it "matches heatmap/default_10x15" do
+      z = heatmap_fixture_matrix("10x15")
+      p = UnicodePlot.heatmap(z, labels: false)
+      test_ref("heatmap/default_10x15.txt", p)
+    end
+
+    it "matches heatmap/default_15x10" do
+      z = heatmap_fixture_matrix("15x10")
+      p = UnicodePlot.heatmap(z, labels: false)
+      test_ref("heatmap/default_15x10.txt", p)
+    end
+
+    it "matches heatmap/default_20x200" do
+      z = heatmap_fixture_matrix("20x200")
+      p = UnicodePlot.heatmap(z, labels: false)
+      test_ref("heatmap/default_20x200.txt", p)
+    end
+
+    it "matches heatmap/default_200x20" do
+      z = heatmap_fixture_matrix("200x20")
+      p = UnicodePlot.heatmap(z, labels: false)
+      test_ref("heatmap/default_200x20.txt", p)
+    end
+
     # fix_aspect_ratio_30x30: outer product 1:30 × 1:30, fix_ar=true
     it "matches heatmap/fix_aspect_ratio_30x30" do
       z = Array.new(30) { |i| Array.new(30) { |j| (i + 1).to_f * (j + 1).to_f } }
