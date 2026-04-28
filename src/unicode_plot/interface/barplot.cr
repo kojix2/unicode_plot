@@ -47,7 +47,7 @@ module UnicodePlot
       formatter: fmt, xscale: xscale
     )
 
-    xlab = transform_name(xscale, xlabel)
+    xlab = xlabel.empty? ? transform_name(xscale, xlabel) : xlabel
     plot = Plot.new(area,
       border: border, title: title, xlabel: xlab,
       margin: margin, padding: padding,

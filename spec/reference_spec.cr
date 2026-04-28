@@ -592,6 +592,64 @@ describe "Julia reference output compatibility" do
       p = UnicodePlot.barplot(["B", "A"], [2.0, 1.0], color: 9_i32)
       test_ref("barplot/col1.txt", p)
     end
+
+    it "matches barplot/log10" do
+      p = UnicodePlot.barplot(
+        ["a", "b", "c", "d", "e"],
+        [0.0, 1.0, 10.0, 100.0, 1_000.0],
+        title: "Logscale Plot",
+        xscale: :log10,
+      )
+      test_ref("barplot/log10.txt", p)
+    end
+
+    it "matches barplot/log10_label" do
+      p = UnicodePlot.barplot(
+        ["a", "b", "c", "d", "e"],
+        [0.0, 1.0, 10.0, 100.0, 1_000.0],
+        title: "Logscale Plot",
+        xlabel: "custom label",
+        xscale: :log10,
+      )
+      test_ref("barplot/log10_label.txt", p)
+    end
+
+    it "matches barplot/col2 (RGB tuple color)" do
+      p = UnicodePlot.barplot(["B", "A"], [2.0, 1.0], color: {200, 50, 0})
+      test_ref("barplot/col2.txt", p)
+    end
+
+    it "matches barplot/colors (per-bar color vector)" do
+      p = UnicodePlot.barplot(
+        ["a", "b", "c", "d", "e"],
+        [20.0, 30.0, 60.0, 50.0, 40.0],
+        color: [:red, :green, :blue, :yellow, :normal],
+      )
+      test_ref("barplot/colors.txt", p)
+    end
+
+    it "matches barplot/maximum_series1" do
+      p = UnicodePlot.barplot(
+        ["1", "2", "3"],
+        [1.0, 2.0, 3.0],
+        color: :blue,
+        name: "1ˢᵗ series",
+        maximum: 10.0,
+      )
+      test_ref("barplot/maximum_series1.txt", p)
+    end
+
+    it "matches barplot/maximum_series2" do
+      p = UnicodePlot.barplot(
+        ["1", "2", "3"],
+        [1.0, 2.0, 3.0],
+        color: :blue,
+        name: "1ˢᵗ series",
+        maximum: 10.0,
+      )
+      UnicodePlot.barplot!(p, ["4", "5", "6"], [6.0, 1.0, 10.0], color: :red, name: "2ⁿᵈ series")
+      test_ref("barplot/maximum_series2.txt", p)
+    end
   end
 
   describe "histogram" do
