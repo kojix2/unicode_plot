@@ -57,8 +57,8 @@ def spy_fixture_matrix(key : String) : Array(Array(Float64))
   cols_a = entry["cols"].as_a.map(&.as_i)
   vals_a = entry["vals"].as_a.map(&.as_f)
   matrix = Array.new(nrows) { Array.new(ncols, 0.0) }
-  rows_a.each_with_index do |r, idx|
-    matrix[r - 1][cols_a[idx] - 1] = vals_a[idx]
+  rows_a.each_with_index do |row, idx|
+    matrix[row - 1][cols_a[idx] - 1] = vals_a[idx]
   end
   matrix
 end
@@ -870,6 +870,12 @@ describe "Julia reference output compatibility" do
       z = Array.new(5) { [] of Float64 }
       p = UnicodePlot.heatmap(z, labels: false)
       test_ref("heatmap/default_5x0.txt", p)
+    end
+
+    it "matches heatmap/default_10x0" do
+      z = Array.new(10) { [] of Float64 }
+      p = UnicodePlot.heatmap(z, labels: false)
+      test_ref("heatmap/default_10x0.txt", p)
     end
 
     # integers_20x20: repeat(collect(1:20), outer=(1,20)) → A[i,j] = i
