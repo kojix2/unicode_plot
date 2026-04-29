@@ -24,8 +24,11 @@ Implemented plot interfaces:
 - `spy`
 - `polarplot`, `polarplot!`
 - `stairs`, `stairs!`
+- `contourplot`, `contourplot!` (experimental)
 
 See [examples/](examples/) for runnable scripts.
+
+- Contour example: [examples/contourplot.cr](examples/contourplot.cr)
 
 ## Installation
 

@@ -1,0 +1,8 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "/^cd /home/kojix2/Crystal/unicode_plot && python - <<'PY'\nimport json\nfrom pathlib import Path\nj=json\\.loads\\(Path\\('/tmp/julia_padding_contours\\.json'\\)\\.read_text\\(\\)\\)\nc=json\\.loads\\(Path\\('/tmp/crystal_padding_contours\\.json'\\)\\.read_text\\(\\)\\)\n\ndef closed\\(ln,eps=1e-9\\):\n    return abs\\(ln\\[0\\]\\[0\\]-ln\\[-1\\]\\[0\\]\\)<=eps and abs\\(ln\\[0\\]\\[1\\]-ln\\[-1\\]\\[1\\]\\)<=eps\nfor i,\\(jl,cl\\) in enumerate\\(zip\\(j,c\\),start=1\\):\n    jln=jl\\['lines'\\]\\[0\\] if jl\\['lines'\\] else \\[\\]\n    cln=cl\\['lines'\\]\\[0\\] if cl\\['lines'\\] else \\[\\]\n    if not jln or not cln:\n        print\\(i,'empty'\\)\n        continue\n    print\\(i,'len',len\\(jln\\),len\\(cln\\),'closed',closed\\(jln\\),closed\\(cln\\),'jfirst',jln\\[0\\],'jlast',jln\\[-1\\],'cfirst',cln\\[0\\],'clast',cln\\[-1\\]\\)\nPY$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}
