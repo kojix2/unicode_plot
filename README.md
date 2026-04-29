@@ -34,7 +34,7 @@ Add to your `shard.yml`:
 ```yaml
 dependencies:
   unicode_plot:
-    github: kojix2/unicode_plot
+    github: kojix2/unicode_plot.cr
 ```
 
 Then run `shards install`.
