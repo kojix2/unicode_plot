@@ -134,7 +134,6 @@ z : Array(Array(Float64)),
               fix_ar : Bool = false,
               out_stream : IO? = nil,) : Plot
     matrix = MatrixView.new(z)
-    raise ArgumentError.new("z must not be empty") if matrix.empty?
 
     data_nrows = matrix.nrows
     data_ncols = matrix.ncols
@@ -145,12 +144,12 @@ z : Array(Array(Float64)),
 
     # autolims: {0,0} means auto → use full data range.
     eff_ylim = if ylim == {0.0, 0.0}
-                 y_arr.empty? ? {0.0, 1.0} : {y_arr.min, y_arr.max}
+                 y_arr.empty? ? {0.0, 0.0} : {y_arr.min, y_arr.max}
                else
                  {ylim[0].to_f, ylim[1].to_f}
                end
     eff_xlim = if xlim == {0.0, 0.0}
-                 x_arr.empty? ? {0.0, 1.0} : {x_arr.min, x_arr.max}
+                 x_arr.empty? ? {0.0, 0.0} : {x_arr.min, x_arr.max}
                else
                  {xlim[0].to_f, xlim[1].to_f}
                end

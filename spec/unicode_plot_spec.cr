@@ -470,10 +470,9 @@ describe UnicodePlot do
       p.xlabel.should contain("⩵ 0")
     end
 
-    it "rejects empty matrices" do
-      expect_raises(ArgumentError, /must not be empty/) do
-        UnicodePlot.spy([] of Array(Float64))
-      end
+    it "accepts empty matrices" do
+      p = UnicodePlot.spy([] of Array(Float64))
+      p.should be_a(UnicodePlot::Plot)
     end
   end
 

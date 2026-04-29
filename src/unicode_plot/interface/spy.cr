@@ -31,6 +31,8 @@ module UnicodePlot
     fix_ar : Bool,
     out_stream : IO? = nil,
   ) : {Int32, Int32}
+    return {0, 0} if nrows == 0 && ncols == 0
+
     yppc, xppc = spy_canvas_pixel_per_char(canvas)
     canv_height = nrows.to_f64 / yppc
     canv_width = ncols.to_f64 / xppc
@@ -82,6 +84,7 @@ module UnicodePlot
 
     {final_h.clamp(1, Int32::MAX), final_w.clamp(1, Int32::MAX)}
   end
+
   # ameba:enable Metrics/CyclomaticComplexity
 
   def spy(
@@ -111,7 +114,6 @@ module UnicodePlot
     thousands_separator : Char = ' ',
   ) : Plot
     matrix = MatrixView.new(a)
-    raise ArgumentError.new("a must not be empty") if matrix.empty?
 
     nrows = matrix.nrows
     ncols = matrix.ncols
@@ -162,8 +164,9 @@ module UnicodePlot
       grid: false,
       # Julia's spy passes canvas_kw: (height: 1 + nrow, width: 1 + ncol).
       # build_plot has no canvas_kw, so use widened limits to match the same mapping scale.
-      xlim: {1.0, ncols.to_f64 + 2.0},
-      ylim: {1.0, nrows.to_f64 + 2.0},
+      # For 0x0 matrices, Julia uses xlim=[1,0]/ylim=[1,0] (inverted); Crystal maps this to {0.0,1.0}.
+      xlim: ncols == 0 ? {0.0, 1.0} : {1.0, ncols.to_f64 + 2.0},
+      ylim: nrows == 0 ? {0.0, 1.0} : {1.0, nrows.to_f64 + 2.0},
       xflip: xflip,
       yflip: yflip,
       unicode_exponent: unicode_exponent,
@@ -191,12 +194,26 @@ module UnicodePlot
       plot.xlabel = "#{plot.nice_repr(vals.size)} #{show_zeros ? "⩵ 0" : "≠ 0"}"
     end
 
-    # Keep displayed axis endpoints identical to Julia's spy (1..ncol, 1..nrow).
+    # Keep displayed axis endpoints identical to Julia's spy.
     bc = ansi_color(border_color)
-    plot.label!(:bl, xflip ? nice_repr(ncols, unicode_exponent, thousands_separator) : "1", bc)
-    plot.label!(:br, xflip ? "1" : nice_repr(ncols, unicode_exponent, thousands_separator), bc)
-    plot.label!(:l, plot.canvas.nrows, yflip ? nice_repr(nrows, unicode_exponent, thousands_separator) : "1", bc)
-    plot.label!(:l, 1, yflip ? "1" : nice_repr(nrows, unicode_exponent, thousands_separator), bc)
+    x_left, x_right = matrix_horizontal_axis_labels(
+      ncols,
+      flip: xflip,
+      unicode_exponent: unicode_exponent,
+      thousands_separator: thousands_separator,
+      zero_fallback_range: true,
+    )
+    y_top, y_bottom = matrix_vertical_axis_labels(
+      nrows,
+      flip: yflip,
+      unicode_exponent: unicode_exponent,
+      thousands_separator: thousands_separator,
+      zero_fallback_range: true,
+    )
+    plot.label!(:bl, x_left, bc)
+    plot.label!(:br, x_right, bc)
+    plot.label!(:l, plot.canvas.nrows, y_top, bc)
+    plot.label!(:l, 1, y_bottom, bc)
 
     plot
   end

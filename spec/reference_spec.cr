@@ -860,6 +860,18 @@ describe "Julia reference output compatibility" do
   end
 
   describe "heatmap" do
+    it "matches heatmap/default_0x0" do
+      z = Array(Array(Float64)).new(0) { Array(Float64).new(0, 0.0) }
+      p = UnicodePlot.heatmap(z, labels: false)
+      test_ref("heatmap/default_0x0.txt", p)
+    end
+
+    it "matches heatmap/default_5x0" do
+      z = Array.new(5) { [] of Float64 }
+      p = UnicodePlot.heatmap(z, labels: false)
+      test_ref("heatmap/default_5x0.txt", p)
+    end
+
     # integers_20x20: repeat(collect(1:20), outer=(1,20)) → A[i,j] = i
     it "matches heatmap/integers_20x20" do
       z = Array.new(20) { |i| Array.new(20) { |_j| (i + 1).to_f } }
@@ -1140,6 +1152,12 @@ describe "Julia reference output compatibility" do
     end
 
     describe "sizing" do
+      it "matches spy/default_0x0" do
+        a = Array(Array(Float64)).new(0) { Array(Float64).new(0, 0.0) }
+        p = UnicodePlot.spy(a)
+        test_ref("spy/default_0x0.txt", p)
+      end
+
       it "matches spy/default_10x10" do
         p = UnicodePlot.spy(spy_fixture_matrix("10x10"))
         test_ref("spy/default_10x10.txt", p)

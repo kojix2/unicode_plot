@@ -47,6 +47,48 @@ module UnicodePlot
     end
   end
 
+  # Returns {low_label, high_label} for matrix index coordinates.
+  # Standard matrix indexing is 1..n; for 0-sized axes in Julia compatibility mode
+  # we use 0..1 to reflect the plotted fallback range.
+  def matrix_index_range_labels(
+    size : Int32,
+    unicode_exponent : Bool = true,
+    thousands_separator : Char = ' ',
+    zero_fallback_range : Bool = true,
+  ) : {String, String}
+    if size == 0
+      zero_fallback_range ? {"0", "1"} : {"1", "0"}
+    else
+      {"1", nice_repr(size, unicode_exponent, thousands_separator)}
+    end
+  end
+
+  # Returns {left_label, right_label} for horizontal axis labels.
+  def matrix_horizontal_axis_labels(
+    size : Int32,
+    *,
+    flip : Bool,
+    unicode_exponent : Bool = true,
+    thousands_separator : Char = ' ',
+    zero_fallback_range : Bool = true,
+  ) : {String, String}
+    lo, hi = matrix_index_range_labels(size, unicode_exponent, thousands_separator, zero_fallback_range)
+    flip ? {hi, lo} : {lo, hi}
+  end
+
+  # Returns {top_label, bottom_label} for vertical axis labels.
+  def matrix_vertical_axis_labels(
+    size : Int32,
+    *,
+    flip : Bool,
+    unicode_exponent : Bool = true,
+    thousands_separator : Char = ' ',
+    zero_fallback_range : Bool = true,
+  ) : {String, String}
+    lo, hi = matrix_index_range_labels(size, unicode_exponent, thousands_separator, zero_fallback_range)
+    flip ? {hi, lo} : {lo, hi}
+  end
+
   def matrix_extrema_finite(matrix : MatrixView(T)) : {Float64, Float64}? forall T
     {% unless T <= Number %}
       {% raise "matrix_extrema_finite requires numeric matrix elements" %}
