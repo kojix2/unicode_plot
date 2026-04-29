@@ -3,11 +3,29 @@
 [![Test](https://github.com/kojix2/unicode_plot/actions/workflows/test.yml/badge.svg)](https://github.com/kojix2/unicode_plot/actions/workflows/test.yml)
 [![Lines of Code](https://img.shields.io/endpoint?url=https%3A%2F%2Ftokei.kojix2.net%2Fbadge%2Fgithub%2Fkojix2%2Funicode_plot%2Flines)](https://tokei.kojix2.net/github/kojix2/unicode_plot)
 
-Unicode terminal plots for Crystal — a port of Julia's [UnicodePlots.jl](https://github.com/JuliaPlots/UnicodePlots.jl).
+Unicode terminal plots for Crystal, ported from Julia's [UnicodePlots.jl](https://github.com/JuliaPlots/UnicodePlots.jl).
 
-The code was ported from Julia using an AI tool
+🚧 **UNDER CONSTRUCTION** 🚧
 
-🚧 **UNDER CONSTRUCTION** 🚧 Until the first version is released, this repository will be updated by force push.
+- Before the first release, history may be rewritten (force-push).
+- API and behavior are still being aligned with UnicodePlots.jl.
+
+## Current coverage
+
+Implemented plot interfaces:
+
+- `lineplot`, `lineplot!`
+- `scatterplot`, `scatterplot!`
+- `barplot`
+- `histogram`
+- `boxplot`
+- `densityplot`, `densityplot!`
+- `heatmap`
+- `spy`
+- `polarplot`, `polarplot!`
+- `stairs`, `stairs!`
+
+See [examples/](examples/) for runnable scripts.
 
 ## Installation
 
@@ -21,7 +39,7 @@ dependencies:
 
 Then run `shards install`.
 
-## Usage
+## Quick start
 
 ```crystal
 require "unicode_plot"
@@ -50,6 +68,14 @@ scatterplot!(p, x2, y2, name: "cluster B", color: :red)
 puts p
 ```
 
+### Polar plot
+
+```crystal
+theta = (0...40).map { |i| 4.0 * Math::PI * i.to_f64 / 39.0 }
+r = theta.map { |angle| angle / (2.0 * Math::PI) }
+puts polarplot(theta, r, title: "Polar line", color: :green)
+```
+
 ### Bar plot
 
 ```crystal
@@ -71,9 +97,9 @@ data = (1..500).map { Random.rand * 10.0 }
 puts histogram(data, title: "Uniform [0, 10)", nbins: 15)
 ```
 
-### Multiple series / incremental plots
+### Add series incrementally (`!` variants)
 
-All plot types support a mutating `!` variant for adding series to an existing plot:
+Most series-based plot types support a mutating `!` variant:
 
 ```crystal
 x = (1..20).map(&.to_f)
@@ -95,7 +121,21 @@ puts p
 | `width` / `height`  | Canvas size in characters                                                               |
 | `canvas`            | Canvas type (`:braille`, `:block`, `:ascii`)                                            |
 
-See `examples/` for runnable demos.
+## Practical notes
+
+- This project prioritizes Julia compatibility in visible output.
+- Some interfaces may still differ while ports are in progress.
+- `spec/reference_spec.cr` compares output against Julia reference assets.
+
+## Development
+
+Run specs from repository root:
+
+```bash
+crystal spec
+```
+
+Reference fixtures are stored under [spec/fixtures/](spec/fixtures/).
 
 ## License
 
