@@ -190,9 +190,31 @@
 </a>unicode_plot.cr</h1>
 <p><a href="https://github.com/kojix2/unicode_plot/actions/workflows/test.yml"><img src="https://github.com/kojix2/unicode_plot/actions/workflows/test.yml/badge.svg" alt="Test" /></a>
 <a href="https://tokei.kojix2.net/github/kojix2/unicode_plot"><img src="https://img.shields.io/endpoint?url=https://tokei.kojix2.net/badge/github/kojix2/unicode_plot/lines" alt="Lines of Code" /></a></p>
-<p>Unicode terminal plots for Crystal — a port of Julia's <a href="https://github.com/JuliaPlots/UnicodePlots.jl">UnicodePlots.jl</a>.</p>
-<p>The code was ported from Julia using an AI tool</p>
-<p>🚧 <strong>UNDER CONSTRUCTION</strong> 🚧 Until the first version is released, this repository will be updated by force push.</p>
+<p>Unicode terminal plots for Crystal, ported from Julia's <a href="https://github.com/JuliaPlots/UnicodePlots.jl">UnicodePlots.jl</a>.</p>
+<p>🚧 <strong>UNDER CONSTRUCTION</strong> 🚧</p>
+<ul>
+<li>Before the first release, history may be rewritten (force-push).</li>
+<li>API and behavior are still being aligned with UnicodePlots.jl.</li>
+</ul>
+<h2><a id="current-coverage" class="anchor" href="#current-coverage">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Current coverage</h2>
+<p>Implemented plot interfaces:</p>
+<ul>
+<li><code>lineplot</code>, <code>lineplot!</code></li>
+<li><code>scatterplot</code>, <code>scatterplot!</code></li>
+<li><code>barplot</code></li>
+<li><code>histogram</code></li>
+<li><code>boxplot</code></li>
+<li><code>densityplot</code>, <code>densityplot!</code></li>
+<li><code>heatmap</code></li>
+<li><code>spy</code></li>
+<li><code>polarplot</code>, <code>polarplot!</code></li>
+<li><code>stairs</code>, <code>stairs!</code></li>
+</ul>
+<p>See <a href="examples/">examples/</a> for runnable scripts.</p>
 <h2><a id="installation" class="anchor" href="#installation">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
@@ -203,11 +225,11 @@
   unicode_plot:
     github: kojix2/unicode_plot</code></pre>
 <p>Then run <code>shards install</code>.</p>
-<h2><a id="usage" class="anchor" href="#usage">
+<h2><a id="quick-start" class="anchor" href="#quick-start">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>Usage</h2>
+</a>Quick start</h2>
 <pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;unicode_plot&quot;</span>
 <span class="k">include</span> <span class="t">UnicodePlot</span></code></pre>
 <h3><a id="line-plot" class="anchor" href="#line-plot">
@@ -232,6 +254,14 @@ p <span class="o">=</span> scatterplot(x1, y1, name: <span class="s">&quot;clust
   title: <span class="s">&quot;Two clusters&quot;</span>, xlim: {<span class="n">0.0</span>, <span class="n">11.0</span>}, ylim: {<span class="n">0.0</span>, <span class="n">11.0</span>})
 scatterplot!(p, x2, y2, name: <span class="s">&quot;cluster B&quot;</span>, color: <span class="n">:red</span>)
 puts p</code></pre>
+<h3><a id="polar-plot" class="anchor" href="#polar-plot">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Polar plot</h3>
+<pre><code class="language-crystal">theta <span class="o">=</span> (<span class="n">0</span>...<span class="n">40</span>).map { <span class="o">|</span>i<span class="o">|</span> <span class="n">4.0</span> <span class="o">*</span> <span class="t">Math</span><span class="t">::</span><span class="t">PI</span> <span class="o">*</span> i.to_f64 <span class="o">/</span> <span class="n">39.0</span> }
+r <span class="o">=</span> theta.map { <span class="o">|</span>angle<span class="o">|</span> angle <span class="o">/</span> (<span class="n">2.0</span> <span class="o">*</span> <span class="t">Math</span><span class="t">::</span><span class="t">PI</span>) }
+puts polarplot(theta, r, title: <span class="s">&quot;Polar line&quot;</span>, color: <span class="n">:green</span>)</code></pre>
 <h3><a id="bar-plot" class="anchor" href="#bar-plot">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
@@ -249,12 +279,12 @@ puts barplot(cities, popmill, title: <span class="s">&quot;City populations&quot
 </a>Histogram</h3>
 <pre><code class="language-crystal">data <span class="o">=</span> (<span class="n">1</span>..<span class="n">500</span>).map { <span class="t">Random</span>.rand <span class="o">*</span> <span class="n">10.0</span> }
 puts histogram(data, title: <span class="s">&quot;Uniform [0, 10)&quot;</span>, nbins: <span class="n">15</span>)</code></pre>
-<h3><a id="multiple-series-incremental-plots" class="anchor" href="#multiple-series-incremental-plots">
+<h3><a id="add-series-incrementally-variants" class="anchor" href="#add-series-incrementally-variants">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>Multiple series / incremental plots</h3>
-<p>All plot types support a mutating <code>!</code> variant for adding series to an existing plot:</p>
+</a>Add series incrementally (<code>!</code> variants)</h3>
+<p>Most series-based plot types support a mutating <code>!</code> variant:</p>
 <pre><code class="language-crystal">x <span class="o">=</span> (<span class="n">1</span>..<span class="n">20</span>).map(<span class="o">&amp;</span>.to_f)
 p <span class="o">=</span> lineplot(x, x.map { <span class="o">|</span>v<span class="o">|</span> <span class="t">Math</span>.sqrt(v) }, name: <span class="s">&quot;√x&quot;</span>, color: <span class="n">:green</span>, title: <span class="s">&quot;Functions&quot;</span>)
 lineplot!(p, x, x.map { <span class="o">|</span>v<span class="o">|</span> <span class="t">Math</span>.log(v) }, name: <span class="s">&quot;ln(x)&quot;</span>, color: <span class="n">:red</span>)
@@ -274,7 +304,24 @@ puts p</code></pre>
 | <code>xscale</code> / <code>yscale</code> | Scale function (<code>:log2</code>, <code>:log10</code>, or a <code>Proc(Float64, Float64)</code>)                       |
 | <code>width</code> / <code>height</code>  | Canvas size in characters                                                               |
 | <code>canvas</code>            | Canvas type (<code>:braille</code>, <code>:block</code>, <code>:ascii</code>)                                            |</p>
-<p>See <code>examples/</code> for runnable demos.</p>
+<h2><a id="practical-notes" class="anchor" href="#practical-notes">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Practical notes</h2>
+<ul>
+<li>This project prioritizes Julia compatibility in visible output.</li>
+<li>Some interfaces may still differ while ports are in progress.</li>
+<li><code>spec/reference_spec.cr</code> compares output against Julia reference assets.</li>
+</ul>
+<h2><a id="development" class="anchor" href="#development">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Development</h2>
+<p>Run specs from repository root:</p>
+<pre><code class="language-bash">crystal spec</code></pre>
+<p>Reference fixtures are stored under <a href="spec/fixtures/">spec/fixtures/</a>.</p>
 <h2><a id="license" class="anchor" href="#license">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
