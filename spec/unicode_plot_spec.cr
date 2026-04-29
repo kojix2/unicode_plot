@@ -452,6 +452,31 @@ describe UnicodePlot do
     end
   end
 
+  describe "spy" do
+    it "returns a Plot" do
+      p = UnicodePlot.spy([[1.0, 0.0], [0.0, -2.0]])
+      p.should be_a(UnicodePlot::Plot)
+    end
+
+    it "uses auto color legend for positive and negative values" do
+      p = UnicodePlot.spy([[1.0, 0.0], [0.0, -2.0]])
+      p.labels_right[1]?.should eq("> 0")
+      p.labels_right[2]?.should eq("< 0")
+    end
+
+    it "shows zeros pattern when show_zeros is true" do
+      p = UnicodePlot.spy([[1.0, 0.0], [0.0, -2.0]], show_zeros: true)
+      p.labels_right[1]?.should eq("⩵ 0")
+      p.xlabel.should contain("⩵ 0")
+    end
+
+    it "rejects empty matrices" do
+      expect_raises(ArgumentError, /must not be empty/) do
+        UnicodePlot.spy([] of Array(Float64))
+      end
+    end
+  end
+
   describe "stairs" do
     it "raises on mismatched x/y lengths" do
       expect_raises(ArgumentError, /same length/) do
