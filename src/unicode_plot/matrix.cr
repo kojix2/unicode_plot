@@ -94,25 +94,22 @@ module UnicodePlot
       {% raise "matrix_extrema_finite requires numeric matrix elements" %}
     {% end %}
 
-    min_value = nil.as(Float64?)
-    max_value = nil.as(Float64?)
+    extrema = nil.as({Float64, Float64}?)
 
     matrix.each_cell do |_row, _col, value|
       v = value.to_f64
       next unless v.finite?
 
-      if min_value.nil?
-        min_value = v
-        max_value = v
-      else
-        current_min = min_value || v
-        current_max = max_value || v
-        min_value = v if v < current_min
-        max_value = v if v > current_max
-      end
+      extrema = if current = extrema
+                  {
+                    v < current[0] ? v : current[0],
+                    v > current[1] ? v : current[1],
+                  }
+                else
+                  {v, v}
+                end
     end
 
-    return if min_value.nil?
-    {min_value || 0.0, max_value || 0.0}
+    extrema
   end
 end
