@@ -142,6 +142,11 @@
       
     </li>
   
+  <li class=" " data-id="unicode_plot/UnicodePlot/MatrixView" data-name="unicodeplot::matrixview(t)">
+      <a href="../UnicodePlot/MatrixView.html">MatrixView</a>
+      
+    </li>
+  
   <li class=" " data-id="unicode_plot/UnicodePlot/Plot" data-name="unicodeplot::plot">
       <a href="../UnicodePlot/Plot.html">Plot</a>
       
@@ -252,7 +257,7 @@ The grid is stored as a flat row-major array: index = row * ncols + col (0-based
   </h2>
   
     
-      <a href="https://github.com/kojix2/unicode_plot/blob/e98d4cd730521ca0d680127a84ad72a41becb9d6/src/unicode_plot/canvas.cr#L4" target="_blank">
+      <a href="https://github.com/kojix2/unicode_plot/blob/43903b8a0feabe04eec80f2921417a7863da6f2d/src/unicode_plot/canvas.cr#L4" target="_blank">
         unicode_plot/canvas.cr
       </a>
     
@@ -373,6 +378,13 @@ The grid is stored as a flat row-major array: index = row * ncols + col (0-based
       </li>
     
       <li class="entry-summary">
+        <a href="#lines%21%28xs%3AArray%28Float64%29%2Cys%3AArray%28Float64%29%2Csegment_colors%3AArray%28UInt32%29%2Cblend%3ABool%29%3Aself-instance-method" class="signature"><strong>#lines!</strong>(xs : Array(Float64), ys : Array(Float64), segment_colors : Array(UInt32), blend : Bool) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Vector line drawing (polyline) with per-segment colors</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
         <a href="#lines%21%28x1%3AFloat64%2Cy1%3AFloat64%2Cx2%3AFloat64%2Cy2%3AFloat64%2C%2A%2Ccolor%3ASymbol%3D%3Anormal%29%3Aself-instance-method" class="signature"><strong>#lines!</strong>(x1 : Float64, y1 : Float64, x2 : Float64, y2 : Float64, *, color : Symbol = <span class="n">:normal</span>) : <span class="k">self</span></a>
         
       </li>
@@ -430,6 +442,13 @@ The grid is stored as a flat row-major array: index = row * ncols + col (0-based
         <a href="#points%21%28xs%3AArray%28Float64%29%2Cys%3AArray%28Float64%29%2Ccolor%3AUInt32%2Cblend%3ABool%29%3Aself-instance-method" class="signature"><strong>#points!</strong>(xs : Array(Float64), ys : Array(Float64), color : UInt32, blend : Bool) : <span class="k">self</span></a>
         
           <div class="summary"><p>Plot a vector of points</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#points%21%28xs%3AArray%28Float64%29%2Cys%3AArray%28Float64%29%2Ccolors%3AArray%28UInt32%29%2Cblend%3ABool%29%3Aself-instance-method" class="signature"><strong>#points!</strong>(xs : Array(Float64), ys : Array(Float64), colors : Array(UInt32), blend : Bool) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Plot a vector of points with per-point colors</p></div>
         
       </li>
     
@@ -641,7 +660,7 @@ The grid is stored as a flat row-major array: index = row * ncols + col (0-based
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/e98d4cd730521ca0d680127a84ad72a41becb9d6/src/unicode_plot/canvas.cr#L28" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/43903b8a0feabe04eec80f2921417a7863da6f2d/src/unicode_plot/canvas.cr#L28" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -678,7 +697,7 @@ The grid is stored as a flat row-major array: index = row * ncols + col (0-based
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/e98d4cd730521ca0d680127a84ad72a41becb9d6/src/unicode_plot/canvas.cr#L250" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/43903b8a0feabe04eec80f2921417a7863da6f2d/src/unicode_plot/canvas.cr#L288" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -694,7 +713,7 @@ The grid is stored as a flat row-major array: index = row * ncols + col (0-based
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/e98d4cd730521ca0d680127a84ad72a41becb9d6/src/unicode_plot/canvas.cr#L259" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/43903b8a0feabe04eec80f2921417a7863da6f2d/src/unicode_plot/canvas.cr#L297" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -710,7 +729,7 @@ The grid is stored as a flat row-major array: index = row * ncols + col (0-based
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/e98d4cd730521ca0d680127a84ad72a41becb9d6/src/unicode_plot/canvas.cr#L23" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/43903b8a0feabe04eec80f2921417a7863da6f2d/src/unicode_plot/canvas.cr#L23" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -726,7 +745,7 @@ The grid is stored as a flat row-major array: index = row * ncols + col (0-based
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/e98d4cd730521ca0d680127a84ad72a41becb9d6/src/unicode_plot/canvas.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/43903b8a0feabe04eec80f2921417a7863da6f2d/src/unicode_plot/canvas.cr#L8" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -742,7 +761,7 @@ The grid is stored as a flat row-major array: index = row * ncols + col (0-based
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/e98d4cd730521ca0d680127a84ad72a41becb9d6/src/unicode_plot/canvas.cr#L285" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/43903b8a0feabe04eec80f2921417a7863da6f2d/src/unicode_plot/canvas.cr#L323" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -758,7 +777,7 @@ The grid is stored as a flat row-major array: index = row * ncols + col (0-based
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/e98d4cd730521ca0d680127a84ad72a41becb9d6/src/unicode_plot/canvas.cr#L58" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/43903b8a0feabe04eec80f2921417a7863da6f2d/src/unicode_plot/canvas.cr#L58" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -774,7 +793,7 @@ The grid is stored as a flat row-major array: index = row * ncols + col (0-based
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/e98d4cd730521ca0d680127a84ad72a41becb9d6/src/unicode_plot/canvas.cr#L62" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/43903b8a0feabe04eec80f2921417a7863da6f2d/src/unicode_plot/canvas.cr#L62" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -795,7 +814,7 @@ The grid is stored as a flat row-major array: index = row * ncols + col (0-based
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/e98d4cd730521ca0d680127a84ad72a41becb9d6/src/unicode_plot/canvas.cr#L50" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/43903b8a0feabe04eec80f2921417a7863da6f2d/src/unicode_plot/canvas.cr#L50" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -816,7 +835,7 @@ The grid is stored as a flat row-major array: index = row * ncols + col (0-based
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/e98d4cd730521ca0d680127a84ad72a41becb9d6/src/unicode_plot/canvas.cr#L301" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/43903b8a0feabe04eec80f2921417a7863da6f2d/src/unicode_plot/canvas.cr#L339" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -832,7 +851,7 @@ The grid is stored as a flat row-major array: index = row * ncols + col (0-based
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/e98d4cd730521ca0d680127a84ad72a41becb9d6/src/unicode_plot/canvas.cr#L54" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/43903b8a0feabe04eec80f2921417a7863da6f2d/src/unicode_plot/canvas.cr#L54" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -848,7 +867,7 @@ The grid is stored as a flat row-major array: index = row * ncols + col (0-based
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/e98d4cd730521ca0d680127a84ad72a41becb9d6/src/unicode_plot/canvas.cr#L15" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/43903b8a0feabe04eec80f2921417a7863da6f2d/src/unicode_plot/canvas.cr#L15" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -869,7 +888,7 @@ The grid is stored as a flat row-major array: index = row * ncols + col (0-based
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/e98d4cd730521ca0d680127a84ad72a41becb9d6/src/unicode_plot/canvas.cr#L194" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/43903b8a0feabe04eec80f2921417a7863da6f2d/src/unicode_plot/canvas.cr#L212" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -890,7 +909,28 @@ The grid is stored as a flat row-major array: index = row * ncols + col (0-based
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/e98d4cd730521ca0d680127a84ad72a41becb9d6/src/unicode_plot/canvas.cr#L239" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/43903b8a0feabe04eec80f2921417a7863da6f2d/src/unicode_plot/canvas.cr#L257" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="lines!(xs:Array(Float64),ys:Array(Float64),segment_colors:Array(UInt32),blend:Bool):self-instance-method">
+      <div class="signature">
+        
+        def <strong>lines!</strong>(xs : Array(Float64), ys : Array(Float64), segment_colors : Array(UInt32), blend : Bool) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#lines%21%28xs%3AArray%28Float64%29%2Cys%3AArray%28Float64%29%2Csegment_colors%3AArray%28UInt32%29%2Cblend%3ABool%29%3Aself-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Vector line drawing (polyline) with per-segment colors</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/43903b8a0feabe04eec80f2921417a7863da6f2d/src/unicode_plot/canvas.cr#L268" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -906,7 +946,7 @@ The grid is stored as a flat row-major array: index = row * ncols + col (0-based
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/e98d4cd730521ca0d680127a84ad72a41becb9d6/src/unicode_plot/canvas.cr#L233" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/43903b8a0feabe04eec80f2921417a7863da6f2d/src/unicode_plot/canvas.cr#L251" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -922,7 +962,7 @@ The grid is stored as a flat row-major array: index = row * ncols + col (0-based
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/e98d4cd730521ca0d680127a84ad72a41becb9d6/src/unicode_plot/canvas.cr#L6" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/43903b8a0feabe04eec80f2921417a7863da6f2d/src/unicode_plot/canvas.cr#L6" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -938,7 +978,7 @@ The grid is stored as a flat row-major array: index = row * ncols + col (0-based
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/e98d4cd730521ca0d680127a84ad72a41becb9d6/src/unicode_plot/canvas.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/43903b8a0feabe04eec80f2921417a7863da6f2d/src/unicode_plot/canvas.cr#L5" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -954,7 +994,7 @@ The grid is stored as a flat row-major array: index = row * ncols + col (0-based
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/e98d4cd730521ca0d680127a84ad72a41becb9d6/src/unicode_plot/canvas.cr#L14" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/43903b8a0feabe04eec80f2921417a7863da6f2d/src/unicode_plot/canvas.cr#L14" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -970,7 +1010,7 @@ The grid is stored as a flat row-major array: index = row * ncols + col (0-based
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/e98d4cd730521ca0d680127a84ad72a41becb9d6/src/unicode_plot/canvas.cr#L13" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/43903b8a0feabe04eec80f2921417a7863da6f2d/src/unicode_plot/canvas.cr#L13" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -986,7 +1026,7 @@ The grid is stored as a flat row-major array: index = row * ncols + col (0-based
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/e98d4cd730521ca0d680127a84ad72a41becb9d6/src/unicode_plot/canvas.cr#L26" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/43903b8a0feabe04eec80f2921417a7863da6f2d/src/unicode_plot/canvas.cr#L26" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1007,7 +1047,7 @@ The grid is stored as a flat row-major array: index = row * ncols + col (0-based
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/e98d4cd730521ca0d680127a84ad72a41becb9d6/src/unicode_plot/canvas.cr#L123" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/43903b8a0feabe04eec80f2921417a7863da6f2d/src/unicode_plot/canvas.cr#L123" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1023,7 +1063,7 @@ The grid is stored as a flat row-major array: index = row * ncols + col (0-based
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/e98d4cd730521ca0d680127a84ad72a41becb9d6/src/unicode_plot/canvas.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/43903b8a0feabe04eec80f2921417a7863da6f2d/src/unicode_plot/canvas.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1039,7 +1079,7 @@ The grid is stored as a flat row-major array: index = row * ncols + col (0-based
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/e98d4cd730521ca0d680127a84ad72a41becb9d6/src/unicode_plot/canvas.cr#L12" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/43903b8a0feabe04eec80f2921417a7863da6f2d/src/unicode_plot/canvas.cr#L12" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1060,7 +1100,7 @@ The grid is stored as a flat row-major array: index = row * ncols + col (0-based
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/e98d4cd730521ca0d680127a84ad72a41becb9d6/src/unicode_plot/canvas.cr#L167" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/43903b8a0feabe04eec80f2921417a7863da6f2d/src/unicode_plot/canvas.cr#L167" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1081,7 +1121,28 @@ The grid is stored as a flat row-major array: index = row * ncols + col (0-based
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/e98d4cd730521ca0d680127a84ad72a41becb9d6/src/unicode_plot/canvas.cr#L184" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/43903b8a0feabe04eec80f2921417a7863da6f2d/src/unicode_plot/canvas.cr#L184" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="points!(xs:Array(Float64),ys:Array(Float64),colors:Array(UInt32),blend:Bool):self-instance-method">
+      <div class="signature">
+        
+        def <strong>points!</strong>(xs : Array(Float64), ys : Array(Float64), colors : Array(UInt32), blend : Bool) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#points%21%28xs%3AArray%28Float64%29%2Cys%3AArray%28Float64%29%2Ccolors%3AArray%28UInt32%29%2Cblend%3ABool%29%3Aself-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Plot a vector of points with per-point colors</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot/blob/43903b8a0feabe04eec80f2921417a7863da6f2d/src/unicode_plot/canvas.cr#L194" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1097,7 +1158,7 @@ The grid is stored as a flat row-major array: index = row * ncols + col (0-based
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/e98d4cd730521ca0d680127a84ad72a41becb9d6/src/unicode_plot/canvas.cr#L178" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/43903b8a0feabe04eec80f2921417a7863da6f2d/src/unicode_plot/canvas.cr#L178" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1122,7 +1183,7 @@ The grid is stored as a flat row-major array: index = row * ncols + col (0-based
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/e98d4cd730521ca0d680127a84ad72a41becb9d6/src/unicode_plot/canvas.cr#L291" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/43903b8a0feabe04eec80f2921417a7863da6f2d/src/unicode_plot/canvas.cr#L329" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1138,7 +1199,7 @@ The grid is stored as a flat row-major array: index = row * ncols + col (0-based
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/e98d4cd730521ca0d680127a84ad72a41becb9d6/src/unicode_plot/canvas.cr#L87" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/43903b8a0feabe04eec80f2921417a7863da6f2d/src/unicode_plot/canvas.cr#L87" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1154,7 +1215,7 @@ The grid is stored as a flat row-major array: index = row * ncols + col (0-based
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/e98d4cd730521ca0d680127a84ad72a41becb9d6/src/unicode_plot/canvas.cr#L83" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/43903b8a0feabe04eec80f2921417a7863da6f2d/src/unicode_plot/canvas.cr#L83" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1175,7 +1236,7 @@ The grid is stored as a flat row-major array: index = row * ncols + col (0-based
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/e98d4cd730521ca0d680127a84ad72a41becb9d6/src/unicode_plot/canvas.cr#L112" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/43903b8a0feabe04eec80f2921417a7863da6f2d/src/unicode_plot/canvas.cr#L112" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1191,7 +1252,7 @@ The grid is stored as a flat row-major array: index = row * ncols + col (0-based
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/e98d4cd730521ca0d680127a84ad72a41becb9d6/src/unicode_plot/canvas.cr#L97" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/43903b8a0feabe04eec80f2921417a7863da6f2d/src/unicode_plot/canvas.cr#L97" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1207,7 +1268,7 @@ The grid is stored as a flat row-major array: index = row * ncols + col (0-based
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/e98d4cd730521ca0d680127a84ad72a41becb9d6/src/unicode_plot/canvas.cr#L107" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/43903b8a0feabe04eec80f2921417a7863da6f2d/src/unicode_plot/canvas.cr#L107" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1223,7 +1284,7 @@ The grid is stored as a flat row-major array: index = row * ncols + col (0-based
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/e98d4cd730521ca0d680127a84ad72a41becb9d6/src/unicode_plot/canvas.cr#L91" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/43903b8a0feabe04eec80f2921417a7863da6f2d/src/unicode_plot/canvas.cr#L91" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1239,7 +1300,7 @@ The grid is stored as a flat row-major array: index = row * ncols + col (0-based
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/e98d4cd730521ca0d680127a84ad72a41becb9d6/src/unicode_plot/canvas.cr#L103" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/43903b8a0feabe04eec80f2921417a7863da6f2d/src/unicode_plot/canvas.cr#L103" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1255,7 +1316,7 @@ The grid is stored as a flat row-major array: index = row * ncols + col (0-based
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/e98d4cd730521ca0d680127a84ad72a41becb9d6/src/unicode_plot/canvas.cr#L7" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/43903b8a0feabe04eec80f2921417a7863da6f2d/src/unicode_plot/canvas.cr#L7" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1271,7 +1332,7 @@ The grid is stored as a flat row-major array: index = row * ncols + col (0-based
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/e98d4cd730521ca0d680127a84ad72a41becb9d6/src/unicode_plot/canvas.cr#L16" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/43903b8a0feabe04eec80f2921417a7863da6f2d/src/unicode_plot/canvas.cr#L16" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1287,7 +1348,7 @@ The grid is stored as a flat row-major array: index = row * ncols + col (0-based
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/e98d4cd730521ca0d680127a84ad72a41becb9d6/src/unicode_plot/canvas.cr#L25" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/43903b8a0feabe04eec80f2921417a7863da6f2d/src/unicode_plot/canvas.cr#L25" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1303,7 +1364,7 @@ The grid is stored as a flat row-major array: index = row * ncols + col (0-based
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/e98d4cd730521ca0d680127a84ad72a41becb9d6/src/unicode_plot/canvas.cr#L75" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/43903b8a0feabe04eec80f2921417a7863da6f2d/src/unicode_plot/canvas.cr#L75" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1319,7 +1380,7 @@ The grid is stored as a flat row-major array: index = row * ncols + col (0-based
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/e98d4cd730521ca0d680127a84ad72a41becb9d6/src/unicode_plot/canvas.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/43903b8a0feabe04eec80f2921417a7863da6f2d/src/unicode_plot/canvas.cr#L10" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1335,7 +1396,7 @@ The grid is stored as a flat row-major array: index = row * ncols + col (0-based
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/e98d4cd730521ca0d680127a84ad72a41becb9d6/src/unicode_plot/canvas.cr#L18" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/43903b8a0feabe04eec80f2921417a7863da6f2d/src/unicode_plot/canvas.cr#L18" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1351,7 +1412,7 @@ The grid is stored as a flat row-major array: index = row * ncols + col (0-based
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/e98d4cd730521ca0d680127a84ad72a41becb9d6/src/unicode_plot/canvas.cr#L24" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/43903b8a0feabe04eec80f2921417a7863da6f2d/src/unicode_plot/canvas.cr#L24" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1372,7 +1433,7 @@ The grid is stored as a flat row-major array: index = row * ncols + col (0-based
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/e98d4cd730521ca0d680127a84ad72a41becb9d6/src/unicode_plot/canvas.cr#L67" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/43903b8a0feabe04eec80f2921417a7863da6f2d/src/unicode_plot/canvas.cr#L67" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1388,7 +1449,7 @@ The grid is stored as a flat row-major array: index = row * ncols + col (0-based
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/e98d4cd730521ca0d680127a84ad72a41becb9d6/src/unicode_plot/canvas.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/43903b8a0feabe04eec80f2921417a7863da6f2d/src/unicode_plot/canvas.cr#L9" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1404,7 +1465,7 @@ The grid is stored as a flat row-major array: index = row * ncols + col (0-based
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot/blob/e98d4cd730521ca0d680127a84ad72a41becb9d6/src/unicode_plot/canvas.cr#L17" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot/blob/43903b8a0feabe04eec80f2921417a7863da6f2d/src/unicode_plot/canvas.cr#L17" target="_blank">View source</a>]
         
       </div>
     </div>
