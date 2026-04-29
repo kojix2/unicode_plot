@@ -22,6 +22,7 @@ require "./unicode_plot/interface/boxplot"
 require "./unicode_plot/interface/densityplot"
 require "./unicode_plot/interface/heatmap"
 require "./unicode_plot/interface/spy"
+require "./unicode_plot/interface/polarplot"
 require "./unicode_plot/interface/stairs"
 
 module UnicodePlot

@@ -1,0 +1,19 @@
+{
+  "simple": {
+    "theta": {"start": 0.0, "stop": 6.283185307179586, "length": 20},
+    "r": {"start": 0.0, "stop": 2.0, "length": 20}
+  },
+  "simple_with_rlim": {
+    "theta": {"start": 0.0, "stop": 6.283185307179586, "length": 20},
+    "r": {"start": 0.0, "stop": 2.0, "length": 20},
+    "rlim": [0.0, 3.0]
+  },
+  "callable": {
+    "theta": {"start": 0.0, "stop": 12.566370614359172, "length": 40}
+  },
+  "kwargs": {
+    "theta": {"start": 0.0, "stop": 6.283185307179586, "length": 20},
+    "r": {"start": 0.0, "stop": 1.0, "length": 20},
+    "size_scale": 1.5
+  }
+}

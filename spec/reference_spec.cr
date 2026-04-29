@@ -16,6 +16,9 @@ DENSITYPLOT_Y            = DENSITYPLOT_FIXTURE_JSON["y"].as_a.map(&.as_f)
 SPY_FIXTURE_PATH = File.join(__DIR__, "fixtures", "julia_spy_data.json")
 SPY_FIXTURE_JSON = JSON.parse(File.read(SPY_FIXTURE_PATH))
 
+POLARPLOT_FIXTURE_PATH = File.join(__DIR__, "fixtures", "julia_polarplot_data.json")
+POLARPLOT_FIXTURE_JSON = JSON.parse(File.read(POLARPLOT_FIXTURE_PATH))
+
 # Returns a matrix fixture by key ("60x60", "10x10", "10x11").
 # The parsed matrix is cached because multiple examples reuse the same payload.
 def heatmap_fixture_matrix(key : String) : Array(Array(Float64))
@@ -72,6 +75,14 @@ def spy_flip_matrix : Array(Array(Float64))
   a[2][17] = -5.0
   a[4][8] = 3.0
   a
+end
+
+def polarplot_fixture_linspace(case_key : String, axis : String) : Array(Float64)
+  entry = POLARPLOT_FIXTURE_JSON[case_key][axis]
+  start_v = entry["start"].as_f
+  stop_v = entry["stop"].as_f
+  length = entry["length"].as_i
+  linspace(start_v, stop_v, length)
 end
 
 def linspace(start_v : Float64, end_v : Float64, length : Int32) : Array(Float64)
@@ -1237,6 +1248,48 @@ describe "Julia reference output compatibility" do
         p = UnicodePlot.spy(spy_fixture_matrix("80x80"), fix_ar: true)
         test_ref("spy/fix_aspect_ratio_80x80_.txt", p)
       end
+    end
+  end
+
+  describe "polarplot" do
+    it "matches polarplot/simple" do
+      theta = polarplot_fixture_linspace("simple", "theta")
+      r = polarplot_fixture_linspace("simple", "r")
+      p = UnicodePlot.polarplot(theta, r)
+      test_ref("polarplot/simple.txt", p)
+    end
+
+    it "matches polarplot/simple_with_rlim" do
+      theta = polarplot_fixture_linspace("simple_with_rlim", "theta")
+      r = polarplot_fixture_linspace("simple_with_rlim", "r")
+      rlim_json = POLARPLOT_FIXTURE_JSON["simple_with_rlim"]["rlim"].as_a
+      rlim = {rlim_json[0].as_f, rlim_json[1].as_f}
+      p = UnicodePlot.polarplot(theta, r, rlim: rlim)
+      test_ref("polarplot/simple_with_rlim.txt", p)
+    end
+
+    it "matches polarplot/callable" do
+      theta = polarplot_fixture_linspace("callable", "theta")
+      p = UnicodePlot.polarplot(theta, ->(angle : Float64) { angle / (2.0 * Math::PI) })
+      test_ref("polarplot/callable.txt", p)
+    end
+
+    it "matches polarplot/kwargs" do
+      scale = POLARPLOT_FIXTURE_JSON["kwargs"]["size_scale"].as_f
+      h = (UnicodePlot.default_height * scale).round.to_i
+      w = (UnicodePlot.default_width * scale).round.to_i
+      theta = polarplot_fixture_linspace("kwargs", "theta")
+      r = polarplot_fixture_linspace("kwargs", "r")
+      p = UnicodePlot.polarplot(
+        theta,
+        r,
+        lines: false,
+        border: :solid,
+        color: :red,
+        height: h,
+        width: w,
+      )
+      test_ref("polarplot/kwargs.txt", p)
     end
   end
 end

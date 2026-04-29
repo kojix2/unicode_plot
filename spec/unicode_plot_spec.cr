@@ -476,6 +476,53 @@ describe UnicodePlot do
     end
   end
 
+  describe "polarplot" do
+    it "returns a Plot" do
+      theta = [0.0, Math::PI / 2.0, Math::PI]
+      r = [0.5, 1.0, 1.5]
+      p = UnicodePlot.polarplot(theta, r)
+      p.should be_a(UnicodePlot::Plot)
+    end
+
+    it "raises on mismatched theta/r lengths" do
+      expect_raises(ArgumentError, /same length/) do
+        UnicodePlot.polarplot([0.0, Math::PI], [1.0])
+      end
+    end
+
+    it "accepts numeric overloads" do
+      p = UnicodePlot.polarplot([0_i64, 1_i64, 2_i64], [1_i32, 2_i32, 3_i32])
+      p.to_s.should be_a(String)
+    end
+
+    it "accepts callable radius" do
+      theta = [0.0, Math::PI / 2.0, Math::PI]
+      p = UnicodePlot.polarplot(theta, ->(angle : Float64) { angle + 1.0 })
+      p.to_s.should be_a(String)
+    end
+
+    it "supports scatter mode with lines: false" do
+      theta = [0.0, Math::PI / 2.0, Math::PI, 3.0 * Math::PI / 2.0]
+      r = [1.0, 1.0, 1.0, 1.0]
+      p = UnicodePlot.polarplot(theta, r, lines: false)
+      p.to_s.should contain("0°")
+      p.to_s.should contain("90°")
+      p.to_s.should contain("180°")
+      p.to_s.should contain("270°")
+    end
+
+    it "uses 3π / 2 label when degrees is false" do
+      theta = [0.0, Math::PI / 2.0, Math::PI, 3.0 * Math::PI / 2.0]
+      r = [1.0, 1.0, 1.0, 1.0]
+      p = UnicodePlot.polarplot(theta, r, degrees: false)
+      p.to_s.should contain("0")
+      p.to_s.should contain("π / 2")
+      p.to_s.should contain("π")
+      p.to_s.should contain("3π / 2")
+      p.to_s.should_not contain("3π / 4")
+    end
+  end
+
   describe "stairs" do
     it "raises on mismatched x/y lengths" do
       expect_raises(ArgumentError, /same length/) do
