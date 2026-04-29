@@ -1,6 +1,7 @@
 require "./unicode_plot/terminal_size"
 require "./unicode_plot/common"
 require "./unicode_plot/color"
+require "./unicode_plot/matrix"
 require "./unicode_plot/graphics"
 require "./unicode_plot/canvas"
 require "./unicode_plot/canvas/braille_canvas"

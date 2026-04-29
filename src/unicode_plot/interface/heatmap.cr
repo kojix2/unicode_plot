@@ -133,25 +133,15 @@ z : Array(Array(Float64)),
               width : Int32? = nil,
               fix_ar : Bool = false,
               out_stream : IO? = nil,) : Plot
-    raise ArgumentError.new("z must not be empty") if z.empty?
+    matrix = MatrixView.new(z)
+    raise ArgumentError.new("z must not be empty") if matrix.empty?
 
-    data_nrows = z.size
-    data_ncols = z.empty? ? 0 : z[0].size
+    data_nrows = matrix.nrows
+    data_ncols = matrix.ncols
 
     # Build Y and X coordinate arrays (mirrors Julia's Y/X computation).
-    y_arr = if yfact.nil?
-              Array.new(data_nrows) { |i| (i + 1).to_f + yoffset }
-            else
-              f = yfact || 1.0
-              Array.new(data_nrows) { |i| (i.to_f * f + yoffset).as(Float64) }
-            end
-
-    x_arr = if xfact.nil?
-              Array.new(data_ncols) { |i| (i + 1).to_f + xoffset }
-            else
-              f = xfact || 1.0
-              Array.new(data_ncols) { |i| (i.to_f * f + xoffset).as(Float64) }
-            end
+    y_arr = matrix_axis_coords(data_nrows, yfact, yoffset)
+    x_arr = matrix_axis_coords(data_ncols, xfact, xoffset)
 
     # autolims: {0,0} means auto → use full data range.
     eff_ylim = if ylim == {0.0, 0.0}
@@ -229,17 +219,17 @@ z : Array(Array(Float64)),
     )
 
     # zmin/zmax from data or explicit zlim.
+    submatrix = MatrixView.new(z_sub)
     has_extrema = false
     zmin, zmax = if zlim != {0.0, 0.0}
                    has_extrema = true
                    {zlim[0], zlim[1]}
                  else
-                   finite_vals = z_sub.each.flat_map(&.each).select(&.finite?).to_a
-                   if finite_vals.empty?
-                     {0.0, 1.0}
-                   else
+                   if extrema = matrix_extrema_finite(submatrix)
                      has_extrema = true
-                     {finite_vals.min, finite_vals.max}
+                     extrema
+                   else
+                     {0.0, 1.0}
                    end
                  end
     # Colorbar auto-detection (height >= 7 matches Julia's `height < 7` threshold).

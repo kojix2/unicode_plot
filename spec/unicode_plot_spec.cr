@@ -420,6 +420,13 @@ describe UnicodePlot do
       z = [[Float64::NAN, Float64::NAN]]
       p = UnicodePlot.heatmap(z)
       p.to_s.should be_a(String)
+      p.colormap.lim.should eq({0.0, 1.0})
+    end
+
+    it "uses finite extrema for colormap limits" do
+      z = [[Float64::INFINITY, 1.0], [2.0, -Float64::INFINITY]]
+      p = UnicodePlot.heatmap(z)
+      p.colormap.lim.should eq({1.0, 2.0})
     end
 
     it "accepts Int matrix via generic numeric overload" do
@@ -435,6 +442,12 @@ describe UnicodePlot do
     it "raises on unknown colormap" do
       expect_raises(ArgumentError, /unknown colormap: mystery/) do
         UnicodePlot.heatmap([[1.0, 2.0], [3.0, 4.0]], colormap: :mystery)
+      end
+    end
+
+    it "rejects jagged matrix input" do
+      expect_raises(ArgumentError, /same length/) do
+        UnicodePlot.heatmap([[1.0, 2.0], [3.0]])
       end
     end
   end
@@ -491,6 +504,32 @@ describe UnicodePlot do
       c.points!(0.5, -Float64::MAX, color, true)
 
       c.to_s.should be_a(String)
+    end
+
+    it "rejects point color vectors with wrong length" do
+      p = UnicodePlot.scatterplot([1.0, 2.0], [1.0, 2.0])
+
+      expect_raises(ArgumentError, /colors/) do
+        p.points!(
+          [1.0, 2.0],
+          [1.0, 2.0],
+          [UnicodePlot.plot_color(:red)],
+          p.canvas.blend?
+        )
+      end
+    end
+
+    it "rejects segment color vectors with wrong length" do
+      p = UnicodePlot.lineplot([1.0, 2.0, 3.0], [1.0, 2.0, 3.0])
+
+      expect_raises(ArgumentError, /segment_colors/) do
+        p.lines!(
+          [1.0, 2.0, 3.0],
+          [1.0, 2.0, 3.0],
+          [UnicodePlot.plot_color(:red)],
+          p.canvas.blend?
+        )
+      end
     end
   end
 

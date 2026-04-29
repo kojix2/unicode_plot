@@ -190,6 +190,24 @@ module UnicodePlot
       self
     end
 
+    # Plot a vector of points with per-point colors
+    def points!(xs : Array(Float64), ys : Array(Float64), colors : Array(UInt32), blend : Bool) : self
+      unless xs.size == ys.size
+        raise ArgumentError.new("xs and ys must have the same length")
+      end
+
+      unless xs.size == colors.size
+        raise ArgumentError.new("colors must have the same length as xs and ys")
+      end
+
+      xs.each_with_index do |x, i|
+        y = ys[i]
+        next unless x.finite? && y.finite?
+        points!(x, y, colors[i], blend)
+      end
+      self
+    end
+
     # Digital differential analyser (DDA) line drawing
     def lines!(
       x1 : Float64, y1 : Float64,
@@ -242,6 +260,26 @@ module UnicodePlot
         xm1, ym1 = xs[i - 1], ys[i - 1]
         next unless x.finite? && y.finite? && xm1.finite? && ym1.finite?
         lines!(xm1, ym1, x, y, color, blend)
+      end
+      self
+    end
+
+    # Vector line drawing (polyline) with per-segment colors
+    def lines!(xs : Array(Float64), ys : Array(Float64), segment_colors : Array(UInt32), blend : Bool) : self
+      unless xs.size == ys.size
+        raise ArgumentError.new("xs and ys must have the same length")
+      end
+
+      expected = xs.size > 0 ? xs.size - 1 : 0
+      unless segment_colors.size == expected
+        raise ArgumentError.new("segment_colors must have xs.size - 1 elements")
+      end
+
+      (1...xs.size).each do |i|
+        x, y = xs[i], ys[i]
+        xm1, ym1 = xs[i - 1], ys[i - 1]
+        next unless x.finite? && y.finite? && xm1.finite? && ym1.finite?
+        lines!(xm1, ym1, x, y, segment_colors[i - 1], blend)
       end
       self
     end

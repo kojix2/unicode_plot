@@ -173,8 +173,18 @@ module UnicodePlot
       self
     end
 
+    def lines!(xs : Array(Float64), ys : Array(Float64), segment_colors : Array(UInt32), blend : Bool) : self
+      canvas.lines!(xs, ys, segment_colors, blend)
+      self
+    end
+
     def points!(xs : Array(Float64), ys : Array(Float64), color : UInt32, blend : Bool) : self
       canvas.points!(xs, ys, color, blend)
+      self
+    end
+
+    def points!(xs : Array(Float64), ys : Array(Float64), colors : Array(UInt32), blend : Bool) : self
+      canvas.points!(xs, ys, colors, blend)
       self
     end
 
