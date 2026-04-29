@@ -14,7 +14,7 @@
 <script type="text/javascript" src="../js/doc.js"></script>
 
   <meta name="repository-name" content="unicode_plot">
-  <title>UnicodePlot::Border - unicode_plot main</title>
+  <title>UnicodePlot::Contour - unicode_plot main</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../";
   </script>
@@ -77,7 +77,7 @@
       
     </li>
   
-  <li class=" current" data-id="unicode_plot/UnicodePlot/Border" data-name="unicodeplot::border">
+  <li class=" " data-id="unicode_plot/UnicodePlot/Border" data-name="unicodeplot::border">
       <a href="../UnicodePlot/Border.html">Border</a>
       
     </li>
@@ -122,7 +122,7 @@
       
     </li>
   
-  <li class="parent " data-id="unicode_plot/UnicodePlot/Contour" data-name="unicodeplot::contour">
+  <li class="parent open current" data-id="unicode_plot/UnicodePlot/Contour" data-name="unicodeplot::contour">
       <a href="../UnicodePlot/Contour.html">Contour</a>
       
         <ul>
@@ -232,13 +232,11 @@
 <h1 class="type-name">
 
   <span class="kind">
-    struct
-  </span> UnicodePlot::<wbr>Border
+    module
+  </span> UnicodePlot::<wbr>Contour
 
 </h1>
 
-
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../UnicodePlot/Border.html">UnicodePlot::Border</a></li><li class="superclass">Struct</li><li class="superclass">Value</li><li class="superclass">Object</li></ul>
 
 
 
@@ -268,8 +266,8 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/unicode_plot.cr/blob/dfb29f08480c2cb34e3d6065a504dfc6f1d2e180/src/unicode_plot/common.cr#L30" target="_blank">
-        unicode_plot/common.cr
+      <a href="https://github.com/kojix2/unicode_plot.cr/blob/dfb29f08480c2cb34e3d6065a504dfc6f1d2e180/src/unicode_plot/contour.cr#L2" target="_blank">
+        unicode_plot/contour.cr
       </a>
     
     <br/>
@@ -277,21 +275,122 @@
 
 
 
-
-
   
-  <h2>
-    <a id="constructors" class="anchor" href="#constructors">
+    <h2>
+      <a id="constant-summary" class="anchor" href="#constant-summary">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>
-    Constructors
+      Constant Summary
+    </h2>
+  
+  <dl>
+    
+      <dt class="entry-const" id="E">
+        <strong>E</strong> = <code><span class="n">4_u8</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="EDGE_LUT">
+        <strong>EDGE_LUT</strong> = <code>[<span class="t">SW</span>, <span class="t">SE</span>, <span class="t">EW</span>, <span class="t">NE</span>, <span class="n">0_u8</span>, <span class="t">NS</span>, <span class="t">NW</span>, <span class="t">NW</span>, <span class="t">NS</span>, <span class="n">0_u8</span>, <span class="t">NE</span>, <span class="t">EW</span>, <span class="t">SE</span>, <span class="t">SW</span>]</code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="EW">
+        <strong>EW</strong> = <code><span class="t">E</span> <span class="o">|</span> <span class="t">W</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="N">
+        <strong>N</strong> = <code><span class="n">1_u8</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="NE">
+        <strong>NE</strong> = <code><span class="t">N</span> <span class="o">|</span> <span class="t">E</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="NESW">
+        <strong>NESW</strong> = <code><span class="t">NE</span> <span class="o">|</span> <span class="n">16_u8</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="NS">
+        <strong>NS</strong> = <code><span class="t">N</span> <span class="o">|</span> <span class="t">S</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="NW">
+        <strong>NW</strong> = <code><span class="t">N</span> <span class="o">|</span> <span class="t">W</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="NWSE">
+        <strong>NWSE</strong> = <code><span class="t">NW</span> <span class="o">|</span> <span class="n">16_u8</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="S">
+        <strong>S</strong> = <code><span class="n">2_u8</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="SE">
+        <strong>SE</strong> = <code><span class="t">S</span> <span class="o">|</span> <span class="t">E</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="SW">
+        <strong>SW</strong> = <code><span class="t">S</span> <span class="o">|</span> <span class="t">W</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="W">
+        <strong>W</strong> = <code><span class="n">8_u8</span></code>
+      </dt>
+      
+    
+  </dl>
+
+
+
+  
+
+  
+  <h2>
+    <a id="class-method-summary" class="anchor" href="#class-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Summary
   </h2>
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new%28tl%3AChar%2Ctr%3AChar%2Cbl%3AChar%2Cbr%3AChar%2Ct%3AChar%2Cl%3AChar%2Cb%3AChar%2Cr%3AChar%29-class-method" class="signature"><strong>.new</strong>(tl : Char, tr : Char, bl : Char, br : Char, t : Char, l : Char, b : Char, r : Char)</a>
+        <a href="#contour%28x%3AArray%28Float64%29%2Cy%3AArray%28Float64%29%2Cz%3AMatrixView%28T%29%2Clevel%3AFloat64%29%3AContourLevelforallT-class-method" class="signature"><strong>.contour</strong>(x : Array(Float64), y : Array(Float64), z : MatrixView(T), level : Float64) : ContourLevel forall T</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#contour_levels%28zmin%3AFloat64%2Czmax%3AFloat64%2Cn%3AInt32%29%3AArray%28Float64%29-class-method" class="signature"><strong>.contour_levels</strong>(zmin : Float64, zmax : Float64, n : Int32) : Array(Float64)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#contour_levels%28matrix%3AMatrixView%28T%29%2Cn%3AInt32%29%3AArray%28Float64%29forallT-class-method" class="signature"><strong>.contour_levels</strong>(matrix : MatrixView(T), n : Int32) : Array(Float64) forall T</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#contours%28x%3AArray%28Float64%29%2Cy%3AArray%28Float64%29%2Cz%3AMatrixView%28T%29%2Clevels%3AInt32%29%3AContourCollectionforallT-class-method" class="signature"><strong>.contours</strong>(x : Array(Float64), y : Array(Float64), z : MatrixView(T), levels : Int32) : ContourCollection forall T</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#contours%28x%3AArray%28Float64%29%2Cy%3AArray%28Float64%29%2Cz%3AMatrixView%28T%29%2Clevels%3AArray%28Float64%29%29%3AContourCollectionforallT-class-method" class="signature"><strong>.contours</strong>(x : Array(Float64), y : Array(Float64), z : MatrixView(T), levels : Array(Float64)) : ContourCollection forall T</a>
         
       </li>
     
@@ -301,137 +400,100 @@
   
 
   
-
-  
-  <h2>
-    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Instance Method Summary
-  </h2>
-  <ul class="list-summary">
-    
-      <li class="entry-summary">
-        <a href="#b%3AChar-instance-method" class="signature"><strong>#b</strong> : Char</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#bl%3AChar-instance-method" class="signature"><strong>#bl</strong> : Char</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#br%3AChar-instance-method" class="signature"><strong>#br</strong> : Char</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#clone-instance-method" class="signature"><strong>#clone</strong></a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#copy_with%28tl_tl%3D%40tl%2Ctr_tr%3D%40tr%2Cbl_bl%3D%40bl%2Cbr_br%3D%40br%2Ct_t%3D%40t%2Cl_l%3D%40l%2Cb_b%3D%40b%2Cr_r%3D%40r%29-instance-method" class="signature"><strong>#copy_with</strong>(tl _tl = @tl, tr _tr = @tr, bl _bl = @bl, br _br = @br, t _t = @t, l _l = @l, b _b = @b, r _r = @r)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#l%3AChar-instance-method" class="signature"><strong>#l</strong> : Char</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#r%3AChar-instance-method" class="signature"><strong>#r</strong> : Char</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#t%3AChar-instance-method" class="signature"><strong>#t</strong> : Char</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#tl%3AChar-instance-method" class="signature"><strong>#tl</strong> : Char</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#tr%3AChar-instance-method" class="signature"><strong>#tr</strong> : Char</a>
-        
-      </li>
-    
-  </ul>
-
 
 
   <div class="methods-inherited">
     
-      
-
-
-      
-
-
-      
-
-
-      
-
-
-    
-      
-
-
-      
-
-
-      
-
-
-      
-
-
-    
-      
-
-
-      
-
-
-      
-
-
-      
-
-
-    
   </div>
 
   
+
+  
   <h2>
-    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+    <a id="class-method-detail" class="anchor" href="#class-method-detail">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>
-    Constructor Detail
+    Class Method Detail
   </h2>
   
-    <div class="entry-detail" id="new(tl:Char,tr:Char,bl:Char,br:Char,t:Char,l:Char,b:Char,r:Char)-class-method">
+    <div class="entry-detail" id="contour(x:Array(Float64),y:Array(Float64),z:MatrixView(T),level:Float64):ContourLevelforallT-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(tl : Char, tr : Char, bl : Char, br : Char, t : Char, l : Char, b : Char, r : Char)
+        def self.<strong>contour</strong>(x : Array(Float64), y : Array(Float64), z : <a href="../UnicodePlot/MatrixView.html">MatrixView</a>(T), level : Float64) : <a href="../UnicodePlot/Contour/ContourLevel.html">ContourLevel</a> forall T
 
-        <a class="method-permalink" href="#new%28tl%3AChar%2Ctr%3AChar%2Cbl%3AChar%2Cbr%3AChar%2Ct%3AChar%2Cl%3AChar%2Cb%3AChar%2Cr%3AChar%29-class-method">#</a>
+        <a class="method-permalink" href="#contour%28x%3AArray%28Float64%29%2Cy%3AArray%28Float64%29%2Cz%3AMatrixView%28T%29%2Clevel%3AFloat64%29%3AContourLevelforallT-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot.cr/blob/dfb29f08480c2cb34e3d6065a504dfc6f1d2e180/src/unicode_plot/common.cr#L30" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot.cr/blob/dfb29f08480c2cb34e3d6065a504dfc6f1d2e180/src/unicode_plot/contour.cr#L88" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="contour_levels(zmin:Float64,zmax:Float64,n:Int32):Array(Float64)-class-method">
+      <div class="signature">
+        
+        def self.<strong>contour_levels</strong>(zmin : Float64, zmax : Float64, n : Int32) : Array(Float64)
+
+        <a class="method-permalink" href="#contour_levels%28zmin%3AFloat64%2Czmax%3AFloat64%2Cn%3AInt32%29%3AArray%28Float64%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot.cr/blob/dfb29f08480c2cb34e3d6065a504dfc6f1d2e180/src/unicode_plot/contour.cr#L49" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="contour_levels(matrix:MatrixView(T),n:Int32):Array(Float64)forallT-class-method">
+      <div class="signature">
+        
+        def self.<strong>contour_levels</strong>(matrix : <a href="../UnicodePlot/MatrixView.html">MatrixView</a>(T), n : Int32) : Array(Float64) forall T
+
+        <a class="method-permalink" href="#contour_levels%28matrix%3AMatrixView%28T%29%2Cn%3AInt32%29%3AArray%28Float64%29forallT-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot.cr/blob/dfb29f08480c2cb34e3d6065a504dfc6f1d2e180/src/unicode_plot/contour.cr#L58" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="contours(x:Array(Float64),y:Array(Float64),z:MatrixView(T),levels:Int32):ContourCollectionforallT-class-method">
+      <div class="signature">
+        
+        def self.<strong>contours</strong>(x : Array(Float64), y : Array(Float64), z : <a href="../UnicodePlot/MatrixView.html">MatrixView</a>(T), levels : Int32) : <a href="../UnicodePlot/Contour/ContourCollection.html">ContourCollection</a> forall T
+
+        <a class="method-permalink" href="#contours%28x%3AArray%28Float64%29%2Cy%3AArray%28Float64%29%2Cz%3AMatrixView%28T%29%2Clevels%3AInt32%29%3AContourCollectionforallT-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot.cr/blob/dfb29f08480c2cb34e3d6065a504dfc6f1d2e180/src/unicode_plot/contour.cr#L66" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="contours(x:Array(Float64),y:Array(Float64),z:MatrixView(T),levels:Array(Float64)):ContourCollectionforallT-class-method">
+      <div class="signature">
+        
+        def self.<strong>contours</strong>(x : Array(Float64), y : Array(Float64), z : <a href="../UnicodePlot/MatrixView.html">MatrixView</a>(T), levels : Array(Float64)) : <a href="../UnicodePlot/Contour/ContourCollection.html">ContourCollection</a> forall T
+
+        <a class="method-permalink" href="#contours%28x%3AArray%28Float64%29%2Cy%3AArray%28Float64%29%2Cz%3AMatrixView%28T%29%2Clevels%3AArray%28Float64%29%29%3AContourCollectionforallT-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot.cr/blob/dfb29f08480c2cb34e3d6065a504dfc6f1d2e180/src/unicode_plot/contour.cr#L75" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -441,162 +503,6 @@
   
 
   
-
-  
-  <h2>
-    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Instance Method Detail
-  </h2>
-  
-    <div class="entry-detail" id="b:Char-instance-method">
-      <div class="signature">
-        
-        def <strong>b</strong> : Char
-
-        <a class="method-permalink" href="#b%3AChar-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="bl:Char-instance-method">
-      <div class="signature">
-        
-        def <strong>bl</strong> : Char
-
-        <a class="method-permalink" href="#bl%3AChar-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="br:Char-instance-method">
-      <div class="signature">
-        
-        def <strong>br</strong> : Char
-
-        <a class="method-permalink" href="#br%3AChar-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="clone-instance-method">
-      <div class="signature">
-        
-        def <strong>clone</strong>
-
-        <a class="method-permalink" href="#clone-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/unicode_plot.cr/blob/dfb29f08480c2cb34e3d6065a504dfc6f1d2e180/src/unicode_plot/common.cr#L30" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="copy_with(tl_tl=@tl,tr_tr=@tr,bl_bl=@bl,br_br=@br,t_t=@t,l_l=@l,b_b=@b,r_r=@r)-instance-method">
-      <div class="signature">
-        
-        def <strong>copy_with</strong>(tl _tl = @tl, tr _tr = @tr, bl _bl = @bl, br _br = @br, t _t = @t, l _l = @l, b _b = @b, r _r = @r)
-
-        <a class="method-permalink" href="#copy_with%28tl_tl%3D%40tl%2Ctr_tr%3D%40tr%2Cbl_bl%3D%40bl%2Cbr_br%3D%40br%2Ct_t%3D%40t%2Cl_l%3D%40l%2Cb_b%3D%40b%2Cr_r%3D%40r%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/unicode_plot.cr/blob/dfb29f08480c2cb34e3d6065a504dfc6f1d2e180/src/unicode_plot/common.cr#L30" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="l:Char-instance-method">
-      <div class="signature">
-        
-        def <strong>l</strong> : Char
-
-        <a class="method-permalink" href="#l%3AChar-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="r:Char-instance-method">
-      <div class="signature">
-        
-        def <strong>r</strong> : Char
-
-        <a class="method-permalink" href="#r%3AChar-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="t:Char-instance-method">
-      <div class="signature">
-        
-        def <strong>t</strong> : Char
-
-        <a class="method-permalink" href="#t%3AChar-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="tl:Char-instance-method">
-      <div class="signature">
-        
-        def <strong>tl</strong> : Char
-
-        <a class="method-permalink" href="#tl%3AChar-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="tr:Char-instance-method">
-      <div class="signature">
-        
-        def <strong>tr</strong> : Char
-
-        <a class="method-permalink" href="#tr%3AChar-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-      </div>
-    </div>
-  
-
 
 
 </div>
