@@ -198,6 +198,27 @@
 
 
 
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>A small internal view over Array(Array(T)).</p>
+<p>MatrixView intentionally supports only Array(Array(T)) for now.
+It centralizes validation for matrix-shaped plot inputs:</p>
+<ul>
+<li>rectangular shape</li>
+<li>row / column dimensions</li>
+<li>indexed access</li>
+<li>cell iteration</li>
+</ul>
+<p>It is used by heatmap, spy, contourplot, surfaceplot, and imageplot.
+MatrixView is not a general AbstractMatrix abstraction.</p>
+
 
 
 
@@ -223,7 +244,7 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/unicode_plot.cr/blob/8162f16efaa64b9b13806fa124e02aa34483f7ae/src/unicode_plot/matrix.cr#L2" target="_blank">
+      <a href="https://github.com/kojix2/unicode_plot.cr/blob/390b1f89ce13a203a6ff6325b93941b032c4c8bd/src/unicode_plot/matrix.cr#L14" target="_blank">
         unicode_plot/matrix.cr
       </a>
     
@@ -298,6 +319,11 @@
         
       </li>
     
+      <li class="entry-summary">
+        <a href="#shape%3ATuple%28Int32%2CInt32%29-instance-method" class="signature"><strong>#shape</strong> : Tuple(Int32, Int32)</a>
+        
+      </li>
+    
   </ul>
 
 
@@ -366,7 +392,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot.cr/blob/8162f16efaa64b9b13806fa124e02aa34483f7ae/src/unicode_plot/matrix.cr#L7" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot.cr/blob/390b1f89ce13a203a6ff6325b93941b032c4c8bd/src/unicode_plot/matrix.cr#L19" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -398,7 +424,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot.cr/blob/8162f16efaa64b9b13806fa124e02aa34483f7ae/src/unicode_plot/matrix.cr#L24" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot.cr/blob/390b1f89ce13a203a6ff6325b93941b032c4c8bd/src/unicode_plot/matrix.cr#L40" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -414,7 +440,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot.cr/blob/8162f16efaa64b9b13806fa124e02aa34483f7ae/src/unicode_plot/matrix.cr#L28" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot.cr/blob/390b1f89ce13a203a6ff6325b93941b032c4c8bd/src/unicode_plot/matrix.cr#L44" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -430,7 +456,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot.cr/blob/8162f16efaa64b9b13806fa124e02aa34483f7ae/src/unicode_plot/matrix.cr#L20" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot.cr/blob/390b1f89ce13a203a6ff6325b93941b032c4c8bd/src/unicode_plot/matrix.cr#L32" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -446,7 +472,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot.cr/blob/8162f16efaa64b9b13806fa124e02aa34483f7ae/src/unicode_plot/matrix.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot.cr/blob/390b1f89ce13a203a6ff6325b93941b032c4c8bd/src/unicode_plot/matrix.cr#L17" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -462,7 +488,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot.cr/blob/8162f16efaa64b9b13806fa124e02aa34483f7ae/src/unicode_plot/matrix.cr#L4" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot.cr/blob/390b1f89ce13a203a6ff6325b93941b032c4c8bd/src/unicode_plot/matrix.cr#L16" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -478,7 +504,23 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/unicode_plot.cr/blob/8162f16efaa64b9b13806fa124e02aa34483f7ae/src/unicode_plot/matrix.cr#L3" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/unicode_plot.cr/blob/390b1f89ce13a203a6ff6325b93941b032c4c8bd/src/unicode_plot/matrix.cr#L15" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="shape:Tuple(Int32,Int32)-instance-method">
+      <div class="signature">
+        
+        def <strong>shape</strong> : Tuple(Int32, Int32)
+
+        <a class="method-permalink" href="#shape%3ATuple%28Int32%2CInt32%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/unicode_plot.cr/blob/390b1f89ce13a203a6ff6325b93941b032c4c8bd/src/unicode_plot/matrix.cr#L36" target="_blank">View source</a>]
         
       </div>
     </div>
