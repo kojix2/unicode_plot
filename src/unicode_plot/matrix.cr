@@ -1,4 +1,16 @@
 module UnicodePlot
+  # A small internal view over Array(Array(T)).
+  #
+  # MatrixView intentionally supports only Array(Array(T)) for now.
+  # It centralizes validation for matrix-shaped plot inputs:
+  #
+  # - rectangular shape
+  # - row / column dimensions
+  # - indexed access
+  # - cell iteration
+  #
+  # It is used by heatmap, spy, contourplot, surfaceplot, and imageplot.
+  # MatrixView is not a general AbstractMatrix abstraction.
   struct MatrixView(T)
     getter rows : Array(Array(T))
     getter nrows : Int32
@@ -19,6 +31,10 @@ module UnicodePlot
 
     def empty? : Bool
       @nrows == 0 || @ncols == 0
+    end
+
+    def shape : {Int32, Int32}
+      {@nrows, @ncols}
     end
 
     def [](row : Int32, col : Int32) : T
@@ -44,6 +60,37 @@ module UnicodePlot
     else
       f = fact || 1.0
       Array.new(n) { |i| i.to_f64 * f + offset }
+    end
+  end
+
+  def matrix_col_coords(matrix : MatrixView(T)) : Array(Float64) forall T
+    matrix_axis_coords(matrix.ncols, nil, 0.0)
+  end
+
+  def matrix_row_coords(matrix : MatrixView(T)) : Array(Float64) forall T
+    matrix_axis_coords(matrix.nrows, nil, 0.0)
+  end
+
+  def matrix_reversed_row_coords(matrix : MatrixView(T)) : Array(Float64) forall T
+    matrix_row_coords(matrix).reverse
+  end
+
+  def validate_matrix_axes!(
+    matrix : MatrixView(T),
+    x : Array(Float64),
+    y : Array(Float64),
+    name : String = "z",
+  ) : Nil forall T
+    unless x.size == matrix.ncols
+      raise ArgumentError.new(
+        "x length must match #{name} column count; got #{x.size}, expected #{matrix.ncols}"
+      )
+    end
+
+    unless y.size == matrix.nrows
+      raise ArgumentError.new(
+        "y length must match #{name} row count; got #{y.size}, expected #{matrix.nrows}"
+      )
     end
   end
 
@@ -102,8 +149,8 @@ module UnicodePlot
 
       extrema = if current = extrema
                   {
-                    v < current[0] ? v : current[0],
-                    v > current[1] ? v : current[1],
+                    Math.min(current[0], v),
+                    Math.max(current[1], v),
                   }
                 else
                   {v, v}

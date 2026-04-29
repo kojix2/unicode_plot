@@ -117,6 +117,8 @@ module UnicodePlot
 
     nrows = matrix.nrows
     ncols = matrix.ncols
+    row_coords = matrix_row_coords(matrix)
+    col_coords = matrix_col_coords(matrix)
 
     rows = [] of Float64
     cols = [] of Float64
@@ -127,8 +129,8 @@ module UnicodePlot
       is_zero = v == 0.0
       next if show_zeros ? !is_zero : is_zero
 
-      rows << (row + 1).to_f64
-      cols << (col + 1).to_f64
+      rows << row_coords[row]
+      cols << col_coords[col]
       vals << v
     end
 
