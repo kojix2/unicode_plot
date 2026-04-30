@@ -338,6 +338,14 @@ puts histogram(data, title: <span class="s">&quot;Uniform [0, 10)&quot;</span>, 
 p <span class="o">=</span> lineplot(x, x.map { <span class="o">|</span>v<span class="o">|</span> <span class="t">Math</span>.sqrt(v) }, name: <span class="s">&quot;√x&quot;</span>, color: <span class="n">:green</span>, title: <span class="s">&quot;Functions&quot;</span>)
 lineplot!(p, x, x.map { <span class="o">|</span>v<span class="o">|</span> <span class="t">Math</span>.log(v) }, name: <span class="s">&quot;ln(x)&quot;</span>, color: <span class="n">:red</span>)
 puts p</code></pre>
+<h3><a id="time-x-axis-experimental" class="anchor" href="#time-x-axis-experimental">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Time x-axis (experimental)</h3>
+<p><code>lineplot</code> and <code>stairs</code> can accept <code>Array(Time)</code> for the x-axis. This API is experimental and currently requires an explicit Crystal <code>Time#to_s</code> format string:</p>
+<pre><code class="language-crystal">dates <span class="o">=</span> (<span class="n">0</span>..<span class="n">10</span>).map { <span class="o">|</span>i<span class="o">|</span> <span class="t">Time</span>.utc(<span class="n">2020</span>, <span class="n">1</span>, <span class="n">1</span>) <span class="o">+</span> i.days }
+puts lineplot(dates, dates.map_with_index { <span class="o">|</span>_, i<span class="o">|</span> i.to_f }, format: <span class="s">&quot;%F&quot;</span>)</code></pre>
 <h3><a id="options" class="anchor" href="#options">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
