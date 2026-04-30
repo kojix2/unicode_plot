@@ -224,6 +224,37 @@ module UnicodePlot
     {to_plot_f64(values), nil}
   end
 
+  def time_axis_format!(format : String?) : String
+    format || raise ArgumentError.new("format is required for Time x values (experimental; uses Crystal Time#to_s format strings)")
+  end
+
+  def time_axis_values(values : Array(Time)) : Array(Float64)
+    values.map(&.to_unix_f)
+  end
+
+  def time_axis_limits(values : Array(Time), xlim : {Time, Time}?) : {Time, Time}
+    if limits = xlim
+      limits
+    elsif values.empty?
+      epoch = Time.unix(0)
+      {epoch, epoch}
+    else
+      {values.min, values.max}
+    end
+  end
+
+  def time_axis_limits_to_f64(limits : {Time, Time}) : {Float64, Float64}
+    {limits[0].to_unix_f, limits[1].to_unix_f}
+  end
+
+  def label_time_xaxis!(plot : Plot, limits : {Time, Time}, format : String, xflip : Bool) : Nil
+    bc = ansi_color(border_color)
+    left = limits[0].to_s(format)
+    right = limits[1].to_s(format)
+    plot.label!(:bl, xflip ? right : left, bc)
+    plot.label!(:br, xflip ? left : right, bc)
+  end
+
   private def to_plot_f64(values : Array(T)) : Array(Float64) forall T
     {% unless T <= Number %}
       {% raise "to_plot_f64 requires numeric array elements" %}

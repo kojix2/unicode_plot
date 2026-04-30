@@ -5,10 +5,10 @@ include UnicodePlot
 # Basic contour plot
 x = (-20..20).map { |i| i.to_f64 / 10.0 }
 y = (-20..20).map { |i| i.to_f64 / 10.0 }
-z = y.map do |yv|
-  x.map do |xv|
+z = y.map do |y_value|
+  x.map do |x_value|
     # Saddle-like field
-    xv * xv - yv * yv
+    x_value * x_value - y_value * y_value
   end
 end
 
@@ -25,10 +25,10 @@ puts p
 puts
 
 # Overlay with contourplot!
-z2 = y.map do |yv|
-  x.map do |xv|
+z2 = y.map do |y_value|
+  x.map do |x_value|
     # Shifted Gaussian bump
-    Math.exp(-((xv - 0.7) ** 2 + (yv + 0.4) ** 2) / 0.25)
+    Math.exp(-((x_value - 0.7) ** 2 + (y_value + 0.4) ** 2) / 0.25)
   end
 end
 

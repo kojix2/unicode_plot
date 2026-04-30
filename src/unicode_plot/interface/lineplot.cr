@@ -275,6 +275,88 @@ module UnicodePlot
     {% end %}
   end
 
+  # EXPERIMENTAL: Time x-axis support requires an explicit Crystal Time#to_s format string.
+  def lineplot(
+    x : Array(Time),
+    y : Array(T),
+    *,
+    format : String? = nil,
+    canvas : Symbol = :braille,
+    name : String = "",
+    color : PlotColor = :auto,
+    head_tail : Symbol? = nil,
+    head_tail_frac : Float64 = 0.05,
+    title : String = "",
+    xlabel : String = "",
+    ylabel : String = "",
+    xscale : Symbol | Proc(Float64, Float64) = :identity,
+    yscale : Symbol | Proc(Float64, Float64) = :identity,
+    height : Int32? = nil,
+    width : Int32? = nil,
+    border : Symbol = :solid,
+    compact_labels : Bool = false,
+    compact : Bool = false,
+    blend : Bool = true,
+    xlim : {Time, Time}? = nil,
+    ylim : {Float64, Float64} = {0.0, 0.0},
+    margin : Int32 = 3,
+    padding : Int32 = 1,
+    labels : Bool = true,
+    grid : Bool = true,
+    yticks : Bool = true,
+    xticks : Bool = true,
+    min_height : Int32 = 2,
+    min_width : Int32 = 5,
+    yflip : Bool = false,
+    xflip : Bool = false,
+    unicode_exponent : Bool = true,
+    thousands_separator : Char = ' ',
+    yunit : String? = nil,
+  ) : Plot forall T
+    {% unless T <= Number %}
+      {% raise "lineplot(Time x, y) requires numeric y values" %}
+    {% end %}
+    fmt = time_axis_format!(format)
+    limits = time_axis_limits(x, xlim)
+    plot = lineplot(
+      time_axis_values(x),
+      to_plot_f64(y),
+      canvas: canvas,
+      name: name,
+      color: color,
+      head_tail: head_tail,
+      head_tail_frac: head_tail_frac,
+      title: title,
+      xlabel: xlabel,
+      ylabel: ylabel,
+      xscale: xscale,
+      yscale: yscale,
+      height: height,
+      width: width,
+      border: border,
+      compact_labels: compact_labels,
+      compact: compact,
+      blend: blend,
+      xlim: time_axis_limits_to_f64(limits),
+      ylim: ylim,
+      margin: margin,
+      padding: padding,
+      labels: labels,
+      grid: grid,
+      yticks: yticks,
+      xticks: false,
+      min_height: min_height,
+      min_width: min_width,
+      yflip: yflip,
+      xflip: xflip,
+      unicode_exponent: unicode_exponent,
+      thousands_separator: thousands_separator,
+      yunit: yunit,
+    )
+    label_time_xaxis!(plot, limits, fmt, xflip) if xticks
+    plot
+  end
+
   def lineplot(x : Array(Float64), f : Float64 -> Float64, **kwargs) : Plot
     lineplot(x, x.map { |v| f.call(v) }, **kwargs)
   end
@@ -393,6 +475,23 @@ module UnicodePlot
     end
     plot.series += 1
     plot
+  end
+
+  # EXPERIMENTAL: appends Time x-axis data to an existing plot using Unix seconds internally.
+  def lineplot!(
+    plot : Plot,
+    x : Array(Time),
+    y : Array(T),
+    *,
+    name : String = "",
+    color : PlotColor = :auto,
+    head_tail : Symbol? = nil,
+    head_tail_frac : Float64 = 0.05,
+  ) : Plot forall T
+    {% unless T <= Number %}
+      {% raise "lineplot!(Time x, y) requires numeric y values" %}
+    {% end %}
+    lineplot!(plot, time_axis_values(x), to_plot_f64(y), name: name, color: color, head_tail: head_tail, head_tail_frac: head_tail_frac)
   end
 
   def lineplot!(

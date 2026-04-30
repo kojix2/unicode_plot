@@ -264,7 +264,7 @@ module UnicodePlot
       current = cells.delete(cell)
       raise ArgumentError.new("missing contour cell during trace") if current.nil?
 
-      crossing = current.not_nil!
+      crossing = current
       if crossing == NWSE
         if entry_edge == N || entry_edge == W
           cells[cell] = SE

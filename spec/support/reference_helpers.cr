@@ -109,10 +109,10 @@ def gaussian_2d(
   sigma_x : Float64 = 1.0,
   sigma_y : Float64 = 2.0,
 ) : {Array(Float64), Array(Float64), Array(Array(Float64))}
-  z = y.map do |yv|
-    x.map do |xv|
-      xterm = ((xv - x0) / (2.0 * sigma_x))**2
-      yterm = ((yv - y0) / (2.0 * sigma_y))**2
+  z = y.map do |y_value|
+    x.map do |x_value|
+      xterm = ((x_value - x0) / (2.0 * sigma_x))**2
+      yterm = ((y_value - y0) / (2.0 * sigma_y))**2
       Math.exp(-xterm - yterm)
     end
   end

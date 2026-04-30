@@ -111,6 +111,15 @@ lineplot!(p, x, x.map { |v| Math.log(v) }, name: "ln(x)", color: :red)
 puts p
 ```
 
+### Time x-axis (experimental)
+
+`lineplot` and `stairs` can accept `Array(Time)` for the x-axis. This API is experimental and currently requires an explicit Crystal `Time#to_s` format string:
+
+```crystal
+dates = (0..10).map { |i| Time.utc(2020, 1, 1) + i.days }
+puts lineplot(dates, dates.map_with_index { |_, i| i.to_f }, format: "%F")
+```
+
 ### Options
 
 | Option              | Description                                                                             |

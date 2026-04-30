@@ -670,4 +670,13 @@ describe UnicodePlot do
       UnicodePlot.ansi_color(nil).should eq(UnicodePlot::INVALID_COLOR)
     end
   end
+
+  describe "experimental Time x-axis support" do
+    it "requires an explicit format string" do
+      times = [Time.utc(2020, 1, 1), Time.utc(2020, 1, 2)]
+      expect_raises(ArgumentError, /format is required for Time x values/) do
+        UnicodePlot.lineplot(times, [1.0, 2.0])
+      end
+    end
+  end
 end

@@ -53,6 +53,84 @@ module UnicodePlot
     plot
   end
 
+  # EXPERIMENTAL: Time x-axis support requires an explicit Crystal Time#to_s format string.
+  def stairs(
+    x : Array(Time),
+    y : Array(T),
+    *,
+    format : String? = nil,
+    style : Symbol = :post,
+    canvas : Symbol = :braille,
+    name : String = "",
+    color : Symbol | UInt32 | {Int32, Int32, Int32} = :auto,
+    title : String = "",
+    xlabel : String = "",
+    ylabel : String = "",
+    xscale : Symbol | Proc(Float64, Float64) = :identity,
+    yscale : Symbol | Proc(Float64, Float64) = :identity,
+    height : Int32? = nil,
+    width : Int32? = nil,
+    border : Symbol = :solid,
+    compact_labels : Bool = false,
+    compact : Bool = false,
+    blend : Bool = true,
+    xlim : {Time, Time}? = nil,
+    ylim : {Float64, Float64} = {0.0, 0.0},
+    margin : Int32 = 3,
+    padding : Int32 = 1,
+    labels : Bool = true,
+    grid : Bool = true,
+    yticks : Bool = true,
+    xticks : Bool = true,
+    min_height : Int32 = 2,
+    min_width : Int32 = 5,
+    yflip : Bool = false,
+    xflip : Bool = false,
+    unicode_exponent : Bool = true,
+    thousands_separator : Char = ' ',
+  ) : Plot forall T
+    {% unless T <= Number %}
+      {% raise "stairs(Time x, y) requires numeric y values" %}
+    {% end %}
+    fmt = time_axis_format!(format)
+    limits = time_axis_limits(x, xlim)
+    plot = stairs(
+      time_axis_values(x),
+      to_plot_f64(y),
+      style: style,
+      canvas: canvas,
+      name: name,
+      color: color,
+      title: title,
+      xlabel: xlabel,
+      ylabel: ylabel,
+      xscale: xscale,
+      yscale: yscale,
+      height: height,
+      width: width,
+      border: border,
+      compact_labels: compact_labels,
+      compact: compact,
+      blend: blend,
+      xlim: time_axis_limits_to_f64(limits),
+      ylim: ylim,
+      margin: margin,
+      padding: padding,
+      labels: labels,
+      grid: grid,
+      yticks: yticks,
+      xticks: false,
+      min_height: min_height,
+      min_width: min_width,
+      yflip: yflip,
+      xflip: xflip,
+      unicode_exponent: unicode_exponent,
+      thousands_separator: thousands_separator,
+    )
+    label_time_xaxis!(plot, limits, fmt, xflip) if xticks
+    plot
+  end
+
   def stairs(x : Array(T), y : Array(U), **kwargs) : Plot forall T, U
     stairs(to_plot_f64(x), to_plot_f64(y), **kwargs)
   end
@@ -103,6 +181,14 @@ module UnicodePlot
 
     plot.series += 1
     plot
+  end
+
+  # EXPERIMENTAL: appends Time x-axis data to an existing plot using Unix seconds internally.
+  def stairs!(plot : Plot, x : Array(Time), y : Array(T), **kwargs) : Plot forall T
+    {% unless T <= Number %}
+      {% raise "stairs!(Time x, y) requires numeric y values" %}
+    {% end %}
+    stairs!(plot, time_axis_values(x), to_plot_f64(y), **kwargs)
   end
 
   def stairs!(plot : Plot, x : Array(T), y : Array(U), **kwargs) : Plot forall T, U
