@@ -3,7 +3,11 @@ module UnicodePlot
 
   def show_plot(io : IO, p : Plot) : Nil
     use_color = io.is_a?(IO::FileDescriptor) && io.as(IO::FileDescriptor).tty?
-    _show_plot(io, p, use_color)
+    show_plot(io, p, use_color: use_color)
+  end
+
+  def show_plot(io : IO, p : Plot, *, use_color : Bool) : Nil
+    render_plot(io, p, use_color)
   end
 
   # Print the zmax/zmin value label adjacent to the colorbar border.
@@ -96,7 +100,7 @@ module UnicodePlot
   # ameba:enable Metrics/CyclomaticComplexity
 
   # ameba:disable Metrics/CyclomaticComplexity
-  private def _show_plot(io : IO, p : Plot, use_color : Bool) : Nil
+  private def render_plot(io : IO, p : Plot, use_color : Bool) : Nil
     g = p.graphics
     blank_in = g.blank
 

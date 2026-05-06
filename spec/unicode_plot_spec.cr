@@ -23,6 +23,30 @@ describe UnicodePlot do
     end
   end
 
+  describe "show_plot" do
+    it "allows color output to be controlled explicitly" do
+      plot = UnicodePlot.lineplot([1.0, 2.0], [1.0, 2.0], color: :red)
+
+      default_io = IO::Memory.new
+      UnicodePlot.show_plot(default_io, plot)
+
+      colored_io = IO::Memory.new
+      UnicodePlot.show_plot(colored_io, plot, use_color: true)
+
+      plain_io = IO::Memory.new
+      UnicodePlot.show_plot(plain_io, plot, use_color: false)
+
+      default_output = default_io.to_s
+      colored_output = colored_io.to_s
+      plain_output = plain_io.to_s
+
+      default_output.should_not contain("\e[")
+      colored_output.should contain("\e[")
+      plain_output.should_not contain("\e[")
+      strip_ansi(colored_output).should eq(plain_output)
+    end
+  end
+
   describe "lineplot" do
     it "returns a Plot" do
       p = UnicodePlot.lineplot([1.0, 2.0, 3.0], [1.0, 4.0, 9.0])
